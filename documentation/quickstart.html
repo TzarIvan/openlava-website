@@ -1,0 +1,294 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+ <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+ <title>openlava - Open Source Job Scheduler</title>
+ <meta name="author" content="openlava development team" />
+ <meta name="subject" content="openlava - Open Source Workload Scheduler" />
+ <meta name="Description" content="This is the official website for openlava, the open source job scheduler based on Platform LSF. Download RPM, source code, read documentation and get support." />
+ <meta name="Keywords" content="download free workload manager, open source hpc job scheduler, openlava support, openlava mailing list, openlava developer" />
+ <meta name="Language" content="English" />
+ <meta http-equiv="Expires" content="never" />
+ <meta name="Copyright" content="openlava Foundation 2011" />
+ <meta name="distribution" content="Global" />
+ <meta name="Robots" content="INDEX,FOLLOW" />
+ <meta name="country" content="United States" />
+ <link href="../style/style.css" rel="stylesheet" type="text/css" />
+ </head>
+
+ <body id="documentation">
+
+ <div id="page">
+
+   <div id="header">
+     <p>
+       <img src="../images/openlava_logo_slogan.gif" />
+   </p>	</div>
+
+   <div id="menu">
+     <ul>
+       <li><a href="../home.html" id="homenav">Home</a></li>
+       <li><a href="../sownload/download.html" id="downloadnav">Downloads</a></li>
+       <li><a href="../documentation/documentation.html" id="documentationnav">Documentation</a></li>
+       <li><a href="../support/support.html" id="supportnav">Support</a></li>
+       <!-- li><a href="../blog" id="blognav">Forum</a></li -->
+   </ul>
+   </div> <!-- end #header -->
+
+   <div id="maincontent">
+     <div id="leftcol">	<h2>Quickstart</h2>
+
+       <p>The current version of openlava requires installation in a shared file system. The installation directory must be specied on the RPM command line.</p>
+
+       <ul>
+         <li><a href="#custom-default">Install using the default cluster name (openlava)</a></li>
+         <li><a href="#custom-custom">Install using a custom cluster name</a></li>
+         </ul>
+
+         <h3><a name="custom-default">Install using the default cluster name (openlava)</a></h3>
+
+         <h4>Step 1: Install the openlava RPM on the master server</h4>
+
+         <p>Install the openlava RPM on the master server, specifying the installation directory on the RPM command line. You should install openlava as root. Please ensure that root has write permission to the $INSTALL_DIRECTORY on the file server. </p>
+
+         <p>The installer performs the following actions:</p>
+
+         <ol>
+         <li>Sets the cluster name to "openlava"</li>
+         <li>Creates the openlava user</li>
+         <li>Creates the top level openlava directory along with a symbolic link that points to it as shown below:
+         <pre>
+     $INSTALL_DIRECTORY/openlava-1.0
+     $INSTALL_DIRECTORY/openlava -> $INSTALL_DIRECTORY/openlava-1.0
+     </pre>
+     </ol>
+
+         <pre>
+ [root@master ~]# <b>rpm -ivh --prefix=/cm/shared/apps /cm/shared/openlava-1.0-1.x86_64.rpm</b>
+ Preparing...                ########################################### [100%]
+    1:openlava               ########################################### [100%]
+    </pre>
+
+    <p>openlava is installed.</p>
+
+         <pre>
+ [root@master ~]# <b>ls /cm/shared/apps/openlava</b>
+ /cm/shared/apps/openlava -> /cm/shared/apps/openlava-1.0
+         </pre>
+
+         <p>Source the openlava.sh file to set up the openlava execution environment.</p>
+
+         <pre>
+ [root@master openlava]# <b>. /etc/profile.d/openlava.sh</b>
+         </pre>
+
+         <p>Start the openlava daemons.</p>
+
+         <pre>
+ [root@master openlava]# <b>service openlava start</b>
+ Starting daemons...
+ lim started
+ res started
+ sbatchd started
+         </pre>
+
+         <p>Congratulations! openlava is now running, managing a cluster of one node.</p>
+
+         <pre>
+ [root@master openlava]# <b>lsid</b>
+ Platform Lava 1.0, Jun 11 2011
+ Copyright 2007 Platform Computing Corporation
+
+ My cluster name is openlava
+ My master name is master.cm.cluster
+         </pre>
+
+         <h4>Step 2: Run the openlava.setup script on the compute servers</h4>
+
+         <p>Add the names of the compute servers to the $INSTALL_DIRECTORY/openlava/conf/lsf.cluster.openlava file. In the example below I've added node001 and node002.</p>
+
+         <pre>
+ [root@master ~]# <b>vi /cm/shared/apps/openlava/conf/lsf.cluster.openlava</b>
+
+ Begin   ClusterAdmins
+ Administrators = openlava
+ End    ClusterAdmins
+
+ Begin   Host
+ HOSTNAME        model   type    server  r1m  RESOURCES
+ bcm51-demo      !       !       1       3.5  ()
+ <b>node001         !       !       1       3.5  ()</b>
+ <b>node002         !       !       1       3.5  ()</b>
+ End     Host
+
+ Begin ResourceMap
+ RESOURCENAME  LOCATION
+ # tmp2          [default]
+ # nio           [all]
+ # console       [default]
+ End ResourceMap
+         </pre>
+
+         <p>Log in to compute nodes and set the LSF_ENVDIR variables.</p>
+
+         <pre>
+ [root@master ~]# <b>ssh node001</b>
+ [root@node001 ~]# <b>export LSF_ENVDIR=/cm/shared/apps/openlava/conf</b>
+         </pre>
+
+         <p>Execute the openlava.setup script.</p>
+
+         <pre>
+ [root@node001 ~]# <b>/cm/shared/apps/openlava/etc/openlava.setup</b>
+         </pre>
+
+         <p>Start the openlava service.</p>
+
+         <pre>
+ [root@node001 ~]# <b>service openlava start</b>
+ Starting daemons...
+ lim started
+ res started
+ sbatchd started
+         </pre>
+
+         <p>Verify that openlava is running. Note that it might take 30 seconds to a minute for the local daemons to establish communication with the master.</p>
+
+         <pre>
+ [root@node001 ~]# <b>. /etc/profile.d/openlava.sh</b>
+
+ [root@node001 ~]# <b>lsid</b>
+ Platform Lava 1.0, Jun 13 2011
+ Copyright 2007 Platform Computing Corporation
+
+ My cluster name is openlava
+ My master name is node001.cm.cluster
+         </pre>
+
+         <h3><a name="custom-custom">Install using a custom cluster name</a></h3>
+
+         <h4>Step 1: Install the openlava RPM on the master server</h4>
+
+         <p>Set and export the OPENLAVA_CLUSTER_NAME environment variable to your custom cluster name of choice.</p>
+
+         <pre>
+ [root@master ~]# <b>export OPENLAVA_CLUSTER_NAME="custom-relocated"</b>
+         </pre>
+
+         <p>Install the openlava RPM on the master server, specifying the installation directory on the RPM command line. You should install openlava as root. Please ensure that root has write permission to the $INSTALL_DIRECTORY on the file server.</p>
+
+         <p>The installer performs the following actions:</p>
+
+         <ol>
+         <li>Sets the cluster name to the value of $OPENLAVA_CLUSTER_NAME</li>
+         <li>Creates the openlava user</li>
+         <li>Creates the top level openlava directory along with a symbolic link that points to it as shown below:
+         <pre>
+     $INSTALL_DIRECTORY/openlava-1.0
+     $INSTALL_DIRECTORY/openlava -> $INSTALL_DIRECTORY/openlava-1.0
+     </pre>
+     </ol>
+
+     <pre>
+ [root@master ~]# <b>rpm -ivh --prefix /cm/shared/apps /cm/shared/openlava-1.0-1.x86_64.rpm</b>
+ Preparing...                ########################################### [100%]
+    1:openlava               ########################################### [100%]
+         </pre>
+
+         <p>Start the openlava daemons.</p>
+
+         <pre>
+ [root@master ~]# <b>service openlava start</b>
+ Starting daemons...
+ lim started
+ res started
+ sbatchd started
+         </pre>
+
+         <p>openlava is now installed and running.</p>
+
+         <pre>
+ [root@master ~]# <b>lsid</b>
+ Platform Lava 1.0, Jun 11 2011
+ Copyright 2007 Platform Computing Corporation
+
+ My cluster name is custom-relocated
+ My master name is node001.cm.cluster
+         </pre>
+
+         <h4>Step 2: Run the openlava.setup script on the compute servers</h4>
+
+         <p>Add the names of the compute servers to the $INSTALL_DIRECTORY/openlava/conf/lsf.cluster.openlava file. In the example below I've added node001 and node002.</p>
+
+         <pre>
+ [root@master ~]# <b>vi /cm/shared/apps/openlava/conf/lsf.cluster.openlava</b>
+
+ Begin   ClusterAdmins
+ Administrators = openlava
+ End    ClusterAdmins
+
+ Begin   Host
+ HOSTNAME        model   type    server  r1m  RESOURCES
+ bcm51-demo      !       !       1       3.5  ()
+ <b>node001         !       !       1       3.5  ()</b>
+ <b>node002         !       !       1       3.5  ()</b>
+ End     Host
+
+ Begin ResourceMap
+ RESOURCENAME  LOCATION
+ # tmp2          [default]
+ # nio           [all]
+ # console       [default]
+ End ResourceMap
+         </pre>
+
+         <p>Log in to compute nodes and set the LSF_ENVDIR variables.</p>
+
+         <pre>
+ [root@master ~]# <b>ssh node001</b>
+ [root@node001 ~]# <b>export LSF_ENVDIR=/cm/shared/apps/openlava/conf</b>
+         </pre>
+
+         <p>Execute the openlava.setup script.</p>
+
+         <pre>
+ [root@node001 ~]# <b>/cm/shared/apps/openlava/etc/openlava.setup</b>
+         </pre>
+
+         <p>Start the openlava service.</p>
+
+         <pre>
+ [root@node001 ~]# <b>service openlava start</b>
+ Starting daemons...
+ lim started
+ res started
+ sbatchd started
+         </pre>
+
+         <p>Verify that openlava is running. Note that it might take 30 seconds to a minute for the local daemons to establish communication with the master.</p>
+
+         <pre>
+ [root@node001 ~]# <b>. /etc/profile.d/openlava.sh</b>
+
+ [root@node001 ~]# <b>lsid</b>
+ Platform Lava 1.0, Jun 13 2011
+ Copyright 2007 Platform Computing Corporation
+
+ My cluster name is custom-relocated
+ My master name is node001.cm.cluster
+         </pre></div>
+         </div> <!-- end #maincontent -->
+
+         <div id="footer">
+           <div><span>2011-2012 openlava project<a href="/site/privacy"> Privacy</a></span>
+             <p>
+               <a href="http://validator.w3.org/check?uri=referer"><img
+                                                                      src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" style="border: 0;"/></a>
+             </p>
+         </div>	</div> <!-- end #footer -->
+
+     </div> <!-- end #page -->
+
+ </body>
+ </html>
+
