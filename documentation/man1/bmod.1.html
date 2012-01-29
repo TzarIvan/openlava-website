@@ -1,0 +1,337 @@
+<HTML><HEAD>
+<TITLE>bmod.1</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH bmod 1 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>bmod (1)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>bmod</B> - modifies job submission options of a job
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Option List</A><BR>
+<A HREF=#3>Description</A><BR>
+<A HREF=#4>Options</A><BR>
+<A HREF=#5>See Also</A><BR>
+<A HREF=#6>Limitations</A><BR>
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>bmod </B>[<I>bsub options</I>] [<I>job_ID</I><B> | </B><B>"</B><I>job_ID</I><B>[</B><I>index</I><B>]"</B>]
+<!-- .PP -->
+<P>
+<B>bmod</B> [<B>-h</B> | <B>-V</B>]
+<!-- .SH OPTION LIST -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>OPTION LIST</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .br -->
+[<B>-B</B> | <B>-Bn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-N</B> | <B>-Nn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-r </B>| <B>-rn</B> ]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-x</B> | <B>-xn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-b </B><I>begin_time</I> | <B>-bn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-C</B><B> </B><I>core_limit</I> | <B>-Cn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-c</B> [<I>hour</I><B>:</B>]<I>minute</I>[<B>/</B><I>host_name</I> | <B>/</B><I>host_model</I>] | <B>-cn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-D</B><B> </B><I>data_limit</I> | <B>-Dn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-e </B><I>err_file</I> | <B>-en</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-E "</B><I>pre_exec_command </I>[<I>argument </I>...]<B>"</B> | <B>-En</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-f</B><B> </B><B>"</B><I>local_file op </I>[<I>remote_file</I>]<B>"</B><B> </B>... | <B>-fn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-F</B> <I>file_limit</I> | <B>-Fn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-G</B><B> </B><I>user_group</I> | <B>-Gn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-i </B><I>input_file</I> | <B>-in</B> | <B>-is</B> <I>input_file </I> |  <B>-isn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-J</B><B> </B><I>job_name</I> | <B>-J "%</B><I>job_limit</I><B>"</B> | <B>-Jn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-k</B><B> </B><I>checkpoint_dir</I> | <B>-k</B><B> </B><B>"</B><I>checkpoint_dir</I><B> </B>[<I>checkpoint_period</I>]<B>"</B> | <B>-kn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-L </B><I>login_shell</I> | <B>-Ln</B>]<B>
+</B>.br
+[<B>-m</B><B> </B><B>"</B><I>host_name</I>[<B>+</B>[<I>pref_level</I>]] | <I>host_group</I>[<B>+</B>[<I>pref_level</I>]] ...<B>"</B> | <B>-mn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-M</B><B> </B><I>mem_limit</I> | <B>-Mn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-n</B> <I>num_processors</I> | <B>-nn</B><B> </B>] 
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-o</B><B> </B><I>out_file</I> | <B>-on</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-P</B> <I>project_name</I> | <B>-Pn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-p</B> <I>process_limit</I> | <B>-Pn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-q</B><B> "</B><I>queue_name</I><I> ...</I><B>"</B> | <B>-qn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-R</B><B> "</B><I>res_req</I><B>"</B> | <B>-Rn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-sp</B> <I>priority</I> | <B>-spn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-S </B><I>stack_limit</I> | <B>-Sn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-t </B><I>term_time</I> | <B>-tn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-u</B><B> </B><I>mail_user</I> | <B>-un</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-w</B> <B>&#146;</B><I>dependency_expression</I><B>&#146;</B> | <B>-wn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-W</B><I> r</I><I>un_limit </I>[/<I>host_name</I> | /<I>host_model</I>] | <B>-Wn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-Z "</B><I>new_command</I><B>"</B> | <B>-Zs "</B><I>new_command</I><B>"</B> | <B>-Zsn</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<I>job_ID</I> | <B>"</B><I>job_ID</I><B>[</B><I>index</I><B>]"</B>]<B>
+</B>.br
+[<B>-h</B>]
+<!-- .br -->
+<!-- Need break --><BR>
+[<B>-V</B>]
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B></B>Modifies the options of a previously submitted job. See bsub(1) for
+complete descriptions of job submission options you can modify with
+bmod.
+<!-- .PP -->
+<P>
+Only the owner of the job, or an openlava administrator, can modify the
+options of a job.
+<!-- .PP -->
+<P>
+All options specified at submission time may be changed. The value for
+each option may be overridden with a new value by specifying the
+option as in bsub. To reset an option to its default value, use the option
+string followed by &#146;n&#146;. Do not specify an option value when resetting
+an option.
+<!-- .PP -->
+<P>
+The -i, -in, and -Z options have counterparts that support spooling
+of input and job command files (-is, -isn, -Zs, and -Zsn).
+<!-- .PP -->
+<P>
+You can modify all options of a pending job, even if the corresponding
+bsub option was not specified.
+<!-- .PP -->
+<P>
+By default, you can modify resource reservation for running jobs
+(<B>-R</B> <B>"</B><I>res_req</I><B>"</B>). To modify additional job options for running jobs,
+define LSB_MOD_ALL_JOBS=Y in lsf.conf.
+<!-- .PP -->
+<P>
+The following are the only <B>bmod</B> options that are valid for running jobs.
+You cannot make any other modifications after a job has been
+dispatched.
+<!-- .PP -->
+<P>
+- Resource reservation (<B>-R</B> <B>"</B><I>res_req</I><B>"</B>)
+<!-- .PP -->
+<P>
+- CPU limit (<B>-c </B>[<I>hour</I><B>:</B>]<I>minute</I>[<B>/</B><I>host_name</I> | <B>/</B><I>host_model</I>])
+<!-- .PP -->
+<P>
+- Memory limit (<B>-M</B> <I>mem_limit</I>)
+<!-- .PP -->
+<P>
+- Run limit (<B>-W</B> <I>run_limit</I>[<B>/</B><I>host_name</I> | <B>/</B><I>host_model</I>])
+<!-- .PP -->
+<P>
+- Standard output file name (<B>-o</B> <I>output_file</I>)
+<!-- .PP -->
+<P>
+- Standard error file name (<B>-e</B> <I>error_file</I>)
+<!-- .PP -->
+<P>
+- Rerunnable jobs (<B>-r</B> | <B>-rn</B>)
+<!-- .PP -->
+<P>
+Modified resource limits cannot exceed the resource limits defined in
+the queue.
+<!-- .PP -->
+<P>
+To modify the CPU limit or the memory limit of running jobs, the
+parameters LSB_JOB_CPULIMIT=Y and LSB_JOB_MEMLIMIT=Y must
+be defined in lsf.conf.
+<!-- .PP -->
+<P>
+If you want to specify array dependency by array name, set
+JOB_DEP_LAST_SUB in lsb.params. If you do not have this
+parameter set, the job will be rejected if one of your previous arrays
+has the same name but a different index.
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=4>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .TP  -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+<B></B><I>job_ID</I><B> </B>|<B> </B><B>"</B><I>job_ID</I><B>[</B><I>index</I><B>]"
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Modifies jobs with the specified job ID.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Modifies job array elements specified by <B>"</B><I>job_ID</I><B>[</B><I>index</I><B>]"</B>.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-h
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints command usage to stderr and exits.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-V
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints openlava release version to stderr and exits.
+<P>
+<P>
+<!-- .SH SEE ALSO -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=5>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+bsub(1), lsfbatch(1)
+<!-- .SH LIMITATIONS -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>LIMITATIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Modifying the -q option of a job array is not permitted.
+<!-- .PP -->
+<P>
+If you do not specify <B>-e</B> before the job is dispatched, you cannot
+modify the name of job error file for a running job.
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>bmod (1)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from bmod.1 using man macros.</FONT>
+</BODY></HTML>

@@ -1,0 +1,292 @@
+<HTML><HEAD>
+<TITLE>busers.1</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH busers 1 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>busers (1)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>busers</B> - displays information about users and user groups
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Output</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#5>User/group</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#6>Jl/p</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#7>Max</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#8>Njobs</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#9>Pend</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#10>Run</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#11>Ssusp</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#12>Ususp</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#13>Rsv</A><BR>
+<A HREF=#14>See Also</A><BR>
+</BLOCKQUOTE>
+<A name=15>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>busers</B><B> </B>[<I>user_name </I>... | <I>user_group</I> ... | <B>all</B>]<B>
+</B>.PP
+<B>busers</B><B> </B>[<B>-h</B> | <B>-V</B>]
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B></B>Displays information about users and user groups.
+<!-- .PP -->
+<P>
+By default, displays information about the user who runs the
+command.
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .TP  -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+<I>user_name</I> ... |<B> </B><I>user_group </I>... |<B> </B><B>all
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays information about the specified users or user groups, or about
+all users if you specify all.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-h
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints command usage to stderr and exits.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-V
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints openlava release version to stderr and exits.
+<P>
+<P>
+<!-- .SH OUTPUT -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>OUTPUT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+A listing of the users and user groups is displayed with the following
+fields:
+<!-- .SS USER/GROUP  -->
+</BLOCKQUOTE>
+<A name=5>
+
+    <H4>&nbsp; &nbsp; USER/GROUP</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The name of the user or user group.
+<!-- .SS JL/P  -->
+</BLOCKQUOTE>
+<A name=6>
+
+    <H4>&nbsp; &nbsp; JL/P</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The maximum number of job slots that can be processed
+simultaneously for the specified users on each processor.
+These job slots are used by running and suspended jobs or by pending
+jobs which have jobs slots reserved for them.  This job limit is
+configured per processor so that multiprocessor hosts have more job
+slots. If the dash character (-) is displayed, there is no limit. JL/P is
+defined in the openlava configuration file lsb.users(5).
+<!-- .SS MAX  -->
+</BLOCKQUOTE>
+<A name=7>
+
+    <H4>&nbsp; &nbsp; MAX</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The maximum number of job slots that can be processed concurrently
+for the specified users&#146; jobs. These job slots are used by running
+and suspended jobs or by pending jobs which have job slots reserved
+for them.  If the character &#145;-&#146; is displayed, there is no limit. MAX
+is defined by the MAX_JOBS parameter in the configuration file
+lsb.users(5).
+<!-- .SS NJOBS  -->
+</BLOCKQUOTE>
+<A name=8>
+
+    <H4>&nbsp; &nbsp; NJOBS</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The current number of job slots used by specified users&#146; jobs. A parallel
+job that is pending is counted as <I>n</I> job slots for it will use <I>n</I> job slots
+in the queue when it is dispatched.
+<!-- .SS PEND  -->
+</BLOCKQUOTE>
+<A name=9>
+
+    <H4>&nbsp; &nbsp; PEND</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The number of pending job slots used by jobs of the specified users.
+<!-- .SS RUN  -->
+</BLOCKQUOTE>
+<A name=10>
+
+    <H4>&nbsp; &nbsp; RUN</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The number of job slots used by running jobs of the specified users.
+<!-- .SS SSUSP  -->
+</BLOCKQUOTE>
+<A name=11>
+
+    <H4>&nbsp; &nbsp; SSUSP</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The number of job slots used by the system-suspended jobs of the
+specified users.
+<!-- .SS USUSP -->
+</BLOCKQUOTE>
+<A name=12>
+
+    <H4>&nbsp; &nbsp; USUSP</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The number of job slots used by user-suspended jobs of the specified
+users.
+<!-- .SS RSV  -->
+</BLOCKQUOTE>
+<A name=13>
+
+    <H4>&nbsp; &nbsp; RSV</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The number of job slots used by pending jobs of the specified users
+which have job slots reserved for them.
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=14>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+bugroup(1), lsb.users(5), lsb.queues(5)
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>busers (1)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from busers.1 using man macros.</FONT>
+</BODY></HTML>

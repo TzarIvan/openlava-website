@@ -1,0 +1,189 @@
+<HTML><HEAD>
+<TITLE>btop.1</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH btop 1 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>btop (1)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>btop</B> - moves a pending job relative to the first job in the queue
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>See Also</A><BR>
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>btop</B><B> </B><I>job_ID</I> | <B>"</B><I>job_ID</I><B>[</B><I>index_list</I><B>]"</B> [<I>position</I>]
+<!-- .PP -->
+<P>
+<B>btop</B><B> </B>[<B>-h</B> | <B>-V</B>]
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B></B>Changes the queue position of a pending job or a pending job array
+element, to affect the order in which jobs are considered for dispatch.
+<!-- .PP -->
+<P>
+By default, openlava dispatches jobs in a queue in the order of their arrival
+(that is, first-come-first-served), subject to availability of suitable server
+hosts.
+<!-- .PP -->
+<P>
+The btop command allows users and the openlava administrator to manually
+change the order in which jobs are considered for dispatch. Users can
+only operate on their own jobs, whereas the openlava administrator can
+operate on any user&#146;s jobs. Users can only change the relative position
+of their own jobs.
+<!-- .PP -->
+<P>
+If invoked by the openlava administrator, <B>btop</B> moves the selected job
+before the first job with the same priority submitted to the queue. The
+positions of all users&#146; jobs in the queue can be changed by the openlava
+administrator.
+<!-- .PP -->
+<P>
+If invoked by a regular user, <B>btop</B> moves the selected job before the
+first job with the same priority submitted by the user to the queue.
+Pending jobs are displayed by bjobs in the order in which they will be
+considered for dispatch.
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .TP  -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+ <I>job_ID</I> | <B>"</B><I>job_ID</I><B>[</B><I>index_list</I><B>]"
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Required. Job ID of the job or of the job array on which to operate.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+For a job array, the index list, the square brackets, and the quotation
+marks are required. An index list is used to operate on a job array. The
+index list is a comma separated list whose elements have the syntax
+<I>start_index</I>[-<I>end_index</I>[<B>:</B><I>step</I>] ] where <I>start_index</I>, <I>end_index</I> and <I>step</I>
+are positive integers. If the step is omitted, a step of one is assumed.
+The job array index starts at one. The maximum job array index is 2.00.
+All jobs in the array share the same job_ID and parameters. Each
+element of the array is distinguished by its array index.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<I>position
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</I>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Optional. The <I>position</I> argument can be specified to indicate where in
+the queue the job is to be placed. <I>position</I> is a positive number that
+indicates the target position of the job from the beginning of the queue.
+The positions are relative to only the applicable jobs in the queue,
+depending on whether the invoker is a regular user or the openlava
+administrator. The default value of 1 means the position is before all
+the other jobs in the queue that have the same priority.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-h
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints command usage to stderr and exit.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-V
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints openlava release version to stderr and exit.
+<P>
+<P>
+<!-- .SH SEE ALSO -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+bbot(1), bjobs(1), bswitch(1)
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>btop (1)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from btop.1 using man macros.</FONT>
+</BODY></HTML>

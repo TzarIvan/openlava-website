@@ -1,0 +1,269 @@
+<HTML><HEAD>
+<TITLE>brequeue.1</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH brequeue 1 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>brequeue (1)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>brequeue</B> - Kills and requeues a job
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Limitations</A><BR>
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>brequeue [-J</B> <I>job_name</I> | <B>-J "</B><I>job_name</I><B>[</B><I>index_list</I><B>]"]</B> [ <B>-u</B> <I>user_name</I> |
+<B>-u</B> <B>all</B> ][ <I>job_ID</I> | <I> </I><B>"</B><I>job_ID</I><B>[</B><I>index_list</I><B>]"][-d][-e][-r][-a][-H]
+</B>.PP
+<B>brequeue</B> [<B>-h</B> | <B>-V</B>]
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B></B>You can only use brequeue on a job you own, unless you are root or
+an openlava administrator.
+<!-- .PP -->
+<P>
+Kills a running (RUN), user-suspended (USUSP), or system-suspended
+(SSUSP) job and returns it to its original queue, with the same job ID.
+A job that is killed and requeued retains its submit time but is
+dispatched according to its requeue time. When the job is requeued, it
+is assigned the PEND status or PSUSP if the -H option is used. Once
+dispatched, the job starts over from the beginning.
+<!-- .PP -->
+<P>
+Use brequeue to requeue job arrays or elements of them.
+<!-- .PP -->
+<P>
+By default, kills and requeues your most recently submitted job when
+no job_ID is specified.
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .TP  -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+<B>-J</B> <I>job_name</I> | <B>-J "</B><I>job_name</I><B>[</B><I>index_list</I><B>]"
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Operates on the specified job.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Since job names are not unique, multiple job arrays may have the same
+name with a different or same set of indices.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-u</B> <I>user_name </I>|<I> </I><B>-u all
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Operates on the specified user&#146;s jobs or all jobs.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Only root and an openlava administrator can requeue jobs submitted by
+other users.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<I>job_ID </I>|<B>"</B><I>job_ID</I><B>[</B><I>index_list</I><B>]"
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Operates on the specified job or job array elements.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The value of 0 for <I>job_ID</I> is ignored.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-h</B>
+</TD><TD valign=bottom>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints command usage to stderr and exits.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-V
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints openlava release version to stdout and exits.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-d
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Requeues jobs that have finished running with DONE job status.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-e
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Requeues jobs that have terminated abnormally with EXIT job status.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-r
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Requeues jobs that are running.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-a
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Requeues all jobs including running jobs, suspending jobs, and jobs
+with EXIT or DONE status.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-H
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Requeues jobs to PSUSP job status.
+<P>
+<P>
+<!-- .SH LIMITATIONS -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>LIMITATIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+brequeue cannot be used on interactive batch jobs; brequeue only
+kills interactive batch jobs, it does not restart them.
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>brequeue (1)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from brequeue.1 using man macros.</FONT>
+</BODY></HTML>

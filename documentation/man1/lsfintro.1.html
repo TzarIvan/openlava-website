@@ -1,0 +1,491 @@
+<HTML><HEAD>
+<TITLE>lsfintro.1</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .\" $Id: lsfintro.1,v 1.2 2012/08/01 20:36:25 bill Exp $ -->
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .TH LSFINTRO 1 "Version 2.0 Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>LSFINTRO (1)</NOBR><HR></H1>
+</CENTER>
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+openlava
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Description</A><BR>
+<A HREF=#2>Resource Requirement Strings</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#3>Selection String</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#4>Order String</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#5>Resource Usage String</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#6>Job Spanning String</A><BR>
+<A HREF=#7>Run Queue Lengths</A><BR>
+<A HREF=#8>Lsf_job_starter</A><BR>
+<A HREF=#9>Notes</A><BR>
+<A HREF=#10>See Also</A><BR>
+</BLOCKQUOTE>
+<A name=11>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<FONT size=-1>openlava</FONT> is a load sharing and distributed batch
+queueing software that integrates a heterogeneous network of computers running
+<FONT size=-1>UNIX</FONT> systems.  It consists of the following components:
+<!-- .TP 5 -->
+<TABLE cellpadding=3><!-- tsb: <FONT size=-1>openlava</FONT> is a load sharing and distributed batch
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B \s-1openlava\s0 Base: -->
+<B><FONT size=-1>openlava</FONT> Base:</B> </TD></TR><TR valign=top><TD width=5%>&nbsp;</TD><TD>
+The software upon which all the other components are
+based.  It includes two servers, the Load Information Manager (<FONT size=-1>LIM</FONT>) and
+the Remote Execution Server (<FONT size=-1>RES</FONT>),  API for accessing services
+provided by the <FONT size=-1>openlava</FONT> Base system,
+Base software services and other load sharing tools.  (see
+<!-- .BR lsfbase (1)). -->
+<B>lsfbase</B>(1)).
+<P>
+<!-- .TP 5 -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B \s-1openlava\s0 Batch:  -->
+<B><FONT size=-1>openlava</FONT> Batch:</B> </TD></TR><TR valign=top><TD width=5%>&nbsp;</TD><TD>
+The set of utilities providing  batch
+job scheduling for distributed and heterogeneous environments, ensuring
+optimal resource sharing.  It includes the master and slave batch daemons
+(mbatchd and sbatchd) and API for accessing services provided by
+the <FONT size=-1>openlava</FONT> Batch system (see
+<!-- .BR lsfbatch (1)). -->
+<B>lsfbatch</B>(1)).
+<P>
+<!-- .SH RESOURCE REQUIREMENT STRINGS -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=2>
+
+     <H3>RESOURCE REQUIREMENT STRINGS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Many of the above commands and utilities permit a resource requirement
+string to be specified.  A resource requirement string contains information
+used for querying for information from the <FONT size=-1>LIM</FONT> about hosts or
+requesting task placement decisions.
+<!-- .PP -->
+<P>
+A resource requirement string is divided into four sections including
+a selection section, an ordering section, a resource usage section and
+a job spanning section. The
+selection section specifies the criteria for selecting hosts from the system.
+The ordering section indicates how the hosts which meet the selection criteria
+should be sorted. The resource usage section specifies the expected resource
+consumption of the task or the resource reservation for a batch job.
+The job spanning section specifies whether to span a (parallel) batch job
+across multiple hosts.
+The syntax of a resource requirement expression is
+<!-- .LP -->
+<P>
+<B> "select[ </B><I>selectstring</I><B> ] order[ </B><I>orderstring</I> ]
+<!-- .LP -->
+<P>
+<B>rusage[ </B><I>usagestring</I><B> ] span[ </B><I>spanstring</I> ]"
+<!-- .LP -->
+<P>
+where &#145;<B>select</B>&#146;, &#145;<B>order</B>&#146; , &#145;<B>rusage</B>&#146; and &#145;<B>span</B>&#146; are
+the section names.
+Any character in the resource requirement expression not within the above
+sections are ignored.  If a section is repeated multiple times in a resource
+requirement expression, then only the first occurrence is considered.
+The syntax for each of &#145;<I>selectstring</I>&#146;, &#145;<I>orderstring</I>&#146;,
+&#145;<I>usagestring</I>&#146; and &#145;<I>spanstring</I>&#146; is defined below. Depending on
+the command, one or more of these sections may be ignored. For example,
+<!-- .BR lshosts (1) -->
+<B>lshosts</B>(1)
+will only select hosts, but not order them,
+<!-- .BR lsload (1) -->
+<B>lsload</B>(1)
+will select and order the hosts,
+<!-- .BR lsplace (1) -->
+<B>lsplace</B>(1)
+uses the information in select, order and rusage sections to select an
+appropriate host for a task.
+<!-- .BR lsloadadj (1) -->
+<B>lsloadadj</B>(1)
+uses the resource usage section to determine how the load information
+should be adjusted on a host, while
+<!-- .BR bsub (1) -->
+<B>bsub</B>(1)
+uses all the four sections.
+Sections other than these are ignored. If no section name is given, then
+the string is treated as a &#145;<I>selectstring</I>&#146;. The &#145;<B>select</B>&#146;
+keyword may be omitted if the &#145;<I>selectstring</I>&#146; appears as the first
+string in the resource requirement.
+<P>
+<!-- .SS Selection String -->
+</BLOCKQUOTE>
+<A name=3>
+
+    <H4>&nbsp; &nbsp; Selection String</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .LP -->
+<P>
+The selection string specifies the characteristics a host must have to be returned.
+It is a logical expression built from a set of resource names.
+The resource names  and their descriptions can be obtained by running
+the <FONT size=-1>openlava</FONT> utility program
+<!-- .BR lsinfo (1). -->
+<B>lsinfo</B>(1).
+The resource names &#145;<B>swap</B>&#146;, &#145;<B>idle</B>&#146;, &#145;<B>login</B>&#146;, and
+&#145;<B>cpu</B>&#146; are aliases for &#145;<B>swp</B>&#146;, &#145;<B>it</B>&#146;, &#145;<B>ls</B>&#146; and
+&#145;<B>r1m</B>&#146; respectively which are returned by
+<!-- .BR lsinfo (1). -->
+<B>lsinfo</B>(1).
+<!-- .PP -->
+<P>
+Resource names correspond to information maintained by the <FONT size=-1>LIM</FONT>
+about hosts. Some resources correspond to dynamic information
+about a host, such as its <FONT size=-1>CPU</FONT> queue length, available memory,
+and available
+swap space. These resources are referred to as load indices and can be
+retrieved via
+<!-- .BR lsload (1). -->
+<B>lsload</B>(1).
+Other resources correspond to static information about a host such as its
+type, host model, relative <FONT size=-1>CPU</FONT> speed, total memory and total swap space.
+This information can be retrieved via
+<!-- .BR lshosts (1). -->
+<B>lshosts</B>(1).
+The system administrator can define other resources in the system
+in addition to those built in to <FONT size=-1>LIM</FONT>.
+<!-- .PP -->
+<P>
+An arbitrary expression with resource
+names being combined with logical or mathematical operators, and functions
+can be specified.
+Valid operators include &#145;<B>&&</B>&#146; (logical AND), &#145;<B>||</B>&#146; (logical OR),
+&#145;<B>!</B>&#146; (logical NOT), &#145;<B>+</B>&#146; (addition), &#145;<B>-</B>&#146; (subtraction),
+&#145;<B>*</B>&#146;,(multiplication) and &#145;<B>/</B>&#146; (division).
+The function, <B>defined</B>, can be used to determine the hosts which have
+a particular resource defined. 
+The selection expression is evaluated for each host; if the result
+is non-zero, then that host is selected.
+<P>
+For example,
+<!-- .LP -->
+<P>
+ <B>"select[ (swp&gt;50 && mem&gt;=10 && type==MIPS) || (swp&gt;35 && type==ALPHA) ]"</B>
+<!-- .LP -->
+<P>
+ <B>"select[ ((2*r15s + 3*r1m + r15m)/6 &lt; 2.0) && <BLINK>\!</BLINK>fs && (cpuf &gt; 4.0) ]"</B>
+<!-- .LP -->
+<P>
+ <B>"select[ defined(verilog_license) ]"</B>
+<P>
+are valid selection expressions. Resource names which are of the boolean
+type (e.g. &#145;<B>fs</B>&#146; for a file server resource) have a value of
+1 if they are defined for a host, and 0 otherwise. The default is to
+select all configured hosts in the cluster.  For the string valued resources
+&#145;<B>type</B>&#146; and &#145;<B>model</B>&#146;, special values of &#145;<B>any</B>&#146; and
+&#145;<B>local</B>&#146; can be used to select any value or the same value as that of
+the local host, respectively. For example, "<B>type==local</B>" would select
+hosts of the same type as the local host.
+When the run queue lengths &#145;<B>r15s</B>&#146;, &#145;<B>r1m</B>&#146;, or
+&#145;<B>r15m</B>&#146; are specified, the effective value of the queue length is used.
+<!-- .PP -->
+<P>
+For tasks where an arbitrary selection string is not required a restricted
+syntax is provided. The restricted syntax allows for combining resource
+names using &#145;:&#146; (logical AND) and &#145;-&#146; (logical NOT).
+For example,
+"<B>r15m=1.5:mem=20:swp=12:-ultrix</B>"
+is a valid selection string in the restricted syntax. It is equivalent
+to "<B>r15m &lt;= 1.5 && mem &gt;= 20 && swp &gt;= 12 && !ultrix</B>" in the
+unrestricted syntax.  A selection string in the restricted syntax is of
+the form
+<!-- .LP -->
+<P>
+"<I>res</I>[=<I>value</I>]:<I>res</I>[=<I>value</I>]: ... :<I>res</I>[=<I>value</I>]"
+<!-- .LP -->
+<P>
+where each &#145;<I>res</I>&#146; is resource name. <I>value</I> may only be specified for
+resources whose value type
+is numeric or string. The semantics of &#145;=&#146; depends on the value type
+and sorting order for the resource. For string resources &#145;=&#146;, is equivalent
+to &#145;==&#146;. For numeric valued resources &#145;=&#146; is equivalent to &#145;&gt;=&#146;  (&#145;&lt;=&#146;)
+if the sorting order for the resource is decreasing (increasing).
+A &#145;-&#146; may only be used in front of a boolean resource name or in
+isolation. In isolation &#145;-&#146; is equivalent to "<B>type==any</B>".
+If the value is not given for a numeric resource then it is equivalent
+to saying that the resource must have a non-zero value.
+Other examples of a selection string in the restricted syntax are,
+"<B>-:swp=12</B>", "<B>type=MIPS:maxmem=20</B>", and
+"<B>status=busy</B>".
+<P>
+<!-- .SS Order String -->
+</BLOCKQUOTE>
+<A name=4>
+
+    <H4>&nbsp; &nbsp; Order String</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .LP -->
+<P>
+The order string allows the selected hosts to be sorted according to
+the value(s) of resource(s). The syntax of the order string is
+<!-- .LP -->
+<P>
+"[-]<I>res</I>:[-]<I>res</I>:...[-]<I>res</I>"
+<!-- .LP -->
+<P>
+Each &#145;<I>res</I>&#146; is a resource name with
+a numeric value type. Currently only load indices such as &#145;<B>mem</B>&#146;,
+&#145;<B>swp</B>&#146;, and &#145;<B>tmp</B>&#146;  which are returned by
+<!-- .BR lsload (1) -->
+<B>lsload</B>(1)
+are considered for sorting.
+For example, "<B>swp:r1m:tmp:r15s</B>" is a valid order string.
+The order string is used as input to a multi-level sorting algorithm,
+where each sorting phase orders the hosts according to one particular
+load index and discards some hosts. The remaining hosts are passed onto the
+next phase. The first phase begins with the last index and proceeds from
+right to left. The final phase of sorting orders the hosts according to
+their status, with hosts that are currently not available for load sharing
+(i.e., not in the <B>ok</B> state) listed at the end.
+When sorting is done on the particular index, the direction in which the
+hosts are sorted (increasing vs. decreasing values) is determined by the
+default order returned by
+<!-- .BR lsinfo (1) -->
+<B>lsinfo</B>(1)
+for that index. This direction is chosen such that after sorting, the
+hosts are ordered from best to worst on that index.
+A &#145;-&#146; before the index name reverses the order.
+<!-- .PP -->
+<P>
+If no sorting string is specified, the default sorting string is
+"<B>r15s:pg</B>".
+<!-- .PP -->
+<P>
+When the run queue lengths &#145;<B>r15s</B>&#146;, &#145;<B>r1m</B>&#146;, or &#145;<B>r15m</B>&#146; are
+specified, the normalized value of the queue length is used when sorting.
+<P>
+<!-- .SS Resource Usage String -->
+</BLOCKQUOTE>
+<A name=5>
+
+    <H4>&nbsp; &nbsp; Resource Usage String</H4>
+</A>
+<BLOCKQUOTE>
+<P>
+The resource usage section is used to specify the resource reservation
+for batch jobs via <B>bsub -R</B>
+option and queue configuration parameter
+<!-- .BR RES_REQ. -->
+<B>RES_REQ.</B> External indices are also considered in the resource
+usage string for this purpose.
+The syntax of the resource usage string is
+<!-- .Lp -->
+<BR>.Lp 
+"<I>res</I>=<I>value</I>:<I>res</I>=<I>value</I>: ... :<I>res</I>=<I>value</I>[:<I>duration=</I><I>value</I>][:<I>decay</I>=<I>value</I>]"
+<!-- .LP -->
+<P>
+The "<I>res</I>=<I>value</I>" is used to specify
+the amount of resource to be reserved for a job after the job starts.
+If <I>value</I> is not specified, the resource will not be reserved.
+"<I>duration=value</I>" and "<I>decay=value</I>" are optionally used to specify
+how long the resource reservation will be in effect and how the reserved
+amount of resource is decreased as the time passes.  "<I>duration</I>" and
+"<I>decay</I>" are keywords.
+<P>
+The value of "<I>duration</I>" (in minutes) is
+the time period within which the specified resources will be reserved.
+The value can be specified in hours if followed by "h", e.g.,
+"<I>duration=2h</I>".  If "<I>duration</I>" is not given,
+the default is to reserve the total amount for the lifetime of the job.
+<P>
+A value of 1 for "<I>decay</I>" indicates that the system should linearly
+decrease the reserved amount over the duration.  A value of 0 causes
+the total amount to be reserved for the entire duration or until the
+job finishes.  All other values for "<I>decay</I>" are not supported.
+The "<I>decay</I>" keyword is ignored if the duration is not specified.
+The default value for "<I>decay</I>" is 0.
+<P>
+<!-- .PP -->
+<P>
+For example,
+"<I>rusage[mem=50:duration=2.0:decay=1]</I>" will initially
+reserve 50 MBytes of memory.  As the job runs, the
+amount reserved amount will decrease
+by 0.5 Mbytes each minute such that the reserved amount is 0 after
+2.0 minutes.
+<!-- .PP -->
+<P>
+The resource usage string is also used in adjusting the load
+and for mapping tasks onto hosts during a placement decision (see
+<!-- .BR lsplace (1) -->
+<B>lsplace</B>(1)
+and
+<!-- .BR lsloadadj (1)). -->
+<B>lsloadadj</B>(1)).
+External indices are not considered in the resource
+usage string for this purpose.
+The syntax of the resource usage string is
+"<I>res</I>[=<I>value</I>]:<I>res</I>[=<I>value</I>]: ... :<I>res</I>[=<I>value</I>]"
+where &#145;<I>res</I>&#146; is one of the
+resources whose value is returned by
+<!-- .BR lsload (1). -->
+<B>lsload</B>(1).
+For example, "<B>r1m=0.5:mem=20:swp=40</B>" indicates that the task
+is expected to increase the 1-minute run queue length by 0.5, consume
+20 Mbytes of memory and 40 Mbytes of swap space.
+If no value is specified, the
+task is assumed to be intensive in using that resource. In this case
+no more than one task will be assigned to a host regardless of how
+many <FONT size=-1>CPU</FONT>s it has.
+<!-- .PP -->
+<P>
+The default resource usage for a task is assumed to be
+"<B>r15s=2.0:r1m=2.0:r15m=2.0</B>" which indicates a <FONT size=-1>CPU</FONT> intensive task
+which consumes few other resources.
+<!-- .PP -->
+<P>
+<P>
+<!-- .SS Job Spanning String -->
+</BLOCKQUOTE>
+<A name=6>
+
+    <H4>&nbsp; &nbsp; Job Spanning String</H4>
+</A>
+<BLOCKQUOTE>
+<P>
+This string specifies the locality of a parallel batch job.  Currently
+only the following two cases are supported:  "<I>span[hosts=1]</I>"
+indicates that all the processors allocated to this job must be on the
+same host, while "<I>span[ptile=N]</I>" indicates that up <I>N</I> processor(s)
+on each host should be allocated to the job.
+<P>
+<!-- .SH RUN QUEUE LENGTHS -->
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>RUN QUEUE LENGTHS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+The raw <FONT size=-1>CPU</FONT> queue length is collected by the <FONT size=-1>LIM</FONT> from the kernel of the
+host operating system every 5 seconds. This number represents the total number
+of processes that are contending for the <FONT size=-1>CPU</FONT>(s) on the host.
+The raw queue
+length is averaged over 15 seconds, 1 minute, and 15 minutes to produce the
+&#145;<B>r15s</B>&#146;, &#145;<B>r1m</B>&#146;, and &#145;<B>r15m</B>&#146; load indices, respectively. The raw
+queue lengths can be viewed using
+<!-- .BR lsload (1). -->
+<B>lsload</B>(1).
+<!-- .PP -->
+<P>
+In order to compare queue
+lengths on hosts having different numbers of <FONT size=-1>CPU</FONT>s and
+relative <FONT size=-1>CPU</FONT> speeds, two variations of the raw queue length are defined.
+The effective queue length attempts to account for multiprocessor hosts
+by considering the number of <FONT size=-1>CPU</FONT>s.
+The effective queue length is calculated by taking the multiprocessor&#146;s
+multitasking feature into consideration such that even if many of the
+processors are busy, the host&#146;s effective queue length may appear to be as
+good as an idle uniprocessor (as long as there is one or more idle processors).
+The effective queue length is the same as the raw queue length on
+uniprocessor hosts. Effective queue lengths are listed when using
+the <B>-E</B> option of
+<!-- .B lsload. -->
+<B>lsload.</B> The effective queue length is used by <FONT size=-1>LIM</FONT> when testing whether the host has
+exceeded its busy thresholds. When &#145;<B>r15s</B>&#146;, &#145;<B>r1m</B>&#146;, or &#145;<B>r15m</B>&#146;
+are specified in the selection section of resource requirement strings,
+they refer to the effective queue length. It is also used by
+<!-- .BR lsfbatch (1) -->
+<B>lsfbatch</B>(1)
+when comparing the values specified for queue and host thresholds against
+the current load.
+<!-- .PP -->
+<P>
+The normalized queue length
+is used by the <FONT size=-1>LIM</FONT> when making placement decision about where to send
+a job
+(see
+<!-- .BR lsplace (1)).  -->
+<B>lsplace</B>(1)).
+It considers both the number of <FONT size=-1>CPU</FONT>s and the <FONT size=-1>CPU</FONT> factor of a host.
+This is also the value returned by
+<!-- .B lsload  -->
+<B>lsload</B> when using the <B>-N</B> option.
+The normalized queue length attempts to estimate
+what the load would be on a host if an additional <FONT size=-1>CPU</FONT> bound job was dispatched
+to that host.
+<P>
+<!-- .SH LSF_JOB_STARTER -->
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>LSF_JOB_STARTER</H3>
+
+</A>
+<BLOCKQUOTE>
+Users can define the environment variable, <FONT size=-1>LSF_JOB_STARTER</FONT>, to specify
+a job starter command for executing remote tasks.  The task&#146;s arguments
+are passed as the arguments to the job starter command.  An example
+use of the job starter is to specify that the remote task is to
+run under
+<!-- .BR csh (1). -->
+<B>csh</B>(1).
+The <FONT size=-1>LSF_JOB_STARTER</FONT> variable is set to "/bin/csh -c" for this
+example.
+<P>
+<!-- .SH NOTES -->
+</BLOCKQUOTE>
+<A name=9>
+
+     <H3>NOTES</H3>
+
+</A>
+<BLOCKQUOTE>
+If lsf.conf (see
+<!-- .BR lsf (5)) -->
+<B>lsf</B>(5))
+is not in the default
+<!-- .B /etc  -->
+<B>/etc</B> directory, set the environment variable
+<!-- .B LSF_ENVDIR -->
+<B>LSF_ENVDIR</B> to the name of the directory where lsf.conf is stored.
+<P>
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=10>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR lsf.conf (5), -->
+<B>lsf.conf</B>(5),
+<!-- .BR lim (8), -->
+<B>lim</B>(8),
+<!-- .BR res (8), -->
+<B>res</B>(8),
+<!-- .BR nios (8), -->
+<B>nios</B>(8),
+<!-- .BR lslib (3), -->
+<B>lslib</B>(3),
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>LSFINTRO (1)</TD> <TD align=right width=33%><I>"Version 2.0 Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from lsfintro.1 using man macros.</FONT>
+</BODY></HTML>

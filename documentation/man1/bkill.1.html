@@ -1,0 +1,485 @@
+<HTML><HEAD>
+<TITLE>bkill.1</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH bkill 1 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>bkill (1)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>bkill</B> - sends signals to kill, suspend, or resume unfinished jobs
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#3>Pend</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#4>Run</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#5>Ususp</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#6>Wait</A><BR>
+<A HREF=#7>Options</A><BR>
+<A HREF=#8>Examples</A><BR>
+<A HREF=#9>See Also</A><BR>
+</BLOCKQUOTE>
+<A name=10>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>bkill</B><B> </B>[<B>-l</B>] [<B>-R</B>] [<B>-J</B><B> </B><I>job_name</I>] [<B>-m</B><B> </B><I>host_name | </I><B>-m</B><I> host_group</I>]
+[<B>-q</B><B> </B><I>queue_name</I>] [<B>-r</B> | <B>-s (</B><I>signal_value</I><I> | </I><I>signal_name</I><B>)</B>]
+[<B>-u</B><B> </B><I>user_name | </I><B>-u</B><I> user_group</I><B> | </B><B>-u all</B>]
+[<I>job_ID </I>... | <B>0</B> | <B>"</B><I>job_ID</I><B>[</B><I>index</I><B>]"</B> ...]
+<!-- .PP -->
+<P>
+<B>bkill </B>[<B>-h</B> | <B>-V</B>]
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B></B>By default, sends a set of signals to kill the specified jobs. On LINUX,
+SIGINT and SIGTERM are sent to give the job a chance to clean up
+before termination, then SIGKILL is sent to kill the job. The time
+interval between sending each signal is defined by the
+JOB_TERMINATE_INTERVAL parameter in lsb.params(5).
+<!-- .PP -->
+<P>
+Users can only operate on their own jobs. Only root and openlava
+administrators can operate on jobs submitted by other users.
+<!-- .PP -->
+<P>
+If a signal request fails to reach the job execution host, openlava tries the
+operation later when the host becomes reachable. openlava retries the most
+recent signal request.
+<!-- .PP -->
+<P>
+If a job is running in a queue with CHUNK_JOB_SIZE set, bkill has
+the following results depending on job state:
+<!-- .SS PEND -->
+</BLOCKQUOTE>
+<A name=3>
+
+    <H4>&nbsp; &nbsp; PEND</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Job is removed from chunk (NJOBS -1, PEND -1)
+<!-- .SS RUN -->
+</BLOCKQUOTE>
+<A name=4>
+
+    <H4>&nbsp; &nbsp; RUN</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+All jobs in the chunk are suspended (NRUN -1, NSUSP +1)
+<!-- .SS USUSP -->
+</BLOCKQUOTE>
+<A name=5>
+
+    <H4>&nbsp; &nbsp; USUSP</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Job finishes, next job in the chunk starts if one exists (NJOBS -1, PEND
+-1, SUSP -1, RUN +1)
+<!-- .SS WAIT -->
+</BLOCKQUOTE>
+<A name=6>
+
+    <H4>&nbsp; &nbsp; WAIT</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Job finishes (NJOBS-1, PEND -1)
+<!-- .PP -->
+<P>
+Using bkill on a repetitive job kills the current run, if the job has been
+started, and requeues the job. See bcadd(1) and bsub(1) for
+information on setting up a job to run repetitively.
+<!-- .PP -->
+<P>
+If the job cannot be killed, use bkill -r to remove the job from the
+openlava system without waiting for the job to terminate, and free the
+resources of the job.
+<!-- .PP -->
+<P>
+A job ID or -m, -u, -q, or -J must be specified with bkill.
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .TP  -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+<B>-l
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays the signal names supported by bkill. This is a subset of
+signals supported by /bin/kill and is platform-dependent.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-J</B> <I>job_name
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</I>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Operates only on jobs with the specified <I>job_name</I>. The -J option is
+ignored if a job ID other than 0 is specified in the <I>job_ID</I> option.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-m</B> <I>host_name </I>| <B>-m</B><I> host_group
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</I>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Operates only on jobs dispatched to the specified host or host group.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If <I>job_ID</I> is not specified, only the most recently submitted qualifying
+job is operated on. The -m option is ignored if a job ID other than 0 is
+specified in the <I>job_ID</I> option. See bhosts(1) and bmgroup(1) for
+more information about hosts and host groups.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-q</B> <I>queue_name
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</I>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Operates only on jobs in the specified queue.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If <I>job_ID</I> is not specified, only the most recently submitted qualifying
+job is operated on.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The -q option is ignored if a job ID other than 0 is specified in the
+<I>job_ID</I> option.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+See bqueues(1) for more information about queues.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-r
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Removes a job from the openlava system without waiting for the job to terminate
+in the operating system.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Sends the same series of signals as bkill without -r, except that the job
+is removed from the system immediately, the job is marked as EXIT, and
+the job resources that openlava monitors are released as soon as openlava receives the
+first signal.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Also operates on jobs for which a bkill command has been issued but
+which cannot be reached to be acted on by SBD (jobs in ZOMBI state). If
+SBD recovers before the jobs are completely removed, openlava ignores the
+zombi jobs killed with bkill -r.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Use <B>bkill -r</B> only on jobs that cannot be killed in the operating system,
+or on jobs that cannot be otherwise removed using <B>bkill</B>.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The -r option cannot be used with the -s option.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-s (</B><I>signal_value</I> | <I>signal_name</I><B>)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Sends the specified signal to specified jobs. You can specify either a name,
+stripped of the SIG prefix (such as KILL), or a number (such as 9).
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Eligible signal names are listed by <B>bkill -l</B>.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The <B>-s</B> option cannot be used with the <B>-r</B> option.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Use bkill -s to suspend and resume jobs by using the appropriate signal
+instead of using bstop or bresume. Sending the SIGCONT signal is the
+same as using bresume. Sending the SIGSTOP signal to sequential jobs or
+the SIGTSTP to parallel jobs is the same as using bstop.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+You cannot suspend a job that is already suspended, or resume a job that
+is not suspended. Using SIGSTOP or SIGTSTP on a job that is in the USUSP
+state has no effect and using SIGCONT on a job that is not in either the
+PSUSP or the USUSP state has no effect. See bjobs(1) for more
+information about job states.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-u</B> <I>user_name </I>|<I> </I><B>-u</B><I> user_group </I>| <B>-u all
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Operates only on jobs submitted by the specified user or user group (see
+bugroup(1)), or by all users if the reserved user name all is specified.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If <I>job_ID</I> is not specified, only the most recently submitted qualifying job is
+operated on. The -u option is ignored if a job ID other than 0 is specified
+in the <I>job_ID</I> option.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<I>job_ID </I>... | <B>0</B> | <B>"</B><I>job_ID</I><B>[</B><I>index</I><B>]" </B>...
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Operates only on jobs that are specified by <I>job_ID</I> or<B> "</B><I>job_ID</I><B>[</B><I>index</I><B>]"</B>,
+where <B>"</B><I>job_ID</I><B>[</B><I>index</I><B>]"</B> specifies selected job array elements (see
+bjobs(1)). For job arrays, quotation marks must enclose the job ID and
+index, and index must be enclosed in square brackets.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Jobs submitted by any user can be specified here without using the -u
+option. If you use the reserved job ID 0, all the jobs that satisfy other options
+(that is, -m, -q, -u and -J) are operated on; all other job IDs are ignored.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The options -u, -q, -m and -J have no effect if a job ID other than 0 is
+specified. Job IDs are returned at job submission time (see bsub(1)) and
+may be obtained with the bjobs command (see bjobs(1)).
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-h
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints command usage to stderr and exits.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-V
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints openlava release version to stderr and exits.
+<P>
+<P>
+<!-- .SH EXAMPLES -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=8>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+%<B> bkill -s 17 -q night
+</B>.PP
+Sends signal 17 to the last job that was submitted by the invoker to queue
+night.
+<!-- .PP -->
+<P>
+%<B> bkill -q short -u all 0
+</B>.PP
+Kills all the jobs that are in the queue short.
+<!-- .PP -->
+<P>
+%<B> bkill -r 1045
+</B>.PP
+Forces the removal of unkillable job 1045.
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=9>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+bsub(1), bjobs(1), bqueues(1), bhosts(1), bresume(1),
+bstop(1), bparams(5), mbatchd(8), kill(1), signal(2)
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>bkill (1)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from bkill.1 using man macros.</FONT>
+</BODY></HTML>

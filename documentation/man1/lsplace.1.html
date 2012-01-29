@@ -1,0 +1,252 @@
+<HTML><HEAD>
+<TITLE>lsplace.1</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH lsplace 1 "openlava Version 4.2 - June 2001" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>lsplace (1)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>lsplace</B> - displays hosts available to execute tasks
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Examples</A><BR>
+<A HREF=#5>See Also</A><BR>
+<A HREF=#6>Diagnostics</A><BR>
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>lsplace</B> [<B>-L</B>] [<B>-n</B><B> </B><I>minimum</I> | <B>-n 0</B>] [<B>-R</B><B> </B><I>res_req</I>] [<B>-w</B><B> </B><I>maximum</I> | <B>-w 0</B>]
+[<I>host_name</I><I> ...</I>]
+<!-- .PP -->
+<P>
+<B>lsplace</B> [<B>-h</B> | <B>-V</B>]
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B></B>Displays hosts available for the execution of tasks, and temporarily
+increases the load on these hosts (to avoid sending too many jobs to
+the same host in quick succession). The inflated load will decay slowly
+over time before the real load produced by the dispatched task is
+reflected in the LIM&#146;s load information. Host names may be duplicated
+for multiprocessor hosts, to indicate that multiple tasks can be placed
+on a single host.
+<!-- .PP -->
+<P>
+By default, displays only one host name.
+<!-- .PP -->
+<P>
+By default, uses openlava default resource requirements.
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .TP  -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+<B>-L</B>
+</TD><TD valign=bottom>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Attempts to place tasks on as few hosts as possible. This is useful for
+distributed parallel applications in order to minimize communication
+costs between tasks.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-n </B><I>minimum</I> | <B>-n 0</B>
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays at least the specified number of hosts. Specify 0 to display as
+many hosts as possible.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints Not enough host(s) currently eligible and exits with
+status 1 if the required number of hosts holding the required resources
+cannot be found.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-R</B><I> </I><I>res_req</I>
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays only hosts with the specified resource requirements.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-w</B><I> </I><I>maximum</I> | <B>-w 0</B>
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays no more than the specified number of hosts. Specify 0 to
+display as many hosts as possible.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<I>host_name</I> ...
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays only hosts that are among the specified hosts.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-h
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints command usage to stderr and exits.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-V</B>
+</TD><TD valign=bottom>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints openlava release version to stderr and exits.
+<P>
+<P>
+<!-- .SH EXAMPLES -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+lsplace is mostly used in backquotes to pick out a host name which
+is then passed to other commands.
+<!-- .PP -->
+<P>
+The -w and -n options can be combined to specify the upper and
+lower bounds in processors to be returned, respectively. For example,
+the command lsplace -n 3 -w 5 returns at least 3 and not more than
+5 host names.
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+lsinfo(1), ls_placereq(3), lsload(1)
+<!-- .SH DIAGNOSTICS -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>DIAGNOSTICS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+lsplace returns 1 if insufficient hosts are available. The exit status is
+-10 if a problem is detected in openlava, -1 for other errors, otherwise 0.
+<!-- .PP -->
+<P>
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>lsplace (1)</TD> <TD align=right width=33%><I>"openlava Version 4.2 - June 2001"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from lsplace.1 using man macros.</FONT>
+</BODY></HTML>

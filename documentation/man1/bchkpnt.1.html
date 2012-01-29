@@ -1,0 +1,321 @@
+<HTML><HEAD>
+<TITLE>bchkpnt.1</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH bchkpnt 1 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>bchkpnt (1)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>bchkpnt</B> - checkpoints one or more checkpointable jobs
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Examples</A><BR>
+<A HREF=#5>See Also</A><BR>
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>bchkpnt</B> [<B>-f</B>] [<B>-k</B>] [<B>-p</B> <I>minutes </I>| <B>-p 0</B>] [<I>job_ID </I>| <B>"</B><I>job_ID</I><B>[</B><I>index_list</I><B>]"</B>] ...
+<!-- .PP -->
+<P>
+<B>bchkpnt</B> [<B>-f</B>] [<B>-k</B>] [<B>-p</B> <I>minutes </I>| <B>-p 0</B>] [<B>-J</B> <I>job_name</I>]
+[<B>-m</B> <I>host_name</I> | <B>-m</B> <I>host_group</I>] [<B>-q</B> <I>queue_name</I>]
+[<B>-u</B> <B>"</B><I>user_name</I><B>"</B> | <B>-u all</B>] [<B>0</B>]
+<!-- .PP -->
+<P>
+<B>bchkpnt</B> [<B>-h</B> | <B>-V</B>]
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Checkpoints your running (RUN) or suspended (SSUSP, USUSP, and
+PSUSP) checkpointable jobs. openlava administrators and root can
+checkpoint jobs submitted by other users.
+<!-- .PP -->
+<P>
+By default, checkpoints one job, the most recently submitted job, or the
+most recently submitted job that also satisfies other specified options
+(-m, -q, -u and -J). Specify -0 (zero) to checkpoint multiple jobs.
+Specify a job ID to checkpoint one specific job.
+<!-- .PP -->
+<P>
+By default, jobs continue to execute after they have been
+checkpointed.
+<!-- .PP -->
+<P>
+To submit a checkpointable job, use bsub -k or submit the job to a
+checkpoint queue (CHKPNT in lsb.queues(5)). Use brestart(1) to
+start checkpointed jobs.
+<!-- .PP -->
+<P>
+openlava invokes the echkpnt(8) executable found in LSF_SERVERDIR to
+perform the checkpoint.
+<!-- .PP -->
+<P>
+<P>
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .TP  -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+<B>0
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+(Zero). Checkpoints multiple jobs. Checkpoints all the jobs that satisfy
+other specified options (-m, -q, -u and -J).
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-f
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Forces a job to be checkpointed even if non-checkpointable conditions
+exist (these conditions are OS-specific).
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-k
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Kills a job after it has been successfully checkpointed.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-p</B> <I>minutes</I> | <B>-p 0
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Enables periodic checkpointing and specifies the checkpoint period, or
+modifies the checkpoint period of a checkpointed job. Specify <B>-p 0</B>
+(zero) to disable periodic checkpointing.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Checkpointing is a resource-intensive operation. To allow your job to
+make progress while still providing fault tolerance, specify a
+checkpoint period of 30 minutes or longer.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-J</B> <I>job_name
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</I>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Only checkpoints jobs that have the specified job name.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-m</B> <I>host_name</I> | <B>-m</B> <I>host_group
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</I>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Only checkpoints jobs dispatched to the specified hosts.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-q</B> <I>queue_name</I>
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Only checkpoints jobs dispatched from the specified queue.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-u</B> <B>"</B><I>user_name</I><B>"</B><I> </I>| <B>-u all
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Only checkpoints jobs submitted by the specified users. The keyword
+all specifies all users. Ignored if a job ID other than 0 (zero) is
+specified.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<I>job_ID</I> | <B>"</B><I>job_ID</I><B>[</B><I>index_list</I><B>]"
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Checkpoints only the specified jobs.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-h
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints command usage to stderr and exits.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-V</B>
+</TD><TD valign=bottom>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints openlava release version to stderr and exits.
+<P>
+<P>
+<!-- .SH EXAMPLES -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+% <B>bchkpnt 1234</B>
+<!-- .PP -->
+<P>
+Checkpoints the job with job ID 1234.
+<!-- .PP -->
+<P>
+% <B>bchkpnt -p 2.0 1234</B>
+<!-- .PP -->
+<P>
+Enables periodic checkpointing or changes the checkpoint period to
+2.0 minutes (2 hours) for a job with job ID 1234.
+<!-- .PP -->
+<P>
+% <B>bchkpnt -m hostA -k -u all 0</B>
+<!-- .PP -->
+<P>
+When issued by root or an openlava administrator, will checkpoint and kill
+all checkpointable jobs on hostA. This is useful when a host needs to
+be shut down or rebooted.
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+bsub(1), bmod(1), brestart(1), bjobs(1), bqueues(1),
+bhosts(1), libckpt.a(3), lsb.queues(5), echkpnt(8),
+erestart(8), mbatchd(8)
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>bchkpnt (1)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from bchkpnt.1 using man macros.</FONT>
+</BODY></HTML>

@@ -1,0 +1,636 @@
+<HTML><HEAD>
+<TITLE>lshosts.1</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH lshosts 1 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>lshosts (1)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>lshosts</B> - displays hosts and their static resource information
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Output</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#5>Host-Based Default</A><BR>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<A HREF=#6>Host Based -l Option</A><BR>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<A HREF=#7>Resource-Based -s Option</A><BR>
+<A HREF=#8>See Also</A><BR>
+</BLOCKQUOTE>
+<A name=9>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>lshosts</B> [<B>-w</B><B> | </B><B>-l</B>] [<B>-R</B><B> </B><B>"</B><I>res_req</I><B>"</B>] [<I>host_name</I>] ...
+<!-- .PP -->
+<P>
+<B>lshosts</B> <B>-s </B>[<I>shared_resource_name</I> ...]
+<!-- .PP -->
+<P>
+<B>lshosts</B> [<B>-h</B> | <B>-V</B>]
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B></B>Displays static resource information about hosts.
+<!-- .PP -->
+<P>
+By default, returns the following information: host name, host type,
+host model, CPU factor, number of CPUs, total memory, total swap
+space, whether or not the host is a server host, and static resources.
+Displays information about all hosts in thecluster . See
+lsf.cluster(5).
+<!-- .PP -->
+<P>
+The -s option displays information about the static shared resources
+and their associated hosts.
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .TP  -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+<B>-w</B>
+</TD><TD valign=bottom>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays host information in wide format. Fields are displayed without
+truncation.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-l
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays host information in a long multi-line format. In addition to the
+default fields, displays information about the maximum /tmp space,
+the number of local disks, the execution priority for remote jobs, load
+thresholds, and run windows.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-R</B> <B>"</B><I>res_req</I><B>"</B>
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Only displays information about the hosts that satisfy the resource
+requirement expression. For more information about resource
+requirements, see lsfintro(1). The size of the resource requirement
+string is limited to 512 bytes.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+openlava supports ordering of resource requirements on all load indices,
+including external load indices, either static or dynamic.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<I>host_name</I>......
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Only displays information about the specified hosts. Do not use quotes
+when specifying multiple hosts.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-s</B><I> </I>[<I>shared_resource_name </I>...]
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays information about the specified resources. The resources must
+be static shared resources. Returns the following information: the
+resource names, the values of the resources, and the resource
+locations. If no shared resource is specified, then displays information
+about all shared resources.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-h</B>
+</TD><TD valign=bottom>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints command usage to stderr and exits.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-V</B>
+</TD><TD valign=bottom>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints the openlava release version to stderr and exits.
+<P>
+<P>
+<!-- .SH OUTPUT -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>OUTPUT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Host-Based Default -->
+</BLOCKQUOTE>
+<A name=5>
+
+    <H4>&nbsp; &nbsp; Host-Based Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays the following fields:
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+HOST_NAME
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: HOST_NAME
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The name of the host. The host name is truncated if too long.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+type
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: type
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The host type. The host type is truncated if too long.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+model
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: model
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The host model. The host model is truncated if too long.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+cpuf
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: cpuf
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The CPU factor. The CPU factor is used to scale the CPU load value
+so that differences in CPU speeds are considered. The faster the
+CPU, the larger the CPU factor.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The CPU factor of a host with an unknown host type is 2.0.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ncpus
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ncpus
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The number of CPUs.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+maxmem
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: maxmem
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The total memory.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+maxswp
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: maxswp
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The total swap space.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+server
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: server
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+"Yes" if the host is a server host.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RESOURCES
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: RESOURCES
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The available Boolean resources denoted by resource names, and
+the values of external numeric and string static resources. See
+lsf.cluster(5), and lsf.shared(5) on how to configure
+external static resources.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .SS Host Based \fB-\fRl Option -->
+</TD></TR>
+<TR></TR></TABLE><A name=6>
+<H4><I>Host Based -l Option</I></H4></A>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+In addition to the above fields, the -l option also displays the
+following:
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ndisks
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ndisks
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The number of local disks.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+maxtmp
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: maxtmp
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The maximum /tmp space in megabytes configured on a host.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+rexpri
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: rexpri
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The remote execution priority.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RUN_WINDOWS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: RUN_WINDOWS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time periods during which the host is open for sharing loads
+from other hosts. (See lsf.cluster(5).)
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+LOAD_THRESHOLDS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: LOAD_THRESHOLDS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The thresholds for scheduling interactive jobs. If a load threshold
+is exceeded, the host status is changed to "busy." See lsload(1).
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .SS Resource-Based \fB-\fRs Option  -->
+</TD></TR>
+<TR></TR></TABLE><A name=7>
+<H4><I>Resource-Based -s Option</I></H4></A>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Displays the static shared resources. Each line gives the value and the
+associated hosts for the static shared resource. See lsf.shared(5), and
+lsf.cluster(5) on how to configure static shared resources.
+<!-- .PP -->
+<P>
+The following fields are displayed:
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RESOURCE
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: RESOURCE
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The name of the resource.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+VALUE
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: VALUE
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The value of the static shared resource.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+LOCATION
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: LOCATION
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The hosts that are associated with the static shared resource.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .SH SEE ALSO -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=8>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+lsfintro(1), ls_info(3), ls_policy(3),
+ls_gethostinfo(3), lsf.cluster(5), lsf.shared(5)
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>lshosts (1)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from lshosts.1 using man macros.</FONT>
+</BODY></HTML>

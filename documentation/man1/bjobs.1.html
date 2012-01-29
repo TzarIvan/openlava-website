@@ -1,0 +1,1586 @@
+<HTML><HEAD>
+<TITLE>bjobs.1</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH bjobs 1 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>bjobs (1)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>bjobs</B> - displays information about openlava jobs
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Output</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#5>Default Display</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#6>Job Array Summary Information</A><BR>
+<A HREF=#7>Examples</A><BR>
+<A HREF=#8>See Also</A><BR>
+</BLOCKQUOTE>
+<A name=9>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>bjobs</B> [<B>-a</B>] [<B>-A</B>] [<B>-w</B> | <B>-l</B>] [<B>-J</B> <I>job_name</I>]
+[<B>-m</B> <I>host_name</I> | <B>-m</B> <I>host_group</I>]
+[<B>-N</B> <I>host_name | </I><B>-N</B> <I>host_model | </I><B>-N </B><I>CPU_factor</I>] [<B>-P</B><I> project_name</I>]
+[<B>-q</B> <I>queue_name</I>] [<B>-u </B><I>user_name</I> | <B>-u</B> <I>user_group</I> | <B>-u all</B>]<B> </B><I>job_ID ...
+</I>.PP
+<B>bjobs</B> [<B>-d</B>] [<B>-p</B>] [<B>-r</B>] [<B>-s</B>] [<B>-A</B>] [<B>-w</B> | <B>-l</B>] [<B>-J</B> <I>job_name</I>]
+[<B>-m</B> <I>host_name</I> | <B>-m</B> <I>host_group</I>]
+[<B>-N</B> <I>host_name | </I><B>-N</B> <I>host_model | </I><B>-N </B><I>CPU_factor</I>] [<B>-P</B><I> project_name</I>]
+[<B>-q</B> <I>queue_name</I>] [<B>-u </B><I>user_name</I> | <B>-u</B> <I>user_group</I> | <B>-u all</B>]<B> </B><I>job_ID ...
+</I>.PP
+<B>bjobs </B>[<B>-h</B> | <B>-V</B>]
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B></B>Displays information about jobs.
+<!-- .PP -->
+<P>
+By default, displays information about your own pending, running and
+suspended jobs.
+<!-- .PP -->
+<P>
+To display older historical information, use bhist.
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .TP  -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+<B>-a
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays information about jobs in all states, including finished jobs
+that finished recently, within an interval specified by CLEAN_PERIOD
+in lsb.params (the default period is 1 hour).
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-A
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays summarized information about job arrays. If you specify job
+arrays with the job array ID, and also specify -A, do not include the
+index list with the job array ID.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+You can use -w to show the full array specification, if necessary.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-d
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays information about jobs that finished recently, within an
+interval specified by CLEAN_PERIOD in lsb.params (the default
+period is 1 hour).
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-p
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays pending jobs, together with the pending reasons that caused
+each job not to be dispatched during the last dispatch turn. The
+pending reason shows the number of hosts for that reason, or names
+the hosts if -l is also specified.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Each pending reason is associated with one or more hosts and it states
+the cause why these hosts are not allocated to run the job. In situations
+where the job requests specific hosts (using bsub -m), users may see
+reasons for unrelated hosts also being displayed, together with the
+reasons associated with the requested hosts. The life cycle of a pending
+reason ends after a new dispatch turn starts. The reason may not reflect
+the current load situation because it could last as long as the interval
+specified by MBD_SLEEP_TIME in lsb.params.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+When the job slot limit is reached for a job array
+(bsub -J "jobArray[indexList]%job_slot_limit") the
+following message is displayed:
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The job array has reached its job slot limit.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-r
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays running jobs.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-s
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays suspended jobs, together with the suspending reason that
+caused each job to become suspended.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The suspending reason may not remain the same while the job stays
+suspended. For example, a job may have been suspended due to the
+paging rate, but after the paging rate dropped another load index could
+prevent the job from being resumed. The suspending reason will be
+updated according to the load index. The reasons could be as old as
+the time interval specified by SBD_SLEEP_TIME in lsb.params. So the
+reasons shown may not reflect the current load situation.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-w
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Wide format. Displays job information without truncating fields.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-l
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Long format. Displays detailed information for each job in a multi-line
+format.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The -l option displays the following additional information: project
+name, job command, current working directory on the submission
+host, pending and suspending reasons, job status, resource usage,
+resource limits information.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Use bjobs -A -l to display detailed information for job arrays
+including job array job limit (%<I>job_limit</I>) if set.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<I>job_ID
+</TD><TD valign=bottom>
+</I>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays information about the specified jobs or job arrays.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If you use -A, specify job array IDs without the index list.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-J</B> <I>job_name
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</I>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays information about the specified jobs or job arrays.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-m</B> <I>host_name</I> | <B>-m</B> <I>host_group</I> 
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Only displays jobs dispatched to the specified hosts.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+To determine the available hosts and host groups, use bhosts and
+bmgroup.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-N</B> <I>host_name </I>| <B>-N </B><I>host_model </I>| <B>-N </B><I>CPU_factor</I>
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays the normalized CPU time consumed by the job. Normalizes
+using the CPU factor specified, or the CPU factor of the host or host
+model specified.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-P </B><I>project_name
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</I>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Only displays jobs that belong to the specified project.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-q</B> <I>queue_name
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</I>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Only displays jobs in the specified queue.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The command bqueues returns a list of queues configured in the
+system, and information about the configurations of these queues.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-u </B><I>user_name</I> | <B>-u</B> <I>user_group</I> | <B>-u all</B>
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Only displays jobs that have been submitted by the specified users. The
+keyword all specifies all users.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-h
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints command usage to stderr and exits.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-V
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints openlava release version to stderr and exits.
+<P>
+<P>
+<!-- .SH OUTPUT -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>OUTPUT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Pending jobs are displayed in the order in which they will be
+considered for dispatch. Jobs in higher priority queues are displayed
+before those in lower priority queues. Pending jobs in the same priority
+queues are displayed in the order in which they were submitted but
+this order can be changed by using the commands btop or bbot. If
+more than one job is dispatched to a host, the jobs on that host are
+listed in the order in which they will be considered for scheduling on
+this host by their queue priorities and dispatch times. Finished jobs are
+displayed in the order in which they were completed.
+<!-- .SS Default Display -->
+</BLOCKQUOTE>
+<A name=5>
+
+    <H4>&nbsp; &nbsp; Default Display</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+A listing of jobs is displayed with the following fields:
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+JOBID
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: JOBID
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The job ID that openlava assigned to the job.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+USER
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: USER
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The user who submitted the job.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+STAT
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: STAT
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The current status of the job (see JOB STATUS below).
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+QUEUE
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: QUEUE
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The name of the job queue to which the job belongs. If the queue
+to which the job belongs has been removed from the configuration,
+the queue name will be displayed as lost_and_found. Use bhist
+to get the original queue name. The job in the lost_and_found
+queue will remain pending until it is switched with the bswitch
+command into another queue.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+FROM_HOST
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: FROM_HOST
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The name of the host from which the job was submitted.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+EXEC_HOST
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: EXEC_HOST
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The name of one or more hosts on which the job is executing (this
+field is empty if the job has not been dispatched). If the host on
+which the job is running has been removed from the configuration,
+the host name will be displayed as lost_and_found. Use bhist
+to get the original host name.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+JOB_NAME
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: JOB_NAME
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The job name assigned by the user, or the <I>command</I> string
+assigned by default (see bsub (1)). If the job name is too long to
+fit in this field, then only the latter part of the job name is displayed.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+SUBMIT_TIME
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: SUBMIT_TIME
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The submission time of the job.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .SS -l output -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; -l output</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+If the -l option is specified, the resulting long format listing includes
+the following additional fields:
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Project
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Project
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The project the job was submitted from.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Command
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Command
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The job command.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CWD
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: CWD
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The current working directory on the submission host.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PENDING REASONS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: PENDING REASONS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The reason the job is in the PEND or PSUSP state. The names of
+the hosts associated with each reason will be displayed when both
+-p and -l options are specified.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+SUSPENDING REASONS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: SUSPENDING REASONS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The reason the job is in the USUSP or SSUSP state.
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+loadSched
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: loadSched
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The load scheduling thresholds for the job.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+loadStop
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: loadStop
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The load suspending thresholds for the job.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+JOB STATUS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: JOB STATUS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Possible values for the status of a job include:
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PEND
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: PEND
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The job is pending, that is, it has not yet been started.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PSUSP
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: PSUSP
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The job has been suspended, either by its owner or the openlava
+administrator, while pending.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RUN
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: RUN
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+the job is currently running.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+USUSP
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: USUSP
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The job has been suspended, either by its owner or the openlava
+administrator, while running.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+SSUSP
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: SSUSP
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The job has been suspended by openlava. The job has been
+suspended by openlava due to either of the following two causes:
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+1) The load conditions on the execution host or hosts have
+exceeded a threshold according to the loadStop vector
+defined for the host or queue.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+2) the run window of the job&#146;s queue is closed. See
+bqueues(1), bhosts(1), and lsb.queues(5).
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+DONE
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: DONE
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The job has terminated with status of 0.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+EXIT
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: EXIT
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The job has terminated with a non-zero status - it may have
+been aborted due to an error in its execution, or killed by its
+owner or the openlava administrator.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+UNKWN
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: UNKWN
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+MBD has lost contact with the SBD on the host on which the
+job runs.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ZOMBI
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ZOMBI
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+A job will become ZOMBI if:
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+- A non-rerunnable job is killed by bkill while the SBD on the
+execution host is unreachable and the job is shown as UNKWN.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+- The host on which a rerunnable job is running is unavailable
+and the job has been requeued by openlava with a new job ID, as if
+the job were submitted as a new job.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+After the execution host becomes available, openlava will try to kill
+the ZOMBI job. Upon successful termination of the ZOMBI job,
+the job&#146;s status will be changed to EXIT.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RESOURCE USAGE
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: RESOURCE USAGE
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The values for the current usage of a job include:
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CPU time
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: CPU time
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Cumulative total CPU time in seconds of all processes in a job.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+MEM
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: MEM
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Total resident memory usage of all processes in a job, in MB.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+SWAP
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: SWAP
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Total virtual memory usage of all processes in a job, in MB.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PGID
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: PGID
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Currently active process group ID in a job.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PIDs
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: PIDs
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Currently active processes in a job.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RESOURCE LIMITS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: RESOURCE LIMITS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The hard resource limits that are imposed on the jobs in the queue
+(see getrlimit(2) and lsb.queues(5)). These limits are imposed
+on a per-job and a per-process basis.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The possible per-job limits are:
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CPULIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PROCLIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+MEMLIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+SWAPLIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PROCESSLIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The possible UNIX per-process resource limits are:
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RUNLIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+FILELIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+DATALIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+STACKLIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CORELIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If a job submitted to the queue has any of these limits specified (see
+bsub(1)), then the lower of the corresponding job limits and queue
+limits are used for the job.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If no resource limit is specified, the resource is assumed to be
+unlimited.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .SS Job Array Summary Information -->
+</TD></TR>
+<TR></TR></TABLE><A name=6>
+
+    <H4>&nbsp; &nbsp; Job Array Summary Information</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+If you use -A, displays summary information about job arrays. The
+following fields are displayed:
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+JOBID
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: JOBID
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job ID of the job array.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ARRAY_SPEC
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ARRAY_SPEC
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Array specification in the format of <I>name</I>[<I>index</I>]. The array
+specification may be truncated, use -w option together with -A to
+show the full array specification.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+OWNER
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: OWNER
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Owner of the job array.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+NJOBS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: NJOBS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of jobs in the job array.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PEND
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: PEND
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of pending jobs of the job array.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RUN
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: RUN
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of running jobs of the job array.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+DONE
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: DONE
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of successfully completed jobs of the job array.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+EXIT
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: EXIT
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of unsuccessfully completed jobs of the job array.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+SSUSP
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: SSUSP
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of openlava system suspended jobs of the job array.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+USUSP
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: USUSP
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of user suspended jobs of the job array.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PSUSP
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: PSUSP
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of held jobs of the job array.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .SH EXAMPLES -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=7>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+% <B>bjobs -pl
+</B>.PP
+Displays detailed information about all pending jobs of the invoker.
+<!-- .PP -->
+<P>
+% <B>bjobs -ps
+</B>.PP
+Display only pending and suspended jobs.
+<!-- .PP -->
+<P>
+% <B>bjobs -u all -a
+</B>.PP
+Displays all jobs of all users.
+<!-- .PP -->
+<P>
+% <B>bjobs -d -q short -m apple -u john
+</B>.PP
+Displays all the recently finished jobs submitted by john to the queue
+short, and executed on the host apple.
+<!-- .PP -->
+<P>
+% <B>bjobs 101 102 203 509
+</B>.PP
+Display jobs with job_ID 101, 102, 203, and 509.
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+bsub(1), bkill(1), bhosts(1), bmgroup(1), bqueues(1)
+bhist(1), bresume(1), bstop(1), lsb.params(5),
+mbatchd(8)
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>bjobs (1)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from bjobs.1 using man macros.</FONT>
+</BODY></HTML>

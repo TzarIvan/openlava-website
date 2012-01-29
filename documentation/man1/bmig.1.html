@@ -1,0 +1,261 @@
+<HTML><HEAD>
+<TITLE>bmig.1</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH bmig 1 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>bmig (1)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>bmig</B> - migrates checkpointable or rerunnable jobs
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>See Also</A><BR>
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>bmig</B><B> </B>[<B>-f</B>] [<I>job_ID</I><B> | </B><B>"</B><I>job_ID</I><B>[</B><I>index_list</I><B>]"</B>] ...
+<!-- .PP -->
+<P>
+<B>bmig</B><B> </B>[<B>-f</B>] [<B>-J</B> <I>job_name</I>] [<B>-m</B> <B>"</B><I>host_name</I> ...<B>"</B><B> | </B><B>-m</B> <B>"</B><I>host_group </I>...<B>"</B>]
+[<B>-u</B><B> </B><I>user_name</I><B> | </B><B>-u</B><I> user_group</I><B> | </B><B>-u all</B>] [<B>0</B>]
+<!-- .PP -->
+<P>
+<B>bmig </B>[<B>-h</B> | <B>-V</B>]
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Migrates one or more of your checkpointable and rerunnable jobs. openlava
+administrators and root can migrate jobs submitted by other users.
+<!-- .PP -->
+<P>
+By default, migrates one job, the most recently submitted job, or the
+most recently submitted job that also satisfies other specified options
+(-u and -J). Specify 0 (zero) to migrate multiple jobs.
+<!-- .PP -->
+<P>
+To migrate a job, both hosts must be binary compatible, run the same
+OS version, have access to the executable, have access to all open files
+(openlava must locate them with an absolute path name), and have access
+to the checkpoint directory.
+<!-- .PP -->
+<P>
+Only started jobs can be migrated (i.e., running or suspended jobs);
+pending jobs cannot be migrated.
+<!-- .PP -->
+<P>
+When a checkpointable job is migrated, openlava checkpoints and kills the
+job (similar to the -k option of bchkpnt(1)) then restarts it on the next
+available host. If checkpoint is not successful, the job is not killed and
+remains on the host. If a job is being checkpointed when bmig is
+issued, the migration is ignored. This situation may occur if periodic
+checkpointing is enabled.
+<!-- .PP -->
+<P>
+When a rerunnable job is migrated, openlava kills the job (similar to
+bkill(1)) then restarts it from the beggining on the next available host.
+<!-- .PP -->
+<P>
+The environment variable LSB_RESTART is set to Y when a migrating
+job is restarted or rerun.
+<!-- .PP -->
+<P>
+A job is made rerunnable by specifying the -r option on the command
+line using bsub(1) and bmod(1), or automatically by configuring
+RERUNNABLE in lsb.queues(5).
+<!-- .PP -->
+<P>
+A job is made checkpointable by specifying the location of a
+checkpoint directory on the command line using the -k option of
+bsub(1) and bmod(1), or automatically by configuring CHKPNT in
+lsb.queues(5).
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .TP  -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+<B>-f
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Forces a checkpointable job to be checkpointed even if
+non-checkpointable conditions exist (these conditions are OS-specific).
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<I>job_ID</I> | <B>"</B><I>job_ID</I><B>[</B><I>index_list</I><B>]"</B> | <B>0
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Specifies the job ID of the jobs to be migrated. The -J and -u options
+are ignored.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If you specify a job ID of <B>0</B> (zero), all other job IDs are ignored, and
+all jobs that satisfy the -J and -u options are migrated.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If you do not specify a job ID, the most recently submitted job that
+satisfies the -J and -u options is migrated.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-J</B> <I>job_name
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</I>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Specifies the job name of the job to be migrated. Ignored if a job ID
+other than 0 (zero) is specified.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-m</B> "<I>host_name</I> ...<B>"</B> | <B>-m</B> <B>"</B><I>host_group</I> ...<B>"
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Only migrates jobs dispatched to the specified hosts.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-u</B> <B>"</B><I>user_name</I><B>"</B> | <B>-u</B> <B>"</B><I>user_group</I><B>"</B> | <B>-u all
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Specifies that only jobs submitted by these users are to be migrated.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If the reserved user name all is specified, jobs submitted by all users
+are to be migrated. Ignored if a job ID other than 0 (zero) is specified.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-h
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints command usage to stderr and exits.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-V</B>
+</TD><TD valign=bottom>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints openlava release version to stderr and exits.
+<P>
+<P>
+<!-- .SH SEE ALSO -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+bsub(1), brestart(1), bchkpnt(1), bjobs(1), bqueues(1),
+bhosts(1), bugroup(1), mbatchd(8), lsb.queues(5), kill(1)
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>bmig (1)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from bmig.1 using man macros.</FONT>
+</BODY></HTML>

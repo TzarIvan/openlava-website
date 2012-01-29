@@ -1,0 +1,774 @@
+<HTML><HEAD>
+<TITLE>lsacct.1</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH lsacct 1 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>lsacct (1)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>lsacct</B> - displays accounting statistics on finished RES tasks in the openlava system
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Output</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#5>SUMMARY (default format)</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#6>Per Task Statistics ( -l)</A><BR>
+<A HREF=#7>Files</A><BR>
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>lsacct</B><B> </B>[<B>-l</B>] [<B>-C</B><B> </B><I>time0</I><B>,</B><I>time1</I>] [<B>-S</B><B> </B><I>time0</I><B>,</B><I>time1</I>] [<B>-f </B><I>logfile_name</I>]
+[<B>-m </B><I>host_name</I>] [<B>-u</B><B> </B><I>user_name</I> ...<B> | </B><B>-u all</B>] [<I>pid</I><I> </I>...]<B>
+</B>.PP
+<B>lsacct</B><B> </B>[<B>-h</B> | <B>-V</B>]
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B></B>Displays statistics on finished tasks run through RES. When a remote
+task completes, RES logs task statistics in the task log file.
+<!-- .PP -->
+<P>
+By default, displays accounting statistics for only tasks owned by the
+user who invoked the lsacct command.
+<!-- .PP -->
+<P>
+By default, displays accounting statistics for tasks executed on all hosts
+in the openlava system.
+<!-- .PP -->
+<P>
+By default, displays statistics for tasks logged in the task log file
+currently used by RES: LSF_RES_ACCTDIR/lsf.acct.<I>host_name</I> or
+/tmp/lsf.acct.<I>host_name</I> (see lsf.acct(5)).
+<!-- .PP -->
+<P>
+If -l is not specified, the default is to display the fields in SUMMARY
+only (see OUTPUT).
+<!-- .PP -->
+<P>
+The RES on each host writes its own accounting log file.
+<!-- .PP -->
+<P>
+All times are reported in seconds. All sizes are reported in kilobytes.
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .TP  -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+<B>-l
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Per-task statistics. Displays statistics about each task. See OUTPUT for
+a description of information that is displayed.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-C</B> <I>time0</I><B>,</B><I>time1
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</I>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays accounting statistics for only tasks that completed or exited
+during the specified time interval.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time format is the same as in bhist(1).
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-S</B> <I>time0</I><B>,</B><I>time1
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</I>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays accounting statistics for only tasks that began executing
+during the specified time interval.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time format is the same as in bhist(1).
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-f</B> <I>logfile_name</I>
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Searches the specified task log file for accounting statistics. Specify
+either an absolute or a relative path.
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-m</B> <I>host_name</I> ...
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays accounting statistics for only tasks executed on the specified
+hosts.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If a list of hosts is specified, host names must be separated by spaces
+and enclosed in quotation marks (") or (&#146;).
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-u</B> <I>user_name </I>... | <B>-u all
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays accounting statistics for only tasks owned by the specified
+users, or by all users if the keyword all is specified.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If a list of users is specified, user names must be separated by spaces
+and enclosed in quotation marks (") or (&#146;). You can specify both user
+names and user IDs in the list of users.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<I>pid</I><I> </I>...
+</TD><TD valign=bottom>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays accounting statistics for only tasks with the specified <I>pid</I>. This
+option overrides all other options except for -l, -f<B>, </B>-h, -V.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-h
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints command usage to stderr and exits.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-V</B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</TD><TD valign=bottom>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints openlava release version to stderr and exits.
+<P>
+<P>
+<!-- .SH OUTPUT -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>OUTPUT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS SUMMARY (default format) -->
+</BLOCKQUOTE>
+<A name=5>
+
+    <H4>&nbsp; &nbsp; SUMMARY (default format)</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Overall statistics for tasks.
+<!-- .PP -->
+<P>
+The total, average, maximum and minimum resource usage statistics
+apply to all specified tasks.
+<!-- .PP -->
+<P>
+The following fields are displayed:
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Total number of tasks
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Total number of tasks
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Total number of tasks including tasks completed successfully and
+total number of exited tasks.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Time range of started tasks
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Time range of started tasks
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Start time of the first and last task selected.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Time range of ended tasks
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Time range of ended tasks
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Completion or exit time of the first and last task selected.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Resource usage of tasks selected
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Resource usage of tasks selected
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+See getrusage (2).
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CPU time
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: CPU time
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Total CPU time consumed by the task.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Page faults
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Page faults
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of page faults.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Swaps
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Swaps
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of times the process was swapped out.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Blocks in
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Blocks in
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of input blocks.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Blocks out
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Blocks out
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of output blocks.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Messages sent
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Messages sent
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of System VIPC messages sent.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Messages rcvd
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Messages rcvd
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of IPC messages received.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Voluntary cont sw
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Voluntary cont sw
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of voluntary context switches.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Involuntary con sw
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Involuntary con sw
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of involuntary context switches.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Turnaround
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Turnaround
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Elapsed time from task execution to task completion.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .SS Per Task Statistics ( -l) -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=6>
+
+    <H4>&nbsp; &nbsp; Per Task Statistics ( -l)</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+In addition to the fields displayed by default in SUMMARY, displays the
+following fields for each task:
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Starting time
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Starting time
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Time the task started.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+User and host name
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: User and host name
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+User who submitted the task, host from which the task was
+submitted, in the format <I>user_name</I>@<I>host</I>.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PID &nbsp;&nbsp;&nbsp;&nbsp; 
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: PID &nbsp;&nbsp;&nbsp;&nbsp; 
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+UNIX process ID of the task.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Execution host
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Execution host
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Host on which the command was run.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Command line
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Command line
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Complete command line that was executed.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CWD
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: CWD
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Current working directory of the task.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Completion time
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Completion time
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Time at which the task completed.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Exit status
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Exit status
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+UNIX exit status of the task.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .SH FILES -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=7>
+
+     <H3>FILES</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Reads lsf.acct.<I>host_name
+</I>.SH SEE ALSO
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+lsf.acct(5), res(8), bhist(1)
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>lsacct (1)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from lsacct.1 using man macros.</FONT>
+</BODY></HTML>

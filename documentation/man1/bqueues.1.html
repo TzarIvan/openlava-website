@@ -1,0 +1,1921 @@
+<HTML><HEAD>
+<TITLE>bqueues.1</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH bqueues 1 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>bqueues (1)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>bqueues</B> - displays information about queues
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Output</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#5>Default Output</A><BR>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<A HREF=#6>Output for -l Option</A><BR>
+<A HREF=#7>See Also</A><BR>
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>bqueues </B>[<B>-w</B> | <B>-l</B>] [<B>-m</B> <I>host_name</I><I> </I>|<I> </I><B>-m</B><I> host_group</I><I> | </I><B>-m all</B>]
+[<B>-u</B><B> </B><I>user_name </I>|<I> </I><B>-u</B><I> user_group | </I><B>-u all</B>] [<I>queue_name</I> ...]
+<!-- .PP -->
+<P>
+<B>bqueues </B>[<B>-h</B> | <B>-V</B>]
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B></B>Displays information about queues.
+<!-- .PP -->
+<P>
+By default, returns the following information about all queues: queue
+name, queue priority, queue status, job slot statistics, and job state
+statistics.
+<!-- .PP -->
+<P>
+Batch queue names and characteristics are set up by the openlava
+administrator (see lsb.queues(5) and mbatchd(8)).
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .TP  -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+<B>-w</B>
+</TD><TD valign=bottom>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays queue information in a wide format. Fields are displayed
+without truncation.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-l
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays queue information in a long multi-line format. The -l option
+displays the following additional information: queue description,
+queue characteristics and statistics, scheduling parameters, resource
+limits, scheduling policies, users, hosts, user shares, windows,
+associated commands, and job controls.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-m</B> <I>host_name </I>|<I> </I><B>-m</B><I> host_group </I>| <B>-m</B><I> </I><B>all</B>
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays the queues that can run jobs on the specified host or host
+group. If the keyword all is specified, displays the queues that can run
+jobs on all hosts . For a list of host groups see bmgroup(1).
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>-u</B> <I>user_name </I>|<I> </I><B>-u</B><I> user_group</I><B> </B>|<B> -u all</B>
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays the queues that can accept jobs from the specified user or user
+group (For a list of user groups see bugroup(1).) If the keyword &#145;all&#146;
+is specified, displays the queues that can accept jobs from all users.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<I>queue_name </I>...
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Displays information about the specified queues.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-h</B>
+</TD><TD valign=bottom>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints command usage to stderr and exits.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-V
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints openlava release version to stdout and exits.
+<P>
+<P>
+<!-- .SH OUTPUT -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>OUTPUT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Default Output -->
+</BLOCKQUOTE>
+<A name=5>
+
+    <H4>&nbsp; &nbsp; Default Output</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Displays the following fields:
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+QUEUE_NAME
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: QUEUE_NAME
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The name of the queue. Queues are named to correspond to the
+type of jobs usually submitted to them, or to the type of services
+they provide.
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+lost_and_found
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: lost_and_found
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If the openlava administrator removes queues from the system, openlava
+creates a queue called lost_and_found and places the jobs
+from the removed queues into the lost_and_found queue.
+Jobs in the lost_and_found queue will not be started unless
+they are switched to other queues (see bswitch).
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PARAMETER/STATISTICS
+<!-- .BR -->
+ <!-- .RS -->
+<P>
+<!-- .IP -->
+<TABLE width=100% cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PRIO
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: PRIO
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The priority of the queue. If job priority is not configured,
+determines the queue search order at job dispatch, suspension
+and resumption time. Queues with higher priority values are
+searched first for job dispatch and resumption (this is contrary
+to UNIX process priority ordering), and queues with higher
+priority values are searched last for job suspension.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+STATUS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: STATUS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The current status of the queue. The possible values are:
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Open
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Open
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The queue is able to accept jobs.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Closed
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Closed
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The queue is not able to accept jobs.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Active
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Active
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Jobs in the queue may be started.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Inactive
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Inactive
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Jobs in the queue cannot be started for the time being.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+At any moment, each queue is either Open or Closed, and is
+either Active or Inactive. The queue can be opened, closed,
+inactivated and re-activated by the openlava administrator using
+badmin (see badmin(8)). The queue becomes inactive when
+either its dispatch window is closed or its run window is closed
+(see DISPATCH_WINDOWS in the "Output for the -l Option"
+section). In this case, the queue cannot be activated using
+badmin. The queue is re-activated by openlava when one of its
+dispatch windows and one of its run windows are open again.
+The initial state of a queue at openlava boot time is set to open, and
+either active or inactive depending on its windows.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+MAX
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: MAX
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The maximum number of job slots that can be used by the jobs
+from the queue. These job slots are used by dispatched jobs
+which have not yet finished, and by pending jobs which have
+slots reserved for them. A sequential job will use one job slot
+when it is dispatched to a host, while a parallel job will use as
+many job slots as is required by bsub -n when it is dispatched.
+See bsub(1) for details. If &#145;-&#146; is displayed, there is no limit.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+JL/U
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: JL/U
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The maximum number of job slots you can use for your jobs in
+the queue. These job slots are used by your dispatched jobs
+which have not yet finished, and by pending jobs which have
+slots reserved for them. If &#145;-&#146; is displayed, there is no limit.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+JL/P
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: JL/P
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The maximum number of job slots a processor can process
+from the queue. This includes job slots of dispatched jobs that
+have not yet finished, and job slots reserved for some pending
+jobs. The job slot limit per processor (JL/P) controls the number
+of jobs sent to each host. This limit is configured per processor
+so that multiprocessor hosts are automatically allowed to run
+more jobs. If &#145;-&#146; is displayed, there is no limit.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+JL/H
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: JL/H
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The maximum number of job slots a host can process from the
+queue. This includes the job slots of dispatched jobs that have
+not yet finished, and those reserved for some pending jobs. The
+job slot limit per host (JL/H) controls the number of jobs sent
+to each host, regardless of whether a host is a uniprocessor host
+or a multiprocessor host. If &#145;-&#146; is displayed, there is no limit.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+NJOBS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: NJOBS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The total number of job slots held currently by jobs in the
+queue. This includes pending, running, suspended and
+reserved job slots. A parallel job that is running on <I>n</I> processors
+is counted as <I>n</I> job slots, since it takes <I>n</I> job slots in the queue.
+See bjobs(1) for an explanation of batch job states.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PEND
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: PEND
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The number of pending job slots in the queue.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RUN
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: RUN
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The number of running job slots in the queue.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+SUSP
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: SUSP
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The number of suspended job slots in the queue.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .SS Output for \fB-\fRl Option -->
+</TD></TR>
+<TR></TR></TABLE><A name=6>
+<H4><I>Output for -l Option</I></H4></A>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+In addition to the above fields, the <B>-</B>l option displays the following:
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Description
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Description
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+A description of the typical use of the queue.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PARAMETERS/STATISTICS
+<!-- .BR -->
+ <!-- .RS -->
+<P>
+<!-- .IP -->
+<TABLE width=100% cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+NICE
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: NICE
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The nice value at which jobs in the queue will be run. This is
+the UNIX nice value for reducing the process priority (see
+nice(1)).
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+STATUS
+<!-- .BR -->
+ <!-- .RS -->
+<P>
+<!-- .IP -->
+<TABLE width=100% cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Inactive
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Inactive
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The long format for the <B>-</B>l option gives the possible reasons
+for a queue to be inactive:
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Inact_Win
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Inact_Win
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The queue is out of its dispatch window or its run window.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Inact_Adm
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Inact_Adm
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The queue has been inactivated by the openlava administrator.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+SSUSP
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: SSUSP
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The number of job slots in the queue allocated to jobs that are
+suspended by openlava.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+USUSP
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: USUSP
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The number of job slots in the queue allocated to jobs that are
+suspended by the job submitter or by the openlava administrator.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RSV
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: RSV
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The numbers of job slots in the queue that are reserved by openlava
+for pending jobs.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Migration threshold
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Migration threshold
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+<B></B>The length of time in seconds that a job dispatched from the queue
+will remain suspended by the system before openlava attempts to
+migrate the job to another host. See the MIG parameter in
+lsb.queues and lsb.hosts.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Schedule delay for a new job
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Schedule delay for a new job
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The delay time in seconds for scheduling a session after a new job
+is submitted. If the schedule delay time is zero, a new scheduling
+session is started as soon as the job is submitted to the queue. See
+the NEW_JOB_SCHEDULE_DELAY parameter in lsb.queues.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Interval for a host to accept two jobs
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Interval for a host to accept two jobs
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The length of time in seconds to wait after dispatching a job to a
+host before dispatching a second job to the same host. If the job
+accept interval is zero, a host may accept more than one job in each
+dispatching interval. See the JOB_ACCEPT_INTERVAL parameter in
+lsb.queues and lsb.params.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RESOURCE LIMITS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: RESOURCE LIMITS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The hard resource limits that are imposed on the jobs in the queue
+(see getrlimit(2) and lsb.queues(5)). These limits are imposed
+on a per-job and a per-process basis.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The possible per-job limits are:
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CPULIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PROCLIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+MEMLIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+SWAPLIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The possible UNIX per-process resource limits are:
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RUNLIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+FILELIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+DATALIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+STACKLIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CORELIMIT
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If a job submitted to the queue has any of these limits specified (see
+bsub(1)), then the lower of the corresponding job limits and
+queue limits are used for the job.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If no resource limit is specified, the resource is assumed to be
+unlimited.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+SCHEDULING PARAMETERS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: SCHEDULING PARAMETERS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The scheduling and suspending thresholds for the queue.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The scheduling threshold loadSched and the suspending
+threshold loadStop are used to control batch job dispatch,
+suspension, and resumption. The queue thresholds are used in
+combination with the thresholds defined for hosts (see bhosts(1)
+and lsb.hosts(5)). If both queue level and host level thresholds
+are configured, the most restrictive thresholds are applied.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The loadSched and loadStop thresholds have the following
+fields:
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+r15s
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: r15s
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The 15-second exponentially averaged effective CPU run queue
+length.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+r1m
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: r1m
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The 1-minute exponentially averaged effective CPU run queue
+length.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+r15m
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: r15m
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The 15-minute exponentially averaged effective CPU run queue
+length.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ut
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ut
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The CPU utilization exponentially averaged over the last
+minute, expressed as a percentage between 0 and 1.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+pg
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: pg
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The memory paging rate exponentially averaged over the last
+minute, in pages per second.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+io
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: io
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The disk I/O rate exponentially averaged over the last minute,
+in kilobytes per second.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ls
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ls
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The number of current login users.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+it
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: it
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+On UNIX, the idle time of the host (keyboard not touched on
+all logged in sessions), in minutes.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+tmp
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: tmp
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The amount of free space in /tmp, in megabytes.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+swp
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: swp
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The amount of currently available swap space, in megabytes.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+mem
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: mem
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The amount of currently available memory, in megabytes.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+In addition to these internal indices, external indices are also
+displayed if they are defined in lsb.queues (see lsb.queues(5)).
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The loadSched threshold values specify the job dispatching
+thresholds for the corresponding load indices. If &#145;-&#146; is displayed as
+the value, it means the threshold is not applicable. Jobs in the
+queue may be dispatched to a host if the values of all the load
+indices of the host are within (below or above, depending on the
+meaning of the load index) the corresponding thresholds of the
+queue and the host. The same conditions are used to resume jobs
+dispatched from the queue that have been suspended on this host.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Similarly, the loadStop threshold values specify the thresholds for
+job suspension. If any of the load index values on a host go beyond
+the corresponding threshold of the queue, jobs in the queue will
+be suspended.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+SCHEDULING POLICIES
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: SCHEDULING POLICIES
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Scheduling policies of the queue. Optionally, one or more of the
+following policies may be configured:
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+IGNORE_DEADLINE
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: IGNORE_DEADLINE
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If IGNORE_DEADLINE is set to Y, starts all jobs regardless of
+the run limit.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+EXCLUSIVE
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: EXCLUSIVE
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Jobs dispatched from an exclusive queue can run exclusively
+on a host if the user so specifies at job submission time (see
+bsub(1)). Exclusive execution means that the job is sent to a
+host with no other batch job running there, and no further job,
+batch or interactive, will be dispatched to that host while the
+job is running. The default is not to allow exclusive jobs.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+NO_INTERACTIVE
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: NO_INTERACTIVE
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+This queue does not accept batch interactive jobs. (see the -I,
+-Is, and -Ip options of bsub(1)). The default is to accept
+both interactive and non-interactive jobs.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ONLY_INTERACTIVE
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ONLY_INTERACTIVE
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+This queue only accepts batch interactive jobs. Jobs must be
+submitted using the -I, -Is, and -Ip options of bsub(1). The
+default is to accept both interactive and non-interactive jobs.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+DEFAULT HOST SPECIFICATION
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: DEFAULT HOST SPECIFICATION
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The default host or host model that will be used to normalize the
+CPU time limit of all jobs.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If you want to view a list of the CPU factors defined for the hosts
+in your cluster, use lsinfo(1). The CPU factors are configured in
+lsf.shared(5).
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The appropriate CPU scaling factor of the host or host model is
+used to adjust the actual CPU time limit at the execution host (see
+CPULIMIT in lsb.queues(5)). The DEFAULT_HOST_SPEC
+parameter in lsb.queues overrides the system
+DEFAULT_HOST_SPEC parameter in lsb.params (see
+lsb.params(5)). If a user explicitly gives a host specification
+when submitting a job using
+bsub -c <I>cpu_limit</I>[/<I>host_name</I> | /<I>host_model</I>], the user
+specification overrides the values defined in both lsb.params and
+lsb.queues.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RUN_WINDOWS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: RUN_WINDOWS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+One or more run windows in a week during which jobs in the
+queue may run.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+When the end of a run window is reached, any running jobs from
+the queue are suspended until the beginning of the next run
+window when they are resumed. The default is no restriction, or
+always open.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+DISPATCH_WINDOWS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: DISPATCH_WINDOWS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The dispatch windows for the queue. The dispatch windows are
+the time windows in a week during which jobs in the queue may
+be dispatched.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+When a queue is out of its dispatch window or windows, no job in
+the queue will be dispatched. Jobs already dispatched are not
+affected by the dispatch windows. The default is no restriction, or
+always open (that is, twenty-four hours a day, seven days a week).
+Note that such windows are only applicable to batch jobs.
+Interactive jobs scheduled by LIM are controlled by another set of
+dispatch windows (see lshosts(1)). Similar dispatch windows
+may be configured for individual hosts (see bhosts(1)).
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+A window is displayed in the format <I>begin_time</I>-<I>end_time</I>. Time is
+specified in the format [<I>day</I>:]<I>hour</I>[:<I>minute</I>], where all fields are
+numbers in their respective legal ranges: 0(Sunday)-6 for <I>day</I>, 0-23
+for <I>hour</I>, and 0-59 for <I>minute</I>. The default value for <I>minute</I> is 0 (on
+the hour). The default value for <I>day</I> is every day of the week. The
+<I>begin_time</I> and <I>end_time</I> of a window are separated by &#145;-&#146;, with no
+blank characters (SPACE and TAB) in between. Both <I>begin_time</I>
+and <I>end_time</I> must be present for a window. Windows are
+separated by blank characters.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+USERS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: USERS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+A list of users and user groups allowed to submit jobs to the queue. 
+User group names have a slash (/) added at the end of the group
+name. See bugroup(1).
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+openlava cluster administrators can submit jobs to the queue by default
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+HOSTS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: HOSTS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+A list of hosts and host groups where jobs in the queue can be
+dispatched. Host group names have a slash (/) added at the end of
+the group name. See bmgroup(1).
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ADMINISTRATORS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ADMINISTRATORS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+A list of queue administrators. The users whose names are listed are
+allowed to operate on the jobs in the queue and on the queue itself.
+See lsb.queues(5) for more information.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+PRE_EXEC
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: PRE_EXEC
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The queue&#146;s pre-execution command. The pre-execution
+command is executed before each job in the queue is run on the
+execution host (or on the first host selected for a parallel batch job).
+See lsb.queues(5) for more information.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+POST_EXEC
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: POST_EXEC
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The queue&#146;s post-execution command. The post-execution
+command is run when a job terminates. See lsb.queues(5) for
+more information.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+REQUEUE_EXIT_VALUES
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: REQUEUE_EXIT_VALUES
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Jobs that exit with these values are automatically requeued. See
+lsb.queues(5) for more information.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RES_REQ
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: RES_REQ
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Resource requirements of the queue. Only the hosts that satisfy
+these resource requirements can be used by the queue.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Maximum slot reservation time
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: Maximum slot reservation time
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The maximum time in seconds a slot is reserved for a pending job
+in the queue. See the SLOT_RESERVE=MAX_RESERVE_TIME[n]
+parameter in lsb.queues.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RESUME_COND
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: RESUME_COND
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Resume threshold conditions for a suspended job in the queue. See
+lsb.queues(5) for more information.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+STOP_COND
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: STOP_COND
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Stop threshold conditions for a running job in the queue. See
+lsb.queues(5) for more information.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+JOB_STARTER
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: JOB_STARTER
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job starter command for a running job in the queue. See
+lsb.queues(5) for more information.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RERUNNABLE
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: RERUNNABLE
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If the RERUNNABLE field displays yes, jobs in the queue are
+rerunnable. That is, jobs in the queue are automatically restarted or
+rerun if the execution host becomes unavailable. However, a job in
+the queue will not be restarted if the you have removed the
+rerunnable option from the job. See lsb.queues(5) for more
+information.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CHECKPOINT
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: CHECKPOINT
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If the CHKPNTDIR field is displayed, jobs in the queue are
+checkpointable. Jobs will use the default checkpoint directory and
+period unless you specify other values. Note that a job in the queue
+will not be checkpointed if you have removed the checkpoint
+option from the job. See lsb.queues(5) for more information.
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CHKPNTDIR
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: CHKPNTDIR
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Specifies the checkpoint directory using an absolute or relative
+path name.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CHKPNTPERIOD
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: CHKPNTPERIOD
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Specifies the checkpoint period in seconds.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Although the output of bqueues reports the checkpoint period
+in seconds, the checkpoint period is defined in minutes (the
+checkpoint period is defined through the
+bsub -k "<I>checkpoint_dir </I>[<I>checkpoint_period</I>]" option, or in
+lsb.queues).
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+JOB CONTROLS
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: JOB CONTROLS
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The configured actions for job control. See JOB_CONTROLS
+parameter in lsb.queues.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The configured actions are displayed in the format [<I>action_type</I>,
+<I>command</I>] where <I>action_type</I> is either SUSPEND, RESUME, or
+TERMINATE.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .SH SEE ALSO -->
+</TD></TR>
+<TR></TR></TABLE><A name=7>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+lsfbatch(1), bugroup(1), nice(1), getrlimit(2),
+lsb.queues(5), bsub(1), bjobs(1), bhosts(1), badmin(8),
+mbatchd(8)
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>bqueues (1)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from bqueues.1 using man macros.</FONT>
+</BODY></HTML>

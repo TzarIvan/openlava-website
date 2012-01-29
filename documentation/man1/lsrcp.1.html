@@ -1,0 +1,375 @@
+<HTML><HEAD>
+<TITLE>lsrcp.1</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH lsrcp 1 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>lsrcp (1)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>lsrcp</B> - remotely copies files using openlava
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Examples</A><BR>
+<A HREF=#5>See Also</A><BR>
+<A HREF=#6>Diagnostics</A><BR>
+<A HREF=#7>Limitations</A><BR>
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>lsrcp</B> [<B>-a</B>]<B> </B><I>source_file</I><B> </B><I>target_file</I><B>
+</B><B>lsrcp</B> [<B>-h | -V</B>]
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B></B>Remotely copies files using openlava.
+<!-- .PP -->
+<P>
+lsrcp is an openlava-enabled remote copy program that transfers a single
+file between hosts in an openlava cluster. lsrcp uses RES on an openlava host to
+transfer files. If openlava is not installed on a host or if RES is not running
+then lsrcp uses rcp to copy the file.
+<!-- .PP -->
+<P>
+To use lsrcp, you must have read access to the file being copied.
+<!-- .PP -->
+<P>
+Both the source and target file must be owned by the user who issues
+the command.
+<!-- .PP -->
+<P>
+lsrcp uses rcp to copy a source file to a target file owned by another
+user. See rcp(1) and LIMITATIONS below for details.
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .TP  -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+<B>-a
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Appends <I>source_file</I> to <I>target_file</I>.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<I>source_file target_file
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</I>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Specify an existing file on a local or remote host that you want to copy,
+and a file to which you want to copy the source file.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+File format is as follows:
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+[[<I>user_name</I><B>@</B>][<I>host_name</I>]<B>:</B>][<I>path</I><B>/</B>]<I>file_name</I>
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+<I>user_name</I>
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: <I>user_name</I>
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Login name to be used for accessing files on the remote host.
+If <I>user_name</I> is not specified, the name of the user who issued
+the command is used.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+<I>host_name</I>
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: <I>host_name</I>
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Name of the remote host on which the file resides. If
+<I>host_name</I> is not specified, the local host, the host from which
+the command was issued is used.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+<I>path</I>
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: <I>path</I>
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Absolute path name or a path name relative to the login
+directory of the user. Shell file name expansion is not supported
+on either the local or remote hosts. Only single files can be
+copied from one host to another.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Use "/" to transfer files from a UNIX host to a UNIX host. For
+example:
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+% <B>lsrcp file1 hostD:/home/usr2/test/file2
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+<I>file_name</I>
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: <I>file_name</I>
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Name of source file. File name expansion is not supported.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-h
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints command usage to stderr and exits.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>-V
+</TD><TD valign=bottom>
+</B>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Prints openlava release version to stderr and exits.
+<P>
+<P>
+<!-- .SH EXAMPLES -->
+</TD></TR>
+<TR></TR></TABLE></TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+% <B>lsrcp myfile @hostC:/home/usr/dir1/otherfile
+</B>.PP
+Copies file myfile from the local host to file otherfile on hostC.
+<!-- .PP -->
+<P>
+% <B>lsrcp user1@hostA:/home/myfile user1@hostB:otherfile
+</B>.PP
+Copies the file myfile from hostA to file otherfile on hostB.
+<!-- .PP -->
+<P>
+% <B>lsrcp -a user1@hostD:/home/myfile /dir1/otherfile
+</B>.PP
+Appends the file myfile on hostD to the file otherfile on the local
+host.
+<!-- .PP -->
+<P>
+% <B>lsrcp /tmp/myfile user1@hostF:~/otherfile
+</B>.PP
+Copies the file myfile from the local host to file otherfile on hostF
+in user1&#146;s home directory.
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+rsh(1), rcp(1), lsfintro(1), res(8)
+<!-- .SH DIAGNOSTICS -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>DIAGNOSTICS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+lsrcp attempts to copy <I>source_file</I> to <I>target_file</I> using RES. If RES is
+down or fails to copy the <I>source_file</I>, lsrcp will use either rsh when
+the -a option is specified, or rcp when -a is not specified.
+<!-- .SH LIMITATIONS -->
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>LIMITATIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+File transfer using lscrp is not supported in the following contexts:
+<!-- .PP -->
+<P>
+- If openlava account mapping is used; lsrcp fails when running under a
+different user account
+<!-- .PP -->
+<P>
+- On openlava client hosts. openlava client hosts do not run RES, so lsrcp cannot
+contact RES on the submission host
+<!-- .PP -->
+<P>
+- Third party copies. lsrcp does not support third party copies, when
+neither source nor target file are on the local host. In such a case rcp
+or rsh will be used. If the <I>target_file</I> exists, lsrcp preserves the
+modes; otherwise, lsrcp uses the <I>source_file</I> modes modified with the
+umask (see umask(2)) of the source host.
+<!-- .PP -->
+<P>
+You can do the following:
+<!-- .PP -->
+<P>
+rcp on UNIX- if lsrcp cannot contact RES on the submission host, it
+attempts to use rcp to copy the file. You must set up the
+/etc/hosts.equiv or HOME/.rhosts file in order to use rcp. See the
+rcp(1) and rsh(1) manual pages for more information on using the
+rcp command.
+<!-- .PP -->
+<P>
+You can replace lsrcp with your own file transfer mechanism as long
+as it supports the same syntax as lsrcp. This might be done to take
+advantage of a faster interconnection network, or to overcome
+limitations with the existing lsrcp. SBD looks for the lsrcp
+executable in the LSF_BINDIR directory as specified in the lsf.conf
+file.
+<!-- .PP -->
+<P>
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>lsrcp (1)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from lsrcp.1 using man macros.</FONT>
+</BODY></HTML>
