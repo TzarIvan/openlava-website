@@ -1,0 +1,898 @@
+<HTML><HEAD>
+<TITLE>lsb.hosts.5</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH lsb.hosts 5 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>lsb.hosts (5)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>lsb.hosts</B>
+<!-- .SS \fB\fROverview -->
+<A name=>
+<H4><I>Overview</I></H4></A>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The lsb.hosts file contains host-related configuration information for
+the server hosts in the cluster. This file is optional. All sections are
+optional.
+<!-- .SS Contents -->
+</BLOCKQUOTE>
+<A name=1>
+
+    <H4>&nbsp; &nbsp; Contents</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o Host Section
+<!-- .HP 2 -->
+<BR>
+o HostGroup Section
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SH Host Section -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+&nbsp; &nbsp; &nbsp;<A HREF=#1>Contents</A><BR>
+<A HREF=#2>Host Section</A><BR>
+<A HREF=#3>Description</A><BR>
+<A HREF=#4>Host Section Structure</A><BR>
+<A HREF=#5>Host_name</A><BR>
+<A HREF=#6>Dispatch_window</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#7>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#8>Default</A><BR>
+<A HREF=#9>Jl/u</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#10>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#11>Example</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#12>Default&nbsp;&nbsp;&nbsp;&nbsp; </A><BR>
+<A HREF=#13>Mig</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#14>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#15>Example</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#16>Default</A><BR>
+<A HREF=#17>Mxj</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#18>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#19>Default&nbsp;&nbsp;&nbsp;&nbsp; </A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#20>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#21>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#22>Example</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#23>Default</A><BR>
+<A HREF=#24>Example of a Host Section</A><BR>
+<A HREF=#25>HostGroup Section</A><BR>
+<A HREF=#26>Description</A><BR>
+<A HREF=#27>Structure</A><BR>
+<A HREF=#28>Group_name</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#29>Description</A><BR>
+<A HREF=#30>Group_member</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#31>Description</A><BR>
+<A HREF=#32>Examples of HostGroup Sections</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#33>Example 1</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#34>Example 2</A><BR>
+</BLOCKQUOTE>
+<A name=35>
+
+     <H3>Host Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SH Description -->
+</BLOCKQUOTE>
+<A name=31>
+
+     <H3>Description</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Optional. Defines the hosts, host types, and host models used as server
+hosts, and contains per-host configuration information. If this section is
+not configured, openlava uses all hosts in the cluster as server hosts.
+<!-- .PP -->
+<P>
+Each host, host model or host type can be configured to:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: Each host, host model or host type can be configured to:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o Limit the maximum number of jobs run in total
+<!-- .HP 2 -->
+<BR>
+o Limit the maximum number of jobs run by each user
+<!-- .HP 2 -->
+<BR>
+o Run jobs only under specific load conditions
+<!-- .HP 2 -->
+<BR>
+o Run jobs only under specific time windows
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .PP -->
+<P>
+The entries in a line for a host override the entries in a line for its model
+or type.
+<!-- .PP -->
+<P>
+When you modify the cluster by adding or removing hosts, no changes
+are made to lsb.hosts. This does not affect the default configuration,
+but if hosts, host models, or host types are specified in this file, you
+should check this file whenever you make changes to the cluster and
+update it manually if necessary.
+<!-- .SH Host Section Structure -->
+</BLOCKQUOTE>
+<A name=4>
+
+     <H3>Host Section Structure</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The first line consists of keywords identifying the load indices that you
+wish to configure on a per-host basis. The keyword HOST_NAME must
+be used; the others are optional. Load indices not listed on the keyword
+line do not affect scheduling decisions.
+<!-- .PP -->
+<P>
+Each subsequent line describes the configuration information for one
+host, host model or host type. Each line must contain one entry for
+each keyword. Use empty parentheses ( ) or a dash (-) to specify the
+default value for an entry.
+<!-- .SH HOST_NAME -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>HOST_NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS  -->
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; </H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Required. Specify the name, model, or type of a host, or the keyword
+default.
+<!-- .SS host name -->
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; host name</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The name of a host defined in lsf.cluster.<I>cluster_name</I>. The
+official host name returned by <B>gethostbyname(3)</B>.
+<!-- .SS host model -->
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; host model</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+A host model defined in lsf.shared.
+<!-- .SS host type -->
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; host type</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+A host type defined in lsf.shared.
+<!-- .SS default -->
+</BLOCKQUOTE>
+<A name=23>
+
+    <H4>&nbsp; &nbsp; default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The reserved host name default indicates all hosts in the cluster not
+otherwise referenced in the section (by name or by listing its model or
+type).
+<!-- .SH DISPATCH_WINDOW -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>DISPATCH_WINDOW</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=31>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The time windows in which jobs from this host, host model, or host
+type are dispatched. Once dispatched, jobs are no longer affected by
+the dispatch window.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=23>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined (always open).
+<!-- .SH JL/U -->
+</BLOCKQUOTE>
+<A name=9>
+
+     <H3>JL/U</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=31>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Per-user job slot limit for the host. Maximum number of job slots that
+each user can use on this host.
+<!-- .SS Example  -->
+</BLOCKQUOTE>
+<A name=22>
+
+    <H4>&nbsp; &nbsp; Example</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+HOST_NAME  JL/U
+<!-- .br -->
+<!-- Need break --><BR>
+hostA         2
+<P>
+<P>
+<!-- .SS Default	   -->
+</BLOCKQUOTE>
+<A name=23>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Unlimited
+<!-- .SH MIG -->
+</BLOCKQUOTE>
+<A name=13>
+
+     <H3>MIG</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=31>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Enables job migration and specifies the migration threshold, in
+minutes.
+<!-- .PP -->
+<P>
+If a checkpointable or rerunnable job dispatched to the host is
+suspended (SSUSP state) for longer than the specified number of
+minutes, the job is migrated. A value of 0 specifies that a suspended
+job should be migrated immediately.
+<!-- .PP -->
+<P>
+If a migration threshold is defined at both host and queue levels, the
+lower threshold is used.
+<!-- .SS Example -->
+</BLOCKQUOTE>
+<A name=22>
+
+    <H4>&nbsp; &nbsp; Example</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+HOST_NAME   MIG
+<!-- .br -->
+<!-- Need break --><BR>
+hostA        10
+<P>
+<P>
+<!-- .PP -->
+<P>
+In this example, the migration threshold is 10 minutes.
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=23>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined (no migration)
+<!-- .SH MXJ -->
+</BLOCKQUOTE>
+<A name=17>
+
+     <H3>MXJ</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=31>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The number of job slots on the host.
+<!-- .PP -->
+<P>
+Use "!" to make the number of job slots equal to the number of CPUs
+on a host.
+<!-- .PP -->
+<P>
+Use "!" for the reserved host name default to make the number of
+jobslots equal to the number of CPUs on all hosts in a cluster not
+defined in the host section of the lsb.hosts file.
+<!-- .PP -->
+<P>
+By default, the number of running and suspended jobs on a host
+cannot exceed the number of job slots. If preemptive scheduling is
+used, the suspended jobs are not counted as using a job slot.
+<!-- .PP -->
+<P>
+On multiprocessor hosts, to fully use the CPU resource, make the
+number of job slots equal to or greater than the number of processors.
+<!-- .SS Default	   -->
+</BLOCKQUOTE>
+<A name=23>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Unlimited
+<!-- .SH load_index -->
+</BLOCKQUOTE>
+<A name=>
+
+     <H3>load_index</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=20>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+<I>load_index
+<!-- .br -->
+<!-- Need break --><BR>
+loadSched</I>[<B>/</B><I>loadStop</I>]
+<P>
+<P>
+<!-- .PP -->
+<P>
+Specify io, it, ls, mem, pg, r15s, r1m, r15m, swp, tmp, ut, or a non-
+shared custom external load index as a column. Specify multiple
+columns to configure thresholds for multiple load indices.
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=31>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Scheduling and suspending thresholds for dynamic load indices
+supported by LIM, including external load indices.
+<!-- .PP -->
+<P>
+Each load index column must contain either the default entry or two
+numbers separated by a slash &#145;/&#146;, with no white space. The first number
+is the scheduling threshold for the load index; the second number is
+the suspending threshold.
+<!-- .PP -->
+<P>
+Queue-level scheduling and suspending thresholds are defined in
+lsb.queues. If both files specify thresholds for an index, those that
+apply are the most restrictive ones.
+<!-- .SS Example  -->
+</BLOCKQUOTE>
+<A name=22>
+
+    <H4>&nbsp; &nbsp; Example</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+HOST_NAME    mem     swp
+<!-- .br -->
+<!-- Need break --><BR>
+hostA        2.0/10  200/30
+<P>
+<P>
+<!-- .PP -->
+<P>
+This example translates into a loadSched condition of
+<P>
+<!-- .PP -->
+<P>
+mem&gt;=2.0 && swp&gt;=200
+<P>
+<P>
+<!-- .PP -->
+<P>
+and a loadStop condition of
+<P>
+<!-- .PP -->
+<P>
+mem &lt; 10 || swp &lt; 30
+<P>
+<P>
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=23>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SH Example of a Host Section -->
+</BLOCKQUOTE>
+<A name=24>
+
+     <H3>Example of a Host Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+Begin Host
+<!-- .br -->
+<!-- Need break --><BR>
+HOST_NAME MXJ JL/U r1m     pg    DISPATCH_WINDOW
+<!-- .br -->
+<!-- Need break --><BR>
+hostA     1   -    0.6/1.6 10/20 (5:19:00-1:8:30 20:00-8:30)
+<!-- .br -->
+<!-- Need break --><BR>
+SUNSOL    1   -    0.5/2.5 -     23:00-8:00
+<!-- .br -->
+<!-- Need break --><BR>
+default   2   1    0.6/1.6 20/40 ()
+<!-- .br -->
+<!-- Need break --><BR>
+End Host
+<P>
+<P>
+<!-- .PP -->
+<P>
+SUNSOL is a host type defined in lsf.shared. This example Host
+section configures one host and one host type explicitly and configures
+default values for all other load-sharing hosts.
+<!-- .PP -->
+<P>
+HostA runs one batch job at a time. A job will only be started on hostA
+if the r1m index is below 0.6 and the pg index is below 10; the running
+job is stopped if the r1m index goes above 1.6 or the pg index goes
+above 20. HostA only accepts batch jobs from 19:00 on Friday evening
+until 8:30 Monday morning and overnight from 20:00 to 8:30 on all
+other days.
+<!-- .PP -->
+<P>
+For hosts of type SUNSOL, the pg index does not have host-specific
+thresholds and such hosts are only available overnight from 23:00 to
+8:00.
+<!-- .PP -->
+<P>
+The entry with host name default applies to each of the other hosts in
+the openlava cluster. Each host can run up to two jobs at the same time, with
+at most one job from each user. These hosts are available to run jobs
+at all times. Jobs may be started if the r1m index is below 0.6 and the
+pg index is below 20, and a job from the lowest priority queue is
+suspended if r1m goes above 1.6 or pg goes above 40.
+<!-- .SH HostGroup Section -->
+</BLOCKQUOTE>
+<A name=25>
+
+     <H3>HostGroup Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SH Description -->
+</BLOCKQUOTE>
+<A name=31>
+
+     <H3>Description</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Optional. Defines host groups.
+<!-- .PP -->
+<P>
+The name of the host group can then be used in other host group, host
+partition, and queue definitions, as well as on the command line.
+Specifying the name of a host group has exactly the same effect as
+listing the names of all the hosts in the group.
+<!-- .SH Structure  -->
+</BLOCKQUOTE>
+<A name=27>
+
+     <H3>Structure</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Host groups are specified in the same format as user groups in
+lsb.users.
+<!-- .PP -->
+<P>
+The first line consists of two mandatory keywords, GROUP_NAME and
+GROUP_MEMBER. Subsequent lines name a group and list its
+membership.
+<!-- .PP -->
+<P>
+The sum of host groups and host partitions cannot be more than
+MAX_GROUPS (see lsbatch.h for details).
+<!-- .SH GROUP_NAME -->
+</BLOCKQUOTE>
+<A name=28>
+
+     <H3>GROUP_NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=31>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+An alphanumeric string representing the name of the host group.
+<!-- .PP -->
+<P>
+You cannot use the reserved name all, and group names must not
+conflict with host names.
+<!-- .SH GROUP_MEMBER -->
+</BLOCKQUOTE>
+<A name=30>
+
+     <H3>GROUP_MEMBER</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=31>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+A space-separated list of host names or previously defined host group
+names, enclosed in parentheses.
+<!-- .PP -->
+<P>
+The names of hosts and host groups can appear on multiple lines
+because hosts can belong to multiple groups. The reserved name all
+specifies all hosts in the cluster. Use an exclamation mark (!) to specify
+that the group membership should be retrieved via egroup. Use a tilde
+(~) to exclude specified hosts or host groups from the list.
+<!-- .SH Examples of HostGroup Sections -->
+</BLOCKQUOTE>
+<A name=32>
+
+     <H3>Examples of HostGroup Sections</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Example 1 -->
+</BLOCKQUOTE>
+<A name=33>
+
+    <H4>&nbsp; &nbsp; Example 1</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+Begin HostGroup
+<!-- .br -->
+<!-- Need break --><BR>
+GROUP_NAME  GROUP_MEMBER
+<!-- .br -->
+<!-- Need break --><BR>
+groupA      (hostA hostD)
+<!-- .br -->
+<!-- Need break --><BR>
+groupB      (hostF groupA hostK)
+<!-- .br -->
+<!-- Need break --><BR>
+groupC      (!)
+<!-- .br -->
+<!-- Need break --><BR>
+End HostGroup
+<P>
+<P>
+<!-- .PP -->
+<P>
+This example defines three host groups:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: This example defines three host groups:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o groupA includes hostsA and hostD.
+<!-- .HP 2 -->
+<BR>
+o groupB includes hostsF and hostK, along with all hosts in
+groupA.
+<!-- .HP 2 -->
+<BR>
+o the group membership of groupC will be retrieved via egroup.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS Example 2 -->
+</BLOCKQUOTE>
+<A name=34>
+
+    <H4>&nbsp; &nbsp; Example 2</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+Begin HostGroup
+<!-- .br -->
+<!-- Need break --><BR>
+GROUP_NAME   GROUP_MEMBER
+<!-- .br -->
+<!-- Need break --><BR>
+groupA       (all)
+<!-- .br -->
+<!-- Need break --><BR>
+groupB       (groupA ~hostA ~hostB)
+<!-- .br -->
+<!-- Need break --><BR>
+groupC       (hostX hostY hostZ)
+<!-- .br -->
+<!-- Need break --><BR>
+groupD       (groupC ~hostX)
+<!-- .br -->
+<!-- Need break --><BR>
+groupE       (all ~groupC ~hostB)
+<!-- .br -->
+<!-- Need break --><BR>
+groupF       (hostF groupC hostK)
+<!-- .br -->
+<!-- Need break --><BR>
+End HostGroup
+<P>
+<P>
+<!-- .PP -->
+<P>
+This example defines the following host groups:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: This example defines the following host groups:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o groupA contains all hosts in the cluster.
+<!-- .HP 2 -->
+<BR>
+o groupB contains all the hosts in the cluster except for hostA and
+hostB.
+<!-- .HP 2 -->
+<BR>
+o groupC contains only hostX, hostY, and hostZ.
+<!-- .HP 2 -->
+<BR>
+o groupD contains the hosts in groupC except for hostX. Note that
+hostX must be a member of host group groupC to be excluded
+from groupD.
+<!-- .HP 2 -->
+<BR>
+o groupE contains all hosts in the cluster excluding the hosts in
+groupC and hostB.
+<!-- .HP 2 -->
+<BR>
+o groupF contains hostF, hostK, and the 3 hosts in groupC.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>lsb.hosts (5)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from lsb.hosts.5 using man macros.</FONT>
+</BODY></HTML>

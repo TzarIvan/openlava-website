@@ -1,0 +1,1083 @@
+<HTML><HEAD>
+<TITLE>lsb.acct.5</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH lsb.acct 5 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>lsb.acct (5)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>lsb.acct</B> - Batch job log file of openlava
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Description</A><BR>
+<A HREF=#2>Fields</A><BR>
+<A HREF=#3>See Also</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#4>Related Topics</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#5>Files</A><BR>
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The master batch daemon (see mbatchd(8)) generates a record for each
+job completion or failure. The record is appended to the job log file
+lsb.acct. The file is located in LSB_SHAREDIR/<I>&lt;clustername&gt;</I>/logdir, where
+LSB_SHAREDIR must be defined in lsf.conf(5) and <I>&lt;clustername&gt;</I> is the
+name of the openlava cluster, as returned by lsid(1). See mbatchd(8) for the
+description of LSB_SHAREDIR. The job log file is an ASCII file with one
+record per line. The fields of a record are separated by blanks. If the
+value of some field is unavailable, "" is logged for character string, 0 for
+time and number, and -1 for resource usage.
+<!-- .SH Fields -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>Fields</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Fields of each job record  are ordered in the following sequence:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: Fields of each job record  are ordered in the following sequence:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Event type (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Which is always "<B>JOB_FINISH</B>"
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Version Number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Version number of the log file format
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event Time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Time the event was logged (in seconds since the epoch)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ID for the job
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+UNIX user ID of the submitter
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+options (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Bit flags for job processing
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+numProcessors (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of processors initially requested for execution
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+submitTime (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job submission time
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+beginTime (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job start time - the job should be started at or after this time
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+termTime (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job termination deadline - the job should be terminated by this time
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+startTime (%d) -
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job dispatch time - time job was dispatched for execution
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userName (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+User name of the submitter
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+queue (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Name of the job queue to which the job was submitted
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+resReq (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Resource requirement specified by the user
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+dependCond (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job dependency condition specified by the user
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+preExecCmd (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Pre-execution command specified by the user
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+fromHost (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Submission host name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+cwd (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Current working directory
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+inFile (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Input file name (%s)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+outFile (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+output file name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+errFile (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Error output file name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobFile (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job script file name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+numAskedHosts (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of host names to which job dispatching will be limited
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+askedHosts (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+List of host names to which job dispatching will be limited (%s for
+each); blank if the last field value is 0. If there is more than one host
+name, then each additional host name will be returned in its own field
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+numExHosts (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of processors used for execution<B>
+</B>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+execHosts (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+List of execution host names (%s for each); blank if the last field value
+is 0
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jStatus (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job status.  The number 32 represents <B>EXIT</B>, 64 represents <B>DONE</B>
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+hostFactor (%f)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CPU factor of the first execution host
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobName (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+command (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Complete batch job command specified by the user
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+lsfRusage
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The following fields contain resource usage information for the job. If
+the value of some field is unavailable (due to job abortion or  the
+difference among the operating systems), -1 will be logged. Times are
+measured in seconds, and sizes are measured in KBytes.
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_utime (%f)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_utime (%f)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+User time used
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_stime (%f)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_stime (%f)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+System time used
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_maxrss (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_maxrss (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Maximum shared text size
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_ixrss (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_ixrss (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Integral of the shared text size over time (in kilobyte seconds)
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_ismrss (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_ismrss (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Integral of the shared memory size over time (valid only on
+Ultrix)
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_idrss (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_idrss (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Integral of the unshared data size over time
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_isrss (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_isrss (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Integral of the unshared stack size over time
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_minflt (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_minflt (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of page reclaims
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_magflt (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_magflt (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of page faults
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_nswap (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_nswap (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of times the process was swapped out
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_inblock (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_inblock (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of block input operations
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_oublock (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_oublock (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of block output operations
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_ioch (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_ioch (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of characters read and written (valid only on HP-UX)
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_msgsnd (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_msgsnd (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of System V IPC messages sent
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_msgrcv (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_msgrcv (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of messages received
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_nsignals (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_nsignals (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of signals received
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_nvcsw (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_nvcsw (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of voluntary context switches
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_nivcsw (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_nivcsw (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of involuntary context switches
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_exutime (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_exutime (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Exact user time used (valid only on ConvexOS)
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+mailUser (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Name of the user to whom job related mail was sent
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+projectName (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Project name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+exitStatus (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+UNIX exit status of the job
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+maxNumProcessors (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Maximum number of processors specified for the job
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+loginShell (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Login shell used for the job
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+timeEvent (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Time event string for the job - JobScheduler only
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+idx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job array index
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+maxRMem (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Maximum resident memory usage in KBytes of all processes in the job
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+maxRSwap (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Maximum virtual memory usage in KBytes of all processes in the job
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+inFileSpool (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Spool input file
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+commandSpool (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Spool command file
+<P>
+<P>
+<!-- .SH SEE ALSO -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=3>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Related Topics -->
+</BLOCKQUOTE>
+<A name=4>
+
+    <H4>&nbsp; &nbsp; Related Topics</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+lsb.events(5), lsb.params(5), lsf.conf(5), mbatchd(8), bsub(1), lsid(1)
+<!-- .SS Files -->
+</BLOCKQUOTE>
+<A name=5>
+
+    <H4>&nbsp; &nbsp; Files</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+$LSB_SHAREDIR/<I>&lt;clustername&gt;</I>/logdir/lsb.acct
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>lsb.acct (5)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from lsb.acct.5 using man macros.</FONT>
+</BODY></HTML>

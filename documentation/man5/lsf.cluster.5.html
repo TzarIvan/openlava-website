@@ -1,0 +1,1883 @@
+<HTML><HEAD>
+<TITLE>lsf.cluster.5</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH lsf.cluster 5 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>lsf.cluster (5)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>lsf.cluster</B>
+<!-- .SS \fB\fROverview -->
+<A name=>
+<H4><I>Overview</I></H4></A>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+This is the cluster configuration file. There is one for each cluster, called
+lsf.cluster.<I>cluster_name</I>. The <I>cluster_name</I> suffix is the cluster
+name defined in the Cluster section of lsf.shared.
+<!-- .SS Contents -->
+</BLOCKQUOTE>
+<A name=1>
+
+    <H4>&nbsp; &nbsp; Contents</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o Parameters Section
+<!-- .HP 2 -->
+<BR>
+o ClusterAdmins Section
+<!-- .HP 2 -->
+<BR>
+o Host Section
+<!-- .HP 2 -->
+<BR>
+o ResourceMap Section
+<!-- .HP 2 -->
+<BR>
+o RemoteClusters Section
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS  -->
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; </H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SH Parameters Section -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+&nbsp; &nbsp; &nbsp;<A HREF=#1>Contents</A><BR>
+<A HREF=#2>Parameters Section</A><BR>
+<A HREF=#3>Adjust_duration</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#4>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#5>Default</A><BR>
+<A HREF=#6>Elim_poll_interval</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#7>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#8>Default</A><BR>
+<A HREF=#9>Elimargs</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#10>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#11>Default</A><BR>
+<A HREF=#12>Exinterval</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#13>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#14>Default</A><BR>
+<A HREF=#15>Host_inactivity_limit</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#16>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#17>Default</A><BR>
+<A HREF=#18>Lsf_elim_blocktime</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#19>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#20>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#21>Default</A><BR>
+<A HREF=#22>Lsf_elim_debug</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#23>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#24>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#25>See Also</A><BR>
+<A HREF=#26>Lsf_elim_restarts</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#27>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#28>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#29>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#30>See Also</A><BR>
+<A HREF=#31>Master_inactivity_limit</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#32>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#33>Default</A><BR>
+<A HREF=#34>Probe_timeout</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#35>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#36>Default</A><BR>
+<A HREF=#37>Retry_limit</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#38>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#39>Default</A><BR>
+<A HREF=#40>ClusterAdmins Section</A><BR>
+<A HREF=#41>Administrators</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#42>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#43>Compatibility</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#44>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#45>Example</A><BR>
+<A HREF=#46>Host Section</A><BR>
+<A HREF=#47>Descriptive Fields</A><BR>
+<A HREF=#48>Hostname</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#49>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#50>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#51>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#52>Default</A><BR>
+<A HREF=#53>Resources</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#54>Description</A><BR>
+<A HREF=#55>Rexpri</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#56>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#57>Default</A><BR>
+<A HREF=#58>Runwindow</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#59>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#60>Format</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#61>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#62>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#63>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#64>Description</A><BR>
+<A HREF=#65>Threshold Fields</A><BR>
+<A HREF=#66>Example of a Host Section</A><BR>
+<A HREF=#67>ResourceMap Section</A><BR>
+<A HREF=#68>ResourceMap Section Structure</A><BR>
+<A HREF=#69>Location</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#70>Description</A><BR>
+<A HREF=#71>Resourcename</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#72>Description</A><BR>
+<A HREF=#73>Example of a ResourceMap Section</A><BR>
+</BLOCKQUOTE>
+<A name=74>
+
+     <H3>Parameters Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+(Optional) This section contains miscellaneous parameters for the LIM.
+<!-- .SH ADJUST_DURATION -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>ADJUST_DURATION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=42>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>ADJUST_DURATION =</B> <I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Integer reflecting a multiple of EXINTERVAL that controls the time
+period during which load adjustment is in effect.
+<!-- .PP -->
+<P>
+The <B>lsplace</B>(<B>1</B>) and <B>lsloadadj</B>(<B>1</B>) commands artificially raise the
+load on a selected host. This increase in load decays linearly to 0 over
+time.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+3
+<!-- .SH ELIM_POLL_INTERVAL -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>ELIM_POLL_INTERVAL</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=42>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>ELIM_POLL_INTERVAL =</B> <I>time_in_seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Time interval, in seconds, in which the LIM daemon samples load
+information
+<!-- .PP -->
+<P>
+This parameter only needs to be set if an ELIM is being used to report
+information more frequently than every 5 seconds.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+5 seconds
+<!-- .SH ELIMARGS -->
+</BLOCKQUOTE>
+<A name=9>
+
+     <H3>ELIMARGS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=42>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>ELIMARGS =</B> <I>cmd_line_args
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specifies any necessary command-line arguments for the external LIM
+on startup
+<!-- .PP -->
+<P>
+This parameter is ignored if no external load indices are configured.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+None
+<!-- .SH EXINTERVAL -->
+</BLOCKQUOTE>
+<A name=12>
+
+     <H3>EXINTERVAL</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=42>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>EXINTERVAL =</B> <I>time_in_seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Time interval, in seconds, at which the LIM daemons exchange load
+information
+<!-- .PP -->
+<P>
+On extremely busy hosts or networks, or in clusters with a large
+number of hosts, load may interfere with the periodic communication
+between LIM daemons. Setting EXINTERVAL to a longer interval can
+reduce network load and slightly improve reliability, at the cost of
+slower reaction to dynamic load changes.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+15 seconds
+<!-- .SH HOST_INACTIVITY_LIMIT -->
+</BLOCKQUOTE>
+<A name=15>
+
+     <H3>HOST_INACTIVITY_LIMIT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=42>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>HOST_INACTIVITY_LIMIT =</B> <I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Integer reflecting a multiple of EXINTERVAL that controls the maximum
+time a slave LIM will take to send its load information to the master LIM
+as well as the frequency at which the master LIM will send a heartbeat
+message to its slaves.
+<!-- .PP -->
+<P>
+A slave LIM can send its load information any time from EXINTERVAL
+to (HOST_INACTIVITY_LIMIT-2)*EXINTERVAL seconds. A master LIM
+will send a master announce to each host at least every
+EXINTERVAL*HOST_INACTIVITY_LIMIT seconds.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+5
+<!-- .SH LSF_ELIM_BLOCKTIME -->
+</BLOCKQUOTE>
+<A name=18>
+
+     <H3>LSF_ELIM_BLOCKTIME</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=42>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_ELIM_BLOCKTIME=</B><I>seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+UNIX only.
+<!-- .PP -->
+<P>
+Maximum amount of time LIM waits for a load update string from the
+ELIM if it is not immediately available.
+<!-- .PP -->
+<P>
+Use this parameter to add fault-tolerance to LIM when using ELIMs. If
+there is an error in the ELIM or some situation arises that the ELIM
+cannot send the entire load update string to the LIM, LIM will not wait
+indefinitely for load information from ELIM. After the time period
+specified by LSF_ELIM_BLOCKTIME, the LIM writes the last string sent
+by ELIM in its log file (lim.log.<I>host_name</I>) and restarts the ELIM.
+<!-- .PP -->
+<P>
+For example, if LIM is expecting 3 name-value-pairs, such as:
+<P>
+<!-- .PP -->
+<P>
+3 tmp2 49.5 nio 367.0 licenses 3
+<P>
+<P>
+<!-- .PP -->
+<P>
+If after the time period specified by LSF_ELIM_BLOCKTIME LIM has
+only received the following:
+<!-- .PP -->
+<P>
+3 tmp2 47.5
+<!-- .PP -->
+<P>
+LIM writes whatever was received last (3 tmp2 47.5) in the log file and
+restarts the ELIM.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=28>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Non-negative integers
+<!-- .PP -->
+<P>
+A value of 0 indicates that LIM will not wait at all to receive information
+from ELIM--it expects to receive the entire load string at once.
+<!-- .PP -->
+<P>
+So, if for example, your ELIM writes value-pairs with 1 second intervals
+between them, and you collect 12 load indices, you need to allow at
+least 12 seconds for the ELIM to complete writing an entire load string.
+So you would define LSF_ELIM_BLOCKTIME to 15 or 20 seconds for
+example.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined--LIM waits indefinitely to receive load information from
+ELIM
+<!-- .SH LSF_ELIM_DEBUG -->
+</BLOCKQUOTE>
+<A name=22>
+
+     <H3>LSF_ELIM_DEBUG</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=42>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_ELIM_DEBUG=y
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+UNIX only.
+<!-- .PP -->
+<P>
+This parameter is useful to view which load information an ELIM is
+collecting and to add fault-tolerance to LIM.
+<!-- .PP -->
+<P>
+When this parameter is set to y:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: When this parameter is set to y:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o All load information received by LIM from the ELIM is logged in the
+LIM log file (lim.log.<I>host_name</I>).
+<!-- .HP 2 -->
+<BR>
+o If LSF_ELIM_BLOCKTIME is undefined, whenever there is an error
+in the ELIM or some situation arises that the ELIM cannot send the
+entire load update string to the LIM, LIM does not wait indefinitely
+for load information from ELIM. After 2 seconds, the LIM restarts
+the ELIM.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+For example, LIM is expecting 3 name-value-pairs, such as:
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+3 tmp2 47.5 nio 344.0 licenses 5
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+However, LIM only receives the following from ELIM:
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+3 tmp2 47.5
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+LIM waits 2 seconds after the last value is received and if no more
+information is received, LIM restarts the ELIM.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If LSF_ELIM_BLOCKTIME is defined, the LIM waits for the specified
+amount of time before restarting the ELIM instead of the 2 seconds.
+<P>
+<P>
+<!-- .SS Default -->
+</TD></TR>
+<TR></TR></TABLE><A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined--if LSF_ELIM_DEBUG is undefined, load information sent
+from ELIM to LIM is not logged. In addition, if LSF_ELIM_BLOCKTIME
+is undefined, LIM waits indefinitely to receive load information from
+ELIM.
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=30>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_ELIM_BLOCKTIME to configure how long LIM waits before
+restarting the ELIM, use the parameter LSF_ELIM_BLOCKTIME.
+<!-- .PP -->
+<P>
+LSF_ELIM_RESTARTS to limit how many times the ELIM can be
+restarted
+<!-- .SH LSF_ELIM_RESTARTS -->
+</BLOCKQUOTE>
+<A name=26>
+
+     <H3>LSF_ELIM_RESTARTS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=42>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_ELIM_RESTARTS=</B><I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+UNIX only.
+<!-- .PP -->
+<P>
+LSF_ELIM_BLOCKTIME or LSF_ELIM_DEBUG must be defined in
+conjunction with LSF_ELIM_RESTARTS.
+<!-- .PP -->
+<P>
+Defines the maximum number of times an ELIM can be restarted.
+<!-- .PP -->
+<P>
+When this parameter is defined:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: When this parameter is defined:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o If LIM attempts to retrieve load information from the ELIM and
+there is an error such as an invalid value for example, LIM restarts
+the ELIM.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .PP -->
+<P>
+If the error is consistent and LIM keeps restarting the ELIM,
+LSF_ELIM_RESTARTS limits how many times the ELIM can be restarted
+to prevent an ongoing loop.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=28>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Non-negative integers
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined; the number of ELIM restarts is unlimited
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=30>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_ELIM_BLOCKTIME, LSF_ELIM_DEBUG
+<!-- .SH MASTER_INACTIVITY_LIMIT -->
+</BLOCKQUOTE>
+<A name=31>
+
+     <H3>MASTER_INACTIVITY_LIMIT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=42>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>MASTER_INACTIVITY_LIMIT =</B> <I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+An integer reflecting a multiple of EXINTERVAL. A slave will attempt to
+become master if it does not hear from the previous master after
+(HOST_INACTIVITY_LIMIT
++<I>host_number</I>*MASTER_INACTIVITY_LIMIT)*EXINTERVAL seconds,
+where <I>host_number</I> is the position of the host in
+lsf.cluster.<I>cluster_name</I>.
+<!-- .PP -->
+<P>
+The master host is <I>host_number</I> 0.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+2
+<!-- .SH PROBE_TIMEOUT -->
+</BLOCKQUOTE>
+<A name=34>
+
+     <H3>PROBE_TIMEOUT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=42>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>PROBE_TIMEOUT =</B> <I>time_in_seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specifies the timeout in seconds to be used for the connect(2) system
+call
+<!-- .PP -->
+<P>
+Before taking over as the master, a slave LIM will try to connect to the
+last known master via TCP.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+2 seconds
+<!-- .SH RETRY_LIMIT -->
+</BLOCKQUOTE>
+<A name=37>
+
+     <H3>RETRY_LIMIT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=42>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>RETRY_LIMIT =</B> <I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Integer reflecting a multiple of EXINTERVAL that controls the number
+of retries a master or slave LIM makes before assuming that the slave
+or master is unavailable.
+<!-- .PP -->
+<P>
+If the master does not hear from a slave for HOST_INACTIVITY_LIMIT
+exchange intervals, it will actively poll the slave for RETRY_LIMIT
+exchange intervals before it will declare the slave as unavailable. If a
+slave does not hear from the master for HOST_INACTIVITY_LIMIT
+exchange intervals, it will actively poll the master for RETRY_LIMIT
+intervals before assuming that the master is down.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+2
+<!-- .SH ClusterAdmins Section -->
+</BLOCKQUOTE>
+<A name=40>
+
+     <H3>ClusterAdmins Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+(Optional) The ClusterAdmins section defines the openlava administrators
+for the cluster. The only keyword is ADMINISTRATORS.
+<!-- .PP -->
+<P>
+If the ClusterAdmins section is not present, the default openlava
+administrator is root. Using root as the primary openlava administrator is
+not recommended.
+<!-- .SH ADMINISTRATORS -->
+</BLOCKQUOTE>
+<A name=41>
+
+     <H3>ADMINISTRATORS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=42>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>ADMINISTRATORS =</B> <I>administrator_name ...
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specify Linux user and user group names.
+<!-- .PP -->
+<P>
+The first administrator of the expanded list is considered the primary
+openlava administrator. The primary administrator is the owner of the openlava
+configuration files, as well as the working files under
+LSB_SHAREDIR/<I>cluster_name</I>. If the primary administrator is
+changed, make sure the owner of the configuration files and the files
+under LSB_SHAREDIR/<I>cluster_name</I> are changed as well.
+<!-- .PP -->
+<P>
+Administrators other than the primary openlava administrator have the same
+privileges as the primary openlava administrator except that they do not have
+permission to change openlava configuration files. They can perform
+clusterwide operations on jobs, queues, or hosts in the system.
+<!-- .PP -->
+<P>
+For flexibility, each cluster may have its own openlava administrators,
+identified by a user name, although the same administrators can be
+responsible for several clusters.
+<!-- .PP -->
+<P>
+Use the <B>-l</B> option of the <B>lsclusters</B>(<B>1</B>) command to display all of the
+administrators within a cluster.
+<!-- .SS Compatibility -->
+</BLOCKQUOTE>
+<A name=43>
+
+    <H4>&nbsp; &nbsp; Compatibility</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+For backwards compatibility, ClusterManager and Manager are
+synonyms for ClusterAdmins and ADMINISTRATORS respectively. It
+is possible to have both sections present in the same
+lsf.cluster.<I>cluster_name</I> file to allow daemons from different
+openlava versions to share the same file.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+lsfadmin
+<!-- .SS Example -->
+</BLOCKQUOTE>
+<A name=45>
+
+    <H4>&nbsp; &nbsp; Example</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The following gives an example of a cluster with three openlava
+administrators. The user listed first, user2, is the primary administrator.
+The user group lsfgrp and the user user7 are secondary
+administrators.
+<P>
+<!-- .PP -->
+<P>
+Begin ClusterAdmins
+<!-- .br -->
+<!-- Need break --><BR>
+ADMINISTRATORS = user2 lsfgrp user7
+<!-- .br -->
+<!-- Need break --><BR>
+End ClusterAdmins
+<P>
+<P>
+<!-- .SH Host Section -->
+</BLOCKQUOTE>
+<A name=46>
+
+     <H3>Host Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The Host section is the last section in lsf.cluster.<I>cluster_name</I> and
+is the only required section. It lists all the hosts in the cluster and gives
+configuration information for each host.
+<!-- .PP -->
+<P>
+The order in which the hosts are listed in this section is important. The
+LIM on the first host listed becomes the master LIM if this host is up;
+otherwise, that on the second becomes the master if its host is up, and
+so on.
+<!-- .PP -->
+<P>
+Since the master LIM makes all placement decisions for the cluster, it
+should be on a fast machine. Also, to avoid the delays involved in
+switching masters if the first machine goes down, the master should be
+on a reliable machine. It is desirable to arrange the list such that the
+first few hosts in the list are always in the same subnet. This avoids a
+situation where the second host takes over as master when there are
+communication problems between subnets.
+<!-- .PP -->
+<P>
+Configuration information is of two types:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: Configuration information is of two types:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o Some fields in a host entry simply describe the machine and its
+configuration.
+<!-- .HP 2 -->
+<BR>
+o Other fields set thresholds for various resources.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SH Descriptive Fields -->
+</BLOCKQUOTE>
+<A name=47>
+
+     <H3>Descriptive Fields</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The following fields are required in the Host section:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: The following fields are required in the Host section:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o HOSTNAME
+<!-- .HP 2 -->
+<BR>
+o RESOURCES
+<!-- .HP 2 -->
+<BR>
+o type
+<!-- .HP 2 -->
+<BR>
+o server
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .PP -->
+<P>
+The following fields are optional:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: The following fields are optional:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o model
+<!-- .HP 2 -->
+<BR>
+o nd
+<!-- .HP 2 -->
+<BR>
+o RUNWINDOW
+<!-- .HP 2 -->
+<BR>
+o REXPRI
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SH HOSTNAME -->
+</BLOCKQUOTE>
+<A name=48>
+
+     <H3>HOSTNAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=72>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Official name of the host as returned by <B>hostname</B>(1)
+<!-- .PP -->
+<P>
+The name must be listed in lsf.shared as belonging to this cluster.
+<!-- .SH model -->
+</BLOCKQUOTE>
+<A name=>
+
+     <H3>model</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=72>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Host model
+<!-- .PP -->
+<P>
+The name must be defined in the HostModel secton of lsf.shared.
+This determines the CPU speed scaling factor applied in load and
+placement calculations.
+<!-- .PP -->
+<P>
+If you leave the model or type column blank or enter the ! keyword,
+you are indicating that the host model or type is to be automatically
+detected by the LIM running on the host.
+<!-- .SH nd -->
+</BLOCKQUOTE>
+<A name=>
+
+     <H3>nd</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=72>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Number of local disks
+<!-- .PP -->
+<P>
+This corresponds to the ndisks static resource. On most host types, openlava
+automatically determines the number of disks, and the nd parameter is
+ignored.
+<!-- .PP -->
+<P>
+nd should only count local disks with file systems on them. Do not
+count either disks used only for swapping or disks mounted with NFS.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The number of disks determined by the LIM, or 1 if the LIM cannot
+determine this
+<!-- .SH RESOURCES -->
+</BLOCKQUOTE>
+<A name=53>
+
+     <H3>RESOURCES</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=72>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The static Boolean resources available on this host
+<!-- .PP -->
+<P>
+The resource names are strings defined in the Resource section of
+lsf.shared. You may list any number of resources, enclosed in
+parentheses and separated by blanks or tabs: for example:
+<P>
+<!-- .PP -->
+<P>
+(fs frame hpux)
+<P>
+<P>
+<!-- .PP -->
+<P>
+Optionally, you can specify a dedicated resource by prefixing the
+resource with an exclamation mark (!). A host with dedicated resources
+is not selected by LIM for a job unless a dedicated resource name is
+explicitly specified in the resource requirements for the job.
+<!-- .SH REXPRI -->
+</BLOCKQUOTE>
+<A name=55>
+
+     <H3>REXPRI</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=72>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+(UNIX ONLY) Default execution priority for interactive remote jobs run
+under the RES
+<!-- .PP -->
+<P>
+The range is from -20 to 20. REXPRI corresponds to the BSD-style nice
+value used for remote jobs. For hosts with System V-style nice values
+with the range 0 - 39, a REXPRI of -20 corresponds to a nice value of
+0, and +20 corresponds to 39. Higher values of REXPRI correspond to
+lower execution priority; -20 gives the highest priority, 0 is the default
+priority for login sessions, and +20 is the lowest priority.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+0
+<!-- .SH RUNWINDOW -->
+</BLOCKQUOTE>
+<A name=58>
+
+     <H3>RUNWINDOW</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=72>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Dispatch window during this host is accepts remote interactive tasks
+<!-- .PP -->
+<P>
+When the host is not available for remote execution, the host status is
+lockW (locked by run window). LIM does not schedule interactive tasks
+on hosts locked by dispatch windows. Note that run windows only
+apply to interactive tasks placed by LIM. openlava Batch uses its own
+(optional) host dispatch windows to control batch job processing on
+batch server hosts.
+<!-- .SS Format -->
+</BLOCKQUOTE>
+<A name=60>
+
+    <H4>&nbsp; &nbsp; Format</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+A dispatch window consists of one or more time windows in the format
+<I>begin_time</I>-<I>end_time</I>. No blanks can separate <I>begin_time</I> and
+<I>end_time</I>. Time is specified in the form [<I>day</I>:]<I>hour</I>[:<I>minute</I>]. If only one
+field is specified, openlava assumes it is an <I>hour</I>. Two fields are assumed to
+be <I>hour</I>:<I>minute</I>. Use blanks to separate time windows.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Always accept remote jobs
+<!-- .SH server -->
+</BLOCKQUOTE>
+<A name=>
+
+     <H3>server</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=72>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Indicates whether the host can receive jobs from other hosts
+<!-- .PP -->
+<P>
+Specify 1 if the host can receive jobs from other hosts; specify 0
+otherwise. If server is set to 0, the host is an openlava client. Client hosts do
+not run the openlava daemons. Client hosts can submit interactive and batch
+jobs to an openlava cluster, but they cannot execute jobs sent from other
+hosts.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=63>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+1
+<!-- .SH type -->
+</BLOCKQUOTE>
+<A name=>
+
+     <H3>type</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=72>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Host type as defined in the HostType section of lsf.shared
+<!-- .PP -->
+<P>
+The strings used for host types are determined by the system
+administrator: for example, SUNSOL, DEC, or HPPA. The host type is
+used to identify binary-compatible hosts.
+<!-- .PP -->
+<P>
+The host type is used as the default resource requirement. That is, if no
+resource requirement is specified in a placement request, the task is
+run on a host of the same type as the sending host.
+<!-- .PP -->
+<P>
+Often one host type can be used for many machine models. For
+example, the host type name SUNSOL6 might be used for any
+computer with a SPARC processor running SunOS 6. This would
+include many Sun models and quite a few from other vendors as well.
+<!-- .PP -->
+<P>
+If you leave the model or type column blank or enter the ! keyword,
+you are indicating that the host model or type is to be automatically
+detected by the LIM running on the host.
+<!-- .SH Threshold Fields -->
+</BLOCKQUOTE>
+<A name=65>
+
+     <H3>Threshold Fields</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The LIM uses these thresholds in determining whether to place remote
+jobs on a host. If one or more openlava load indices exceeds the
+corresponding threshold (too many users, not enough swap space,
+etc.), then the host is regarded as busy, and LIM will not recommend
+jobs to that host.
+<!-- .PP -->
+<P>
+The CPU run queue length threshold values (r15s, r1m, and r15m) are
+taken as effective queue lengths as reported by <B>lsload -E</B>.
+<!-- .PP -->
+<P>
+All of these fields are optional; you only need to configure thresholds
+for load indices that you wish to use for determining whether hosts are
+busy. Fields that are not configured are not considered when
+determining host status. The keywords for the threshold fields are not
+case sensitive.
+<!-- .PP -->
+<P>
+Thresholds can be set for any of the following:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: Thresholds can be set for any of the following:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o The built-in openlava load indexes (r15s, r1m, r15m, ut, pg, it, io, ls, swp,
+mem, tmp)
+<!-- .HP 2 -->
+<BR>
+o External load indexes defined in the Resource section of
+lsf.shared
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SH Example of a Host Section -->
+</BLOCKQUOTE>
+<A name=66>
+
+     <H3>Example of a Host Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+This example Host section contains descriptive and threshold
+information for two hosts:
+<P>
+<!-- .PP -->
+<P>
+Begin Host
+<!-- .br -->
+<!-- Need break --><BR>
+HOSTNAME   model    type   server r1m pg tmp RESOURCES     RUNWINDOW
+<!-- .br -->
+<!-- Need break --><BR>
+hostA      SparcIPC Sparc  1      3.5 15   0 (sunos frame  ()
+<!-- .br -->
+<!-- Need break --><BR>
+hostD      Sparc10  Sparc  1      3.5 15   0 (sunos)       (5:18:30-1:8:30)
+<!-- .br -->
+<!-- Need break --><BR>
+End Host
+<P>
+<P>
+<!-- .SH ResourceMap Section -->
+</BLOCKQUOTE>
+<A name=67>
+
+     <H3>ResourceMap Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The ResourceMap section defines shared resources in your cluster. This
+section specifies the mapping between shared resources and their
+sharing hosts. When you define resources in the Resources section of
+lsf.shared, there is no distinction between a shared and non-shared
+resource. By default, all resources are not shared and are local to each
+host. By defining the ResourceMap section, you can define resources
+that are shared by all hosts in the cluster or define resources that are
+shared by only some of the hosts in the cluster.
+<!-- .PP -->
+<P>
+This section must appear after the Host section of
+lsf.cluster.<I>cluster_name</I>, because it has a dependency on host
+names defined in the Host section. The following parameters must be
+defined in the ResourceMap section:
+<!-- .SH ResourceMap Section Structure  -->
+</BLOCKQUOTE>
+<A name=68>
+
+     <H3>ResourceMap Section Structure</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The first line consists of the keywords RESOURCENAME and
+LOCATION. Subsequent lines describe the hosts that are associated
+with each configured resource.
+<!-- .SH LOCATION -->
+</BLOCKQUOTE>
+<A name=69>
+
+     <H3>LOCATION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=72>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Defines the hosts that share the resource
+<!-- .PP -->
+<P>
+For a static resource, you must define a value here as well. Do not
+define a value for a dynamic resource.
+<!-- .PP -->
+<P>
+<I>instance</I> is a list of host names that share an instance of the resource.
+The reserved words all, others, and default can be specified for the
+instance:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: <I>instance</I> is a list of host names that share an instance of the resource.
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o all--Indicates that there is only one instance of the resource in the
+whole cluster and that this resource is shared by all of the hosts
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Use the not operator (~) to exclude hosts from the all
+specification. For example:
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+(2@[all ~host3 ~host4])
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+means that 2 units of the resource are shared by all server hosts in
+the cluster made up of host1 host2 ... host<I>n</I>, except for host3 and
+host4. This is useful if you have a large cluster but only want to
+exclude a few hosts.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The parentheses are required in the specification. The not operator
+can only be used with the all keyword. It is not valid with the
+keywords others and default.
+<P>
+<P>
+<!-- .RS -->
+<!-- .HP 2 -->
+<TABLE width=100% cellpadding=3>
+<TR valign=top><TD colspan=2>
+o others--Indicates that the rest of the server hosts not explicitly
+listed in the LOCATION field comprise one instance of the resource
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+For example:
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+2@[host1] 4@[others]
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+indicates that there are 2 units of the resource on apple and 4 units
+of the resource shared by all other hosts.
+<P>
+<P>
+<!-- .RS -->
+<!-- .HP 2 -->
+<TABLE width=100% cellpadding=3>
+<TR valign=top><TD colspan=2>
+o default--Indicates an instance of a resource on each host in the
+cluster
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+This specifies a special case where the resource is in effect not
+shared and is local to every host. default means at each host.
+Normally, you should not need to use default, because by default
+all resources are local to each host. You might want to use
+ResourceMap for a non-shared static resource if you need to specify
+different values for the resource on different hosts.
+<P>
+<P>
+<!-- .SH RESOURCENAME -->
+</TD></TR>
+<TR></TR></TABLE><A name=71>
+
+     <H3>RESOURCENAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=72>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Name of the resource
+<!-- .PP -->
+<P>
+This resource name must be defined in the Resource section of
+lsf.shared. You must specify at least a name and description for the
+resource, using the keywords RESOURCENAME and DESCRIPTION.
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: This resource name must be defined in the Resource section of
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o A resource name cannot begin with a number.
+<!-- .HP 2 -->
+<BR>
+o A resource name cannot contain any of the following characters:
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+:  .  (  )  [  +  - *  /  !  &  | &lt;  &gt;  @  =
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o A resource name cannot be any of the following reserved names:
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+cpu cpuf io logins ls idle maxmem maxswp maxtmp type model
+status it mem ncpus ndisks pg r15m r15s r1m swap swp tmp ut
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o Resource names are case sensitive
+<!-- .HP 2 -->
+<BR>
+o Resource names can be up to 29 characters in length
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .SH Example of a ResourceMap Section -->
+<A name=73>
+
+     <H3>Example of a ResourceMap Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+Begin ResourceMap
+<!-- .br -->
+<!-- Need break --><BR>
+RESOURCENAME   LOCATION
+<!-- .br -->
+<!-- Need break --><BR>
+verilog        [5@all]
+<!-- .br -->
+<!-- Need break --><BR>
+local          ([host1 host2] [others])
+<!-- .br -->
+<!-- Need break --><BR>
+End ResourceMap
+<P>
+<P>
+<!-- .PP -->
+<P>
+The resource verilog must already be defined in the RESOURCE
+section of the lsf.shared file. It is a static numeric resource shared
+by all hosts. The value for verilog is 5. The resource local is a
+numeric shared resource that contains two instances in the cluster. The
+first instance is shared by two machines, host1 and host2. The second
+instance is shared by all other hosts.
+<!-- .PP -->
+<P>
+Resources defined in the ResourceMap section can be viewed by using
+the <B>-s</B> option of the <B>lshosts</B> (for static resource) and <B>lsload</B> (for
+dynamic resource) commands.
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>lsf.cluster (5)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from lsf.cluster.5 using man macros.</FONT>
+</BODY></HTML>

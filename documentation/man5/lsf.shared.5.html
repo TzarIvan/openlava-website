@@ -1,0 +1,836 @@
+<HTML><HEAD>
+<TITLE>lsf.shared.5</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH lsf.shared 5 "openlava Version 4.2 - June 2001" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>lsf.shared (5)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>lsf.shared</B>
+<!-- .SS \fB\fROverview -->
+<A name=>
+<H4><I>Overview</I></H4></A>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The lsf.shared file contains common definitions that are shared by
+all load sharing clusters defined by lsf.cluster.<I>cluster_name</I> files.
+This includes lists of cluster names, host types, host models, the special
+resources available, and external load indices.
+<!-- .SS Contents -->
+</BLOCKQUOTE>
+<A name=1>
+
+    <H4>&nbsp; &nbsp; Contents</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o Cluster Section
+<!-- .HP 2 -->
+<BR>
+o HostType Section
+<!-- .HP 2 -->
+<BR>
+o HostModel Section
+<!-- .HP 2 -->
+<BR>
+o Resource Section
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SH Cluster Section -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+&nbsp; &nbsp; &nbsp;<A HREF=#1>Contents</A><BR>
+<A HREF=#2>Cluster Section</A><BR>
+<A HREF=#3>Cluster Section Structure</A><BR>
+<A HREF=#4>ClusterName</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#5>Description</A><BR>
+<A HREF=#6>Servers</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#7>Description</A><BR>
+<A HREF=#8>Cluster Section Example</A><BR>
+<A HREF=#9>HostType Section</A><BR>
+<A HREF=#10>HostType Section Structure</A><BR>
+<A HREF=#11>Typename</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#12>Description</A><BR>
+<A HREF=#13>HostType Section Example</A><BR>
+<A HREF=#14>HostModel Section</A><BR>
+<A HREF=#15>HostModel Section Structure</A><BR>
+<A HREF=#16>Architecture</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#17>Description</A><BR>
+<A HREF=#18>Cpufactor</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#19>Description</A><BR>
+<A HREF=#20>Modelname</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#21>Description</A><BR>
+<A HREF=#22>HostModel Section Example</A><BR>
+<A HREF=#23>Resource Section</A><BR>
+<A HREF=#24>Resource Section Structure</A><BR>
+<A HREF=#25>Resourcename</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#26>Description</A><BR>
+<A HREF=#27>Type</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#28>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#29>Default</A><BR>
+<A HREF=#30>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#31>Description</A><BR>
+<A HREF=#32>Increasing</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#33>Description</A><BR>
+<A HREF=#34>Interval</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#35>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#36>Default</A><BR>
+<A HREF=#37>Release</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#38>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#39>Default</A><BR>
+<A HREF=#40>Resource Section Example</A><BR>
+</BLOCKQUOTE>
+<A name=41>
+
+     <H3>Cluster Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+(Required) Lists the cluster names recognized by the openlava system
+<!-- .SH Cluster Section Structure -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>Cluster Section Structure</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The first line must contain the mandatory keyword ClusterName. The
+other keyword is optional.
+<!-- .PP -->
+<P>
+Each subsequent line defines one cluster.
+<!-- .SH ClusterName  -->
+</BLOCKQUOTE>
+<A name=4>
+
+     <H3>ClusterName</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=38>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+(Required) Defines all cluster names recognized by the openlava system
+<!-- .PP -->
+<P>
+All cluster names referenced anywhere in the openlava system must be
+defined here. The file names of cluster-specific configuration files must
+end with the associated cluster name.
+<!-- .SH Servers -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>Servers</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=38>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+By default, the first ten hosts listed in the Host section of
+lsf.cluster.<I>cluster_name</I> are available to LIMs in remote clusters.
+<!-- .PP -->
+<P>
+This parameter is useful when LSF_CONFDIR is not shared or
+replicated.
+<!-- .SH Cluster Section Example -->
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>Cluster Section Example</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+Begin Cluster
+<!-- .br -->
+<!-- Need break --><BR>
+ClusterName  Servers
+<!-- .br -->
+<!-- Need break --><BR>
+cluster1     hostA
+<!-- .br -->
+<!-- Need break --><BR>
+cluster2     hostB
+<!-- .br -->
+<!-- Need break --><BR>
+End Cluster
+<P>
+<P>
+<!-- .SH HostType Section -->
+</BLOCKQUOTE>
+<A name=9>
+
+     <H3>HostType Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+(Required) Lists the valid host types in the cluster
+<!-- .SH HostType Section Structure -->
+</BLOCKQUOTE>
+<A name=10>
+
+     <H3>HostType Section Structure</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The first line consists of the mandatory keyword TYPENAME.
+<!-- .PP -->
+<P>
+Subsequent lines name valid host types.
+<!-- .SH TYPENAME  -->
+</BLOCKQUOTE>
+<A name=11>
+
+     <H3>TYPENAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=38>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Host type names are usually based on a combination of the hardware
+name and operating system. If your site already has a system for
+naming host types, you can use the same names for openlava.
+<!-- .SH HostType Section Example -->
+</BLOCKQUOTE>
+<A name=13>
+
+     <H3>HostType Section Example</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+Begin HostType
+<!-- .br -->
+<!-- Need break --><BR>
+TYPENAME
+<!-- .br -->
+<!-- Need break --><BR>
+SUN41
+<!-- .br -->
+<!-- Need break --><BR>
+SOLSPARC
+<!-- .br -->
+<!-- Need break --><BR>
+ALPHA
+<!-- .br -->
+<!-- Need break --><BR>
+HPPA
+<!-- .br -->
+<!-- Need break --><BR>
+NTX86
+<!-- .br -->
+<!-- Need break --><BR>
+End HostType
+<P>
+<P>
+<!-- .SH HostModel Section -->
+</BLOCKQUOTE>
+<A name=14>
+
+     <H3>HostModel Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+(Required) Lists models of machines and gives the relative CPU scaling
+factor for each model
+<!-- .PP -->
+<P>
+openlava uses the relative CPU scaling factor to normalize the CPU load
+indices so that jobs are more likely to be sent to faster hosts. The CPU
+factor affects the calculation of job execution time limits and
+accounting. Using large or inaccurate values for the CPU factor can
+cause confusing results when CPU time limits or accounting are used.
+<!-- .SH HostModel Section Structure  -->
+</BLOCKQUOTE>
+<A name=15>
+
+     <H3>HostModel Section Structure</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The first line consists of the mandatory keywords MODELNAME,
+CPUFACTOR, and ARCHITECTURE.
+<!-- .PP -->
+<P>
+Subsequent lines define a model and its CPU factor.
+<!-- .SH ARCHITECTURE -->
+</BLOCKQUOTE>
+<A name=16>
+
+     <H3>ARCHITECTURE</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=38>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+(Reserved for system use only) Indicates automatically detected host
+models that correspond to the model names.
+<!-- .SH CPUFACTOR -->
+</BLOCKQUOTE>
+<A name=18>
+
+     <H3>CPUFACTOR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=38>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Though it is not required, you would typically assign a CPU factor of
+2.0 to the slowest machine model in your system and higher numbers
+for the others. For example, for a machine model that executes at twice
+the speed of your slowest model, a factor of 2.0 should be assigned.
+<!-- .SH MODELNAME  -->
+</BLOCKQUOTE>
+<A name=20>
+
+     <H3>MODELNAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=38>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Generally, you need to identify the distinct host types in your system,
+such as MIPS and SPARC first, and then the machine models within
+each, such as SparcIPC, Sparc1, Sparc2, and Sparc10.
+<!-- .SH HostModel Section Example -->
+</BLOCKQUOTE>
+<A name=22>
+
+     <H3>HostModel Section Example</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+Begin HostModel
+<!-- .br -->
+<!-- Need break --><BR>
+MODELNAME  CPUFACTOR     ARCHITECTURE
+<!-- .br -->
+<!-- Need break --><BR>
+PC400        13.0        (i86pc_400 i686_400)
+<!-- .br -->
+<!-- Need break --><BR>
+PC450        13.2        (i86pc_450 i686_450)
+<!-- .br -->
+<!-- Need break --><BR>
+Sparc5F       3.0        (SUNWSPARCstation5_2.0_sparc)
+<!-- .br -->
+<!-- Need break --><BR>
+Sparc20       4.7        (SUNWSPARCstation20_151_sparc)
+<!-- .br -->
+<!-- Need break --><BR>
+Ultra5S      10.3        (SUNWUltra5_270_sparcv9 SUNWUltra510_270_sparcv9)
+<!-- .br -->
+<!-- Need break --><BR>
+End HostModel
+<P>
+<P>
+<!-- .SH Resource Section -->
+</BLOCKQUOTE>
+<A name=23>
+
+     <H3>Resource Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+(Optional) Defines resources.
+<!-- .SH Resource Section Structure -->
+</BLOCKQUOTE>
+<A name=24>
+
+     <H3>Resource Section Structure</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The first line consists of the keywords. RESOURCENAME and
+DESCRIPTION are mandatory. The other keywords are optional.
+Subsequent lines define resources.
+<!-- .SH RESOURCENAME -->
+</BLOCKQUOTE>
+<A name=25>
+
+     <H3>RESOURCENAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=38>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The name you assign to the new resource. An arbitrary character string.
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: The name you assign to the new resource. An arbitrary character string.
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o A resource name cannot begin with a number.
+<!-- .HP 2 -->
+<BR>
+o A resource name cannot contain any of the following characters:
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+:  .  (  )  [  +  - *  /  !  &  | &lt;  &gt;  @  =
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o A resource name cannot be any of the following reserved names:
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+cpu cpuf io logins ls idle maxmem maxswp maxtmp type model
+status it mem ncpus ndisks pg r15m r15s r1m swap swp tmp ut
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o Resource names are case sensitive
+<!-- .HP 2 -->
+<BR>
+o Resource names can be up to 29 characters in length
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .SH TYPE -->
+<A name=27>
+
+     <H3>TYPE</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=38>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The type of resource:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: The type of resource:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o Boolean--Resources that have a value of 1 on hosts that have the
+resource and 0 otherwise.
+<!-- .HP 2 -->
+<BR>
+o Numeric--Resources that take numerical values, such as all the
+load indices, number of processors on a host, or host CPU factor.
+<!-- .HP 2 -->
+<BR>
+o String-- Resources that take string values, such as host type, host
+model, host status.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=39>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+If TYPE is not given, the default type is Boolean.
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=38>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=38>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Brief description of the resource.
+<!-- .PP -->
+<P>
+The information defined here will be returned by the ls_info() API
+call or printed out by the <B>lsinfo</B> command as an explanation of the
+meaning of the resource.
+<!-- .SH INCREASING -->
+</BLOCKQUOTE>
+<A name=32>
+
+     <H3>INCREASING</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Applies to numeric resources only.
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=38>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+If a larger value means greater load, INCREASING should be defined
+as Y. If a smaller value means greater load, INCREASING should be
+defined as N.
+<!-- .SH INTERVAL -->
+</BLOCKQUOTE>
+<A name=34>
+
+     <H3>INTERVAL</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Optional. Applies to dynamic resources only.
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=38>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Defines the time interval (in seconds) at which the resource is sampled
+by the ELIM.
+<!-- .PP -->
+<P>
+If INTERVAL is defined for a numeric resource, it becomes an external
+load index.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=39>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+If INTERVAL is not given, the resource is considered static.
+<!-- .SH RELEASE -->
+</BLOCKQUOTE>
+<A name=37>
+
+     <H3>RELEASE</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Applies to numeric shared resources only, such as floating licenses.
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=38>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Controls whether openlava releases the resource when a job using the
+resource is suspended. When a job using a shared resource is
+suspended, the resource is held or released by the job depending on
+the configuration of this parameter.
+<!-- .PP -->
+<P>
+Specify N to hold the resource, or specify Y to release the resource.
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=39>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Y
+<!-- .SH Resource Section Example -->
+</BLOCKQUOTE>
+<A name=40>
+
+     <H3>Resource Section Example</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+Begin Resource
+<!-- .br -->
+<!-- Need break --><BR>
+RESOURCENAME    TYPE      INTERVAL    INCREASING   RELEASE   DESCRIPTION
+<!-- .br -->
+<!-- Need break --><BR>
+mips            Boolean      ()           ()           ()    (MIPS architecture)
+<!-- .br -->
+<!-- Need break --><BR>
+dec             Boolean      ()           ()           ()    (DECStation system)
+<!-- .br -->
+<!-- Need break --><BR>
+sparc           Boolean      ()           ()           ()    (SUN SPARC)
+<!-- .br -->
+<!-- Need break --><BR>
+bsd             Boolean      ()           ()           ()    (BSD unix)
+<!-- .br -->
+<!-- Need break --><BR>
+hpux            Boolean      ()           ()           ()    (HP-UX UNIX)
+<!-- .br -->
+<!-- Need break --><BR>
+aix             Boolean      ()           ()           ()    (AIX UNIX)
+<!-- .br -->
+<!-- Need break --><BR>
+solaris         Boolean      ()           ()           ()    (SUN SOLARIS)
+<!-- .br -->
+<!-- Need break --><BR>
+myResource      String       ()           ()           ()    (MIPS architecture)
+<!-- .br -->
+<!-- Need break --><BR>
+static_sh1      Numeric      ()           N            ()    (static)
+<!-- .br -->
+<!-- Need break --><BR>
+external_1      Numeric      15           Y            ()    (external)
+<!-- .br -->
+<!-- Need break --><BR>
+End Resource
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>lsf.shared (5)</TD> <TD align=right width=33%><I>"openlava Version 4.2 - June 2001"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from lsf.shared.5 using man macros.</FONT>
+</BODY></HTML>

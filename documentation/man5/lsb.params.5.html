@@ -1,0 +1,1603 @@
+<HTML><HEAD>
+<TITLE>lsb.params.5</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH lsb.params 5 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>lsb.params (5)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>lsb.params</B>
+<!-- .SS \fB\fROverview -->
+<A name=>
+<H4><I>Overview</I></H4></A>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The lsb.params file defines general parameters used by openlava Batch.
+This file contains only one section, named Parameters. MBD uses
+lsb.params for initialization. The file is optional. If not present, the
+openlava-defined defaults are assumed.
+<!-- .PP -->
+<P>
+Some of the parameters that can be defined in lsb.params control
+timing within the openlava Batch system. The default settings provide good
+throughput for long-running batch jobs while adding a minimum of
+processing overhead in the batch daemons.
+<!-- .SS Contents -->
+</BLOCKQUOTE>
+<A name=1>
+
+    <H4>&nbsp; &nbsp; Contents</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o Parameters Section
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SH Parameters Section -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+&nbsp; &nbsp; &nbsp;<A HREF=#1>Contents</A><BR>
+<A HREF=#2>Parameters Section</A><BR>
+<A HREF=#3>Acct_archive_age</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#4>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#5>See Also</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#6>Default</A><BR>
+<A HREF=#7>Acct_archive_size</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#8>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#9>See Also</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#10>Default</A><BR>
+<A HREF=#11>Clean_period</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#12>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#13>Default</A><BR>
+<A HREF=#14>Default_host_spec</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#15>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#16>Default</A><BR>
+<A HREF=#17>Default_project</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#18>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#19>Default</A><BR>
+<A HREF=#20>Default_queue</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#21>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#22>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#23>Default</A><BR>
+<A HREF=#24>Disable_uacct_map</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#25>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#26>Default</A><BR>
+<A HREF=#27>Job_accept_interval</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#28>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#29>Default</A><BR>
+<A HREF=#30>Job_dep_last_sub</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#31>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#32>Default</A><BR>
+<A HREF=#33>Job_priority_over_time</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#34>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#35>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#36>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#37>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#38>Example</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#39>See Also</A><BR>
+<A HREF=#40>Job_spool_dir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#41>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#42>Default</A><BR>
+<A HREF=#43>Job_terminate_interval</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#44>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#45>Default</A><BR>
+<A HREF=#46>Max_acct_archive_file</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#47>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#48>Compatibility</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#49>Example</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#50>Default</A><BR>
+<A HREF=#51>Max_job_array_size</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#52>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#53>Default</A><BR>
+<A HREF=#54>Max_jobid</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#55>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#56>Example</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#57>Default</A><BR>
+<A HREF=#58>Max_job_num</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#59>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#60>Default</A><BR>
+<A HREF=#61>Max_sbd_fail</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#62>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#63>Default</A><BR>
+<A HREF=#64>Max_sbd_conns</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#65>Syntax</A><BR>
+<A HREF=#66>Max_sched_stay</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#67>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#68>Default</A><BR>
+<A HREF=#69>Max_user_priority</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#70>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#71>Compatibility</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#72>Example</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#73>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#74>See Also</A><BR>
+<A HREF=#75>Mbd_sleep_time</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#76>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#77>Default</A><BR>
+<A HREF=#78>Pg_susp_it</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#79>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#80>Default</A><BR>
+<A HREF=#81>Sbd_sleep_time</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#82>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#83>Default</A><BR>
+<A HREF=#84>Shared_resource_update_factor</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#85>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#86>Default</A><BR>
+</BLOCKQUOTE>
+<A name=87>
+
+     <H3>Parameters Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+This section and all the keywords in this section are optional. If
+keywords are not present, openlava Batch assumes default values for the
+corresponding keywords. The valid keywords for this section are:
+<!-- .SH ACCT_ARCHIVE_AGE  -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>ACCT_ARCHIVE_AGE</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<I>days
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Enables automatic archiving of openlava accounting log files, and specifies
+the archive interval. openlava archives the current log file if the length of
+time from its creation date exceeds the specified number of days.
+<!-- .SS See Also  -->
+</BLOCKQUOTE>
+<A name=74>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+ACCT_ARCHIVE_SIZE also enables automatic archiving.
+<!-- .PP -->
+<P>
+MAX_ACCT_ARCHIVE_FILE enables automatic deletion of the
+archives.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined (no limit to the age of lsb.acct).
+<!-- .SH ACCT_ARCHIVE_SIZE  -->
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>ACCT_ARCHIVE_SIZE</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<I>kilobytes
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Enables automatic archiving of openlava accounting log files, and specifies
+the archive threshold. openlava archives the current log file if its size exceeds
+the specified number of kilobytes.
+<!-- .SS See Also  -->
+</BLOCKQUOTE>
+<A name=74>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+ACCT_ARCHIVE_AGE also enables automatic archiving.
+<!-- .PP -->
+<P>
+MAX_ACCT_ARCHIVE_FILE enables automatic deletion of the
+archives.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined (no limit to the size of lsb.acct).
+<!-- .SH CLEAN_PERIOD -->
+</BLOCKQUOTE>
+<A name=11>
+
+     <H3>CLEAN_PERIOD</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B><A HREF=#11>CLEAN_PERIOD</A></B> <B>=</B> <I>seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+For non-repetitive jobs, the amount of time that job records for jobs that
+have finished or have been killed are kept in MBD core memory after
+they have finished.
+<!-- .PP -->
+<P>
+Users can still see all jobs after they have finished using the <B>bjobs</B>
+command. For jobs that finished more than CLEAN_PERIOD seconds
+ago, use the <B>bhist</B> command.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+3600 (1 hour).
+<!-- .SH DEFAULT_HOST_SPEC -->
+</BLOCKQUOTE>
+<A name=14>
+
+     <H3>DEFAULT_HOST_SPEC</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>DEFAULT_HOST_SPEC =</B> <I>host_name | host_model
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The default CPU time normalization host for the cluster.
+<!-- .PP -->
+<P>
+The CPU factor of the specified host or host model will be used to
+normalize the CPU time limit of all jobs in the cluster, unless the CPU
+time normalization host is specified at the queue or job level.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SH DEFAULT_PROJECT -->
+</BLOCKQUOTE>
+<A name=17>
+
+     <H3>DEFAULT_PROJECT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B><A HREF=#17>DEFAULT_PROJECT</A></B> <B>=</B> <I>project_name
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The name of the default project. Specify any string.
+<!-- .PP -->
+<P>
+When you submit a job without specifying any project name, and the
+environment variable LSB_DEFAULTPROJECT is not set, openlava
+automatically assigns the job to this project.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+default
+<!-- .SH DEFAULT_QUEUE -->
+</BLOCKQUOTE>
+<A name=20>
+
+     <H3>DEFAULT_QUEUE</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B><A HREF=#20>DEFAULT_QUEUE</A></B> <B>=</B> <I>queue_name </I>...
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=35>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Space-separated list of candidate default queues (candidates must
+already be defined in lsb.queues).
+<!-- .PP -->
+<P>
+When you submit a job to openlava without explicitly specifying a queue,
+and the environment variable LSB_DEFAULTQUEUE is not set, openlava puts
+the job in the first queue in this list that satisfies the job&#146;s specifications
+subject to other restrictions, such as requested hosts, queue status, etc.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined. When a user submits a job to openlava without explicitly
+specifying a queue, and there are no candidate default queues defined
+(by this parameter or by the user&#146;s environment variable
+LSB_DEFAULTQUEUE), openlava automatically creates a new queue named
+default, using the default configuration, and submits the job to that
+queue.
+<!-- .SH DISABLE_UACCT_MAP -->
+</BLOCKQUOTE>
+<A name=24>
+
+     <H3>DISABLE_UACCT_MAP</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>DISABLE_UACCT_MAP = y | Y
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specify y or Y to disable user-level account mapping.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SH JOB_ACCEPT_INTERVAL -->
+</BLOCKQUOTE>
+<A name=27>
+
+     <H3>JOB_ACCEPT_INTERVAL</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>JOB_ACCEPT_INTERVAL =</B> <I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The number of dispatch turns to wait after dispatching a job to a host,
+before dispatching a second job to the same host. By default, a dispatch
+turn lasts 60 seconds (MBD_SLEEP_TIME in lsb.params).
+<!-- .PP -->
+<P>
+If 0 (zero), a host may accept more than one job in each job dispatching
+interval. By default, there is no limit to the total number of jobs that can
+run on a host, so if this parameter is set to 0, a very large number of
+jobs might be dispatched to a host all at once. You may notice
+performance problems if this occurs.
+<!-- .PP -->
+<P>
+JOB_ACCEPT_INTERVAL set at the queue level (lsb.queues)
+overrides JOB_ACCEPT_INTERVAL set at the cluster level
+(lsb.params).
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+1
+<!-- .SH JOB_DEP_LAST_SUB -->
+</BLOCKQUOTE>
+<A name=30>
+
+     <H3>JOB_DEP_LAST_SUB</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=35>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Used only with job dependency scheduling.
+<!-- .PP -->
+<P>
+If set to 1, whenever dependency conditions use a job name that
+belongs to multiple jobs, openlava evaluates only the most recently
+submitted job.
+<!-- .PP -->
+<P>
+Otherwise, all the jobs with the specified name must satisfy the
+dependency condition.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SH JOB_PRIORITY_OVER_TIME -->
+</BLOCKQUOTE>
+<A name=33>
+
+     <H3>JOB_PRIORITY_OVER_TIME</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+<B>JOB_PRIORITY_OVER_TIME=</B><I>increment</I><B>/</B><I>interval
+</I>
+<P>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=35>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+JOB_PRIORITY_OVER_TIME enables automatic job priority escalation
+when MAX_USER_PRIORITY is also defined.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=36>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<I>increment
+</I>.IP
+Specifies the value used to increase job priority every <I>interval</I>
+minutes. Valid values are positive integers.
+<P>
+<!-- .RE -->
+</BLOCKQUOTE>
+<!-- .PP -->
+<P>
+<I>interval
+</I>.IP
+Specifies the frequency, in minutes, to <I>increment</I> job priority.
+Valid values are positive integers.
+<P>
+<!-- .RE -->
+<!-- .SS Default -->
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS Example -->
+</BLOCKQUOTE>
+<A name=72>
+
+    <H4>&nbsp; &nbsp; Example</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+JOB_PRIORITY_OVER_TIME=3/20
+<!-- .IP -->
+<TABLE cellpadding=3><!-- tsb: JOB_PRIORITY_OVER_TIME=3/20
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Specifies that every 20 minute <I>interval</I> <I>increment</I> to job priority
+of pending jobs by 3.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS See Also -->
+<A name=74>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+MAX_USER_PRIORITY
+<!-- .SH JOB_SPOOL_DIR -->
+</BLOCKQUOTE>
+<A name=40>
+
+     <H3>JOB_SPOOL_DIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>JOB_SPOOL_DIR =</B> <I>dir
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specifies the directory for buffering batch standard output and standard
+error for a job
+<!-- .PP -->
+<P>
+When JOB_SPOOL_DIR is defined, the standard output and standard
+error for the job is buffered in the specified directory.
+<!-- .PP -->
+<P>
+Except for <B>bsub -is</B> and <B>bsub -Zs</B>, if JOB_SPOOL_DIR is not
+accessible or does not exist, output is spooled to the default job output
+directory .lsbatch.
+<!-- .PP -->
+<P>
+For <B>bsub -is</B> and <B>bsub -Zs</B>, JOB_SPOOL_DIR must be readable and
+writable by the job submission user, and it must be shared by the
+master host, the submission host, and the execution host. If the
+specified directory is not accessible or does not exist, <B>bsub -is</B> and
+<B>bsub -Zs</B> cannot write to the default directory and the job will fail.
+<!-- .PP -->
+<P>
+As openlava runs jobs, it creates temporary directories and files under
+JOB_SPOOL_DIR. By default, openlava removes these directories and files
+after the job is finished. See <B>bsub</B>(<B>1</B>) for information about job
+submission options that specify the disposition of these files.
+<!-- .PP -->
+<P>
+On UNIX, specify an absolute path. For example:
+<P>
+<!-- .PP -->
+<P>
+JOB_SPOOL_DIR=/home/share/lsf_spool
+<P>
+<!-- .PP -->
+<P>
+JOB_SPOOL_DIR can be any valid path up to a
+maximum length of 256 characters. This maximum path length includes
+the temporary directories and files that openlava Batch creates as jobs run.
+The path you specify for JOB_SPOOL_DIR should be as short as
+possible to avoid exceeding this limit.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .PP -->
+<P>
+Batch job output (standard output and standard error) is sent to the
+<!-- .lsbatch directory on the execution host: -->
+<!-- ignored unsupported tag .lsbatch -->
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: Batch job output (standard output and standard error) is sent to the
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o On UNIX: $HOME/.lsbatch
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If %HOME% is specified in the user environment, uses that
+directory instead of %windir% for spooled output.
+<P>
+<P>
+<!-- .SH JOB_TERMINATE_INTERVAL -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=43>
+
+     <H3>JOB_TERMINATE_INTERVAL</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>JOB_TERMINATE_INTERVAL =</B> <I>seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+UNIX only.
+<!-- .PP -->
+<P>
+Specifies the time interval in seconds between sending SIGINT,
+SIGTERM, and SIGKILL when terminating a job. When a job is
+terminated, the job is sent SIGINT, SIGTERM, and SIGKILL in sequence
+with a sleep time of JOB_TERMINATE_INTERVAL between sending the
+signals. This allows the job to clean up if necessary.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+10
+<!-- .SH MAX_ACCT_ARCHIVE_FILE  -->
+</BLOCKQUOTE>
+<A name=46>
+
+     <H3>MAX_ACCT_ARCHIVE_FILE</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+MAX_ACCT_ARCHIVE_FILE=<I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Enables automatic deletion of archived openlava accounting log files and
+specifies the archive limit.
+<!-- .SS Compatibility -->
+</BLOCKQUOTE>
+<A name=71>
+
+    <H4>&nbsp; &nbsp; Compatibility</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+ACCT_ARCHIVE_SIZE or ACCT_ARCHIVE_AGE should also be
+defined.
+<!-- .SS Example -->
+</BLOCKQUOTE>
+<A name=72>
+
+    <H4>&nbsp; &nbsp; Example</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+MAX_ACCT_ARCHIVE_FILE=10
+<P>
+<P>
+<!-- .PP -->
+<P>
+openlava maintains the current lsb.acct and up to 10 archives. Every time
+the old lsb.acct.9 becomes lsb.acct.10, the old lsb.acct.10
+gets deleted.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined (no deletion of lsb.acct.<I>n</I> files).
+<!-- .SH MAX_JOB_ARRAY_SIZE -->
+</BLOCKQUOTE>
+<A name=51>
+
+     <H3>MAX_JOB_ARRAY_SIZE</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>MAX_JOB_ARRAY_SIZE =</B> <I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specifies the maximum index value of a job array that can be created
+by a user for a single job submission. The maximum number of jobs in
+a job array cannot exceed this value, and will be less if some index
+values are not used (start, end, and step values can all be used to limit
+the indices used in a job array).
+<!-- .PP -->
+<P>
+A large job array allows a user to submit a large number of jobs to the
+system with a single job submission.
+<!-- .PP -->
+<P>
+Specify an integer value from 1 to 65534.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+2.00
+<!-- .SH MAX_JOBID -->
+</BLOCKQUOTE>
+<A name=54>
+
+     <H3>MAX_JOBID</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>MAX_JOBID=</B><I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The job ID limit. The job ID limit is the highest job ID that openlava will ever
+assign, and also the maximum number of jobs in the system.
+<!-- .PP -->
+<P>
+Specify any integer from 999999 to 9999999 (for practical purposes, any
+seven-digit integer).
+<!-- .SS Example -->
+</BLOCKQUOTE>
+<A name=72>
+
+    <H4>&nbsp; &nbsp; Example</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+MAX_JOBID=1234567
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+999999
+<!-- .SH MAX_JOB_NUM -->
+</BLOCKQUOTE>
+<A name=58>
+
+     <H3>MAX_JOB_NUM</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B><A HREF=#58>MAX_JOB_NUM</A></B> <B>=</B> <I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The maximum number of finished jobs whose events are to be stored
+in the lsb.events log file.
+<!-- .PP -->
+<P>
+Once the limit is reached, MBD starts a new event log file. The old
+event log file is saved as lsb.events.<I>n</I>, with subsequent sequence
+number suffixes incremented by 1 each time a new log file is started.
+Event logging continues in the new lsb.events file.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+2.00
+<!-- .SH MAX_SBD_FAIL -->
+</BLOCKQUOTE>
+<A name=61>
+
+     <H3>MAX_SBD_FAIL</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>MAX_SBD_FAIL = </B><I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The maximum number of retries for reaching a non-responding slave
+batch daemon, SBD.
+<!-- .PP -->
+<P>
+The interval between retries is defined by MBD_SLEEP_TIME. If MBD
+fails to reach a host and has retried MAX_SBD_FAIL times, the host is
+considered unavailable. When a host becomes unavailable, MBD
+assumes that all jobs running on that host have exited and that all
+rerunnable jobs (jobs submitted with the <B>bsub</B> <B>-r</B> option) are
+scheduled to be rerun on another host.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+3
+<!-- .SH MAX_SBD_CONNS -->
+</BLOCKQUOTE>
+<A name=64>
+
+     <H3>MAX_SBD_CONNS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>MAX_SBD_CONNS = </B><I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The maximum number of files mbatchd can have open and connected
+to sbatchd
+<!-- .SH MAX_SCHED_STAY -->
+</BLOCKQUOTE>
+<A name=66>
+
+     <H3>MAX_SCHED_STAY</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>MAX_SCHED_STAY = </B><I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The time in seconds the mbatchd has for scheduling pass.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+3
+<!-- .SH MAX_USER_PRIORITY -->
+</BLOCKQUOTE>
+<A name=69>
+
+     <H3>MAX_USER_PRIORITY</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>MAX_USER_PRIORITY=</B><I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Enables user-assigned job priority and specifies the maximum job
+priority a user can assign to a job.
+<!-- .PP -->
+<P>
+openlava administrators can assign a job priority higher than the specified
+value.
+<!-- .SS Compatibility -->
+</BLOCKQUOTE>
+<A name=71>
+
+    <H4>&nbsp; &nbsp; Compatibility</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+User-assigned job priority changes the behavior of <B>btop</B> and <B>bbot</B>.
+<!-- .SS Example -->
+</BLOCKQUOTE>
+<A name=72>
+
+    <H4>&nbsp; &nbsp; Example</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+MAX_USER_PRIORITY=2.0
+<P>
+<P>
+<!-- .PP -->
+<P>
+Specifies that 2.0 is the maximum job priority that can be specified by
+a user.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=74>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+bsub, bmod, btop, bbot, JOB_PRIORITY_OVER_TIME
+<!-- .SH MBD_SLEEP_TIME -->
+</BLOCKQUOTE>
+<A name=75>
+
+     <H3>MBD_SLEEP_TIME</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>MBD_SLEEP_TIME =</B> <I>seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The job dispatching interval; how often openlava tries to dispatch pending
+jobs.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+60
+<!-- .SH PG_SUSP_IT -->
+</BLOCKQUOTE>
+<A name=78>
+
+     <H3>PG_SUSP_IT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>PG_SUSP_IT =</B> <I>seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The time interval that a host should be interactively idle (it &gt; 0) before
+jobs suspended because of a threshold on the pg load index can be
+resumed.
+<!-- .PP -->
+<P>
+This parameter is used to prevent the case in which a batch job is
+suspended and resumed too often as it raises the paging rate while
+running and lowers it while suspended. If you are not concerned with
+the interference with interactive jobs caused by paging, the value of
+this parameter may be set to 0.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+2.0 (seconds)
+<!-- .SH SBD_SLEEP_TIME -->
+</BLOCKQUOTE>
+<A name=81>
+
+     <H3>SBD_SLEEP_TIME</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>SBD_SLEEP_TIME =</B> <I>seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The interval at which openlava checks the load conditions of each host, to
+decide whether jobs on the host must be suspended or resumed.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+30
+<!-- .SH SHARED_RESOURCE_UPDATE_FACTOR -->
+</BLOCKQUOTE>
+<A name=84>
+
+     <H3>SHARED_RESOURCE_UPDATE_FACTOR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=85>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>SHARED_RESOURCE_UPDATE_FACTOR = </B><I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Determines the static shared resource update interval for the cluster.
+<!-- .PP -->
+<P>
+Specify approximately how many times to update static shared
+resources during one MBD sleep time period. The formula is:
+<!-- .PP -->
+<P>
+<I>interval</I> = MBD_SLEEP_TIME /
+SHARED_RESOURCE_UPDATE_FACTOR
+<!-- .PP -->
+<P>
+where the result of the calculation is truncated to an integer. The static
+shared resource update interval is in seconds.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=86>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined (all resources are updated only once, at the start of each
+dispatch turn).
+<!-- .PP -->
+<P>
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>lsb.params (5)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from lsb.params.5 using man macros.</FONT>
+</BODY></HTML>

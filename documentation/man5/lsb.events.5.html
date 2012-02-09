@@ -1,0 +1,3131 @@
+<HTML><HEAD>
+<TITLE>lsb.events.5</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH lsb.events 5 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>lsb.events (5)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>lsb.events</B> - openlava batch event files 
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Description</A><BR>
+<A HREF=#2>Fields</A><BR>
+<A HREF=#3>Job_new</A><BR>
+<A HREF=#4>Job_start</A><BR>
+<A HREF=#5>Job_start_accept</A><BR>
+<A HREF=#6>Job_status</A><BR>
+<A HREF=#7>Job_switch</A><BR>
+<A HREF=#8>Job_move</A><BR>
+<A HREF=#9>Queue_ctrl</A><BR>
+<A HREF=#10>Host_ctrl</A><BR>
+<A HREF=#11>Mbd_start</A><BR>
+<A HREF=#12>Mbd_die</A><BR>
+<A HREF=#13>Unfulfill</A><BR>
+<A HREF=#14>Load_index</A><BR>
+<A HREF=#15>Job_sigact</A><BR>
+<A HREF=#16>Mig</A><BR>
+<A HREF=#17>Job_modify</A><BR>
+<A HREF=#18>Job_signal</A><BR>
+<A HREF=#19>Job_execute</A><BR>
+<A HREF=#20>Job_requeue</A><BR>
+<A HREF=#21>Job_clean</A><BR>
+<A HREF=#22>See Also</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#23>Related Topics:</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#24>Files:</A><BR>
+</BLOCKQUOTE>
+<A name=25>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The openlava batch event log is used to display openlava batch event history and
+for mbatchd failure recovery.
+<!-- .PP -->
+<P>
+Whenever a host, job, or queue changes status, a record is appended
+to the event log file <B>lsb.events</B>. The file is located in
+LSB_SHAREDIR/<I>&lt;clustername&gt;</I>/logdir<I>,</I> where <B>LSB_SHAREDIR</B> must be
+defined in  lsf.conf(5) and &lt;<I>clustername</I>&gt; is the name of the openlava cluster,
+as returned by <B>lsid</B>(1). See mbatchd(8) for the description of
+LSB_SHAREDIR.
+<!-- .PP -->
+<P>
+The <B>lsb.events</B> file can be read with the lsb_geteventrec() LSBLIB call.
+See lsb_geteventrec(3) on this call.
+<!-- .PP -->
+<P>
+The event log file is an ASCII file with one record per line. For the
+<B>lsb.events</B> file, the first line has the format "# &lt;history seek position&gt;",
+which indicates the file position of the first history event after log
+switch.  For the lsb.events<B>.</B><B></B><I>#</I><B> file</B>, the first line has the format "#
+&lt;timestamp of most recent event&gt;", which gives the timestamp of the
+recent event in the file.
+<!-- .SH Fields -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>Fields</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The fields of a record are separated by blanks. The first string of an
+event record indicates its type. The following 17 types of events are
+recorded:
+<!-- .SH JOB_NEW  -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>JOB_NEW</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+A new job has been submitted. The fields in order of occurrence are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: A new job has been submitted. The fields in order of occurrence are:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+UNIX user ID of the submitter
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+options (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Bit flags for job processing
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+numProcessors (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of processors requested for execution
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+submitTime (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job submission time
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+beginTime (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Start time - the job should be started on or after this time
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+termTime (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Termination deadline - the job should be terminated by this time (%d)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+sigValue (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Signal value
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+chkpntPeriod (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Checkpointing period
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+restartPid (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Restart process ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userName (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+User name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+rLimits
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Soft CPU time limit (%d), see getrlimit(2)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+rLimits
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Soft file size limit (%d), see getrlimit(2)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+rLimits
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Soft data segment size limit (%d), see getrlimit(2)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+rLimits
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Soft stack segment size limit (%d), see getrlimit(2)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+rLimits
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Soft core file size limit (%d), see getrlimit(2)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+rLimits
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Soft memory size limit (%d), see getrlimit(2)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+rLimits
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Reserved (%d)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+rLimits
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Reserved (%d)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+rLimits
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Reserved (%d)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+rLimits
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Soft run time limit (%d), see getrlimit(2)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+rLimits
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Reserved (%d)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+hostSpec (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Model or host name for normalizing CPUTIME and RUNTIME
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+hostFactor (%f)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CPU factor of the above host
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+umask (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+File creation mask for this job
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+queue (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Name of job queue to which the job was submitted
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+resReq (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Resource requirements
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+fromHost (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Submission host name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+cwd (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Current working directory
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+chkpntDir (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Checkpoint directory
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+inFile (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Input file name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+outFile (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Output file name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+errFile (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Error output file name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+subHomeDir (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Submitter&#146;s home directory
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobFile (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job file name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+numAskedHosts (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of candidate host names
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+askedHosts (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+List of names of candidate hosts for job dispatching
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+dependCond (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job dependency condition
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+preExecCmd (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job pre-execution command
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobName (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+command (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job command
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+nxf (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of files to transfer (%d)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+xf (%s)
+</TD><TD valign=bottom>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+List of file transfer specifications
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+mailUser (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Mail user name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+projectName (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Project name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+niosPort (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Callback port if batch interactive job
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+maxNumProcessors (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Maximum number of processors
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+schedHostType (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Execution host type
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+loginShell (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Login shell
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userGroup (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+User group
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+options2 (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Bit flags for job processing
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+idx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job array index
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+inFileSpool (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Spool input file
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+commandSpool (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Spool command file
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobSpoolDir (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job spool directory
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userPriority (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+User priority
+<P>
+<P>
+<!-- .SH JOB_START  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>JOB_START</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+A job has been dispatched. The fields in order of occurrence are:
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jStatus (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job status, (<B>4</B>, indicating the <B>RUN</B> status of the job)
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobPid (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job process ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobPGid (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job process group ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+hostFactor (%f)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CPU factor of the first execution host
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+numExHosts (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of processors used for execution
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+execHosts (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+List of execution host names
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+queuePreCmd (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Pre-execution command
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+queuePostCmd (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Post-execution command
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jFlags (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job processing flags
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userGroup (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+User group name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+idx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job array index
+<P>
+<P>
+<!-- .SH JOB_START_ACCEPT  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=5>
+
+     <H3>JOB_START_ACCEPT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+A job has started on the execution host(s). The fields in order of
+occurrence are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: A job has started on the execution host(s). The fields in order of
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobPid (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job process ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobPGid (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job process group ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+idx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job array index
+<P>
+<P>
+<!-- .SH JOB_STATUS  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=6>
+
+     <H3>JOB_STATUS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The status of a job changed after dispatch. The fields in order of
+occurrence are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: The status of a job changed after dispatch. The fields in order of
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jStatus (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+New status, see <B>&lt;</B>lsbatch/lsbatch.h&gt;
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+reason (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Pending or suspended reason code, see &lt;lsbatch/lsbatch.h&gt;
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+subreasons (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Pending or suspended subreason code, see &lt;lsbatch/lsbatch.h&gt;
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+cpuTime (%f)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+CPU time consumed so far
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+endTime (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job completion time
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+ru (%d)
+</TD><TD valign=bottom>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Resource usage flag
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+lsfRusage (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Resource usage statistics, see <B>&lt;</B>lsf/lsf.h<B>&gt;
+</B>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+exitStatus (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Exit status of the job, see &lt;lsbatch/lsbatch.h&gt;
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+idx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job array index (%d)
+<P>
+<P>
+<!-- .SH JOB_SWITCH  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=7>
+
+     <H3>JOB_SWITCH</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+A job switched from one queue to another. The fields in order of
+occurrence are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: A job switched from one queue to another. The fields in order of
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+UNIX user ID of the user invoking the command
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+queue (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Target queue name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+idx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job array index
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userName (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Name of the job submitter
+<P>
+<P>
+<!-- .SH JOB_MOVE  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=8>
+
+     <H3>JOB_MOVE</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+A job moved toward the top or bottom of its queue. The fields in order
+of occurrence are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: A job moved toward the top or bottom of its queue. The fields in order
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+UNIX user ID of the user invoking the command
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+position (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Position number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+base (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Operation code, (TO_TOP or TO_BOTTOM), see &lt;lsbatch/lsbatch.h&gt;
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+idx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job array index
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userName (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Name of the job submitter
+<P>
+<P>
+<!-- .SH QUEUE_CTRL  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=9>
+
+     <H3>QUEUE_CTRL</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+A job queue has been altered. The fields in order of occurrence are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: A job queue has been altered. The fields in order of occurrence are:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+opCode (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Operation code), see &lt;lsbatch/lsbatch.h&gt;
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+queue (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Queue name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+UNIX user ID of the user invoking the command
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+userName (%s)
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Name of the user
+<P>
+<P>
+<!-- .SH HOST_CTRL  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=10>
+
+     <H3>HOST_CTRL</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+A batch server host changed status. The fields in order of occurrence
+are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: A batch server host changed status. The fields in order of occurrence
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+opCode (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Operation code, see &lt;lsbatch/lsbatch.h&gt;
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+host (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Host name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+UNIX user ID of the user invoking the command
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userName (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Name of the user
+<P>
+<P>
+<!-- .SH MBD_START  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=11>
+
+     <H3>MBD_START</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The mbatchd has started. The fields in order of occurrence are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: The mbatchd has started. The fields in order of occurrence are:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+master (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Master host name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+cluster (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+cluster name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+numHosts (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of hosts in the cluster
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+numQueues (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of queues in the cluster
+<P>
+<P>
+<!-- .SH MBD_DIE  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=12>
+
+     <H3>MBD_DIE</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The mbatchd died. The fields in order of occurrence are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: The mbatchd died. The fields in order of occurrence are:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+master (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Master host name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+numRemoveJobs (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of finished jobs that have been removed from the system and
+<!-- .br -->
+<!-- Need break --><BR>
+logged in the current event file
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+exitCode (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Exit code from mbatchd
+<P>
+<P>
+<!-- .SH UNFULFILL  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=13>
+
+     <H3>UNFULFILL</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Actions that were not taken because the mbatchd was unable to contact
+the sbatchd on the job&#146;s execution host. The fields in order of
+occurrence are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: Actions that were not taken because the mbatchd was unable to contact
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+notSwitched (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Not switched: the mbatchd has switched the job to a new queue, but
+the sbatchd has not been informed of the switch
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+sig (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Signal: this signal has not been sent to the job
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+sig1 (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Checkpoint signal: the job has not been sent this signal to checkpoint
+itself
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+sig1Flags (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Checkpoint flags, see &lt;lsbatch/lsbatch.h&gt;
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+chkPeriod (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job&#146;s new checkpoint period
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+notModified (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+If set to true, then parameters for the job cannot be modified.
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+idx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job array index
+<P>
+<P>
+<!-- .SH LOAD_INDEX  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=14>
+
+     <H3>LOAD_INDEX</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+mbatchd restarted with these load index names (see <B>lsf.cluster</B>(5)).
+The fields in order of occurrence are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: mbatchd restarted with these load index names (see <B>lsf.cluster</B>(5)).
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+nIdx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of index names
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+name (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+List of index names
+<P>
+<P>
+<!-- .SH JOB_SIGACT  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=15>
+
+     <H3>JOB_SIGACT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+An action on a job has been taken. The fields in order of occurrence
+are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: An action on a job has been taken. The fields in order of occurrence
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+period (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Action period
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+pid (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Process ID of the child sbatchd that initiated the action
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jstatus (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job status
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+reasons (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job pending reasons
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+flags (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Action flags, see &lt;lsbatch/lsbatch.h&gt;
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+actStatus (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Action status:
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+<B>1</B>: Action started
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+<B>2</B>: One action preempted other actions
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+<B>3</B>: Action succeeded
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+<B>4</B>: Action Failed
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+signalSymbol (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Action name, accompanied by actFlags
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+idx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job array index
+<P>
+<P>
+<!-- .SH MIG  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=16>
+
+     <H3>MIG</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+A job has been migrated. The fields in order of occurrence are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: A job has been migrated. The fields in order of occurrence are:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+numAskedHosts (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of candidate hosts for migration
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+askedHosts (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+List of names of candidate hosts
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+UNIX user ID of the user invoking the command
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+idx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job array index
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userName (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Name of the job submitter
+<P>
+<P>
+<!-- .SH JOB_MODIFY  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=17>
+
+     <H3>JOB_MODIFY</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+This is created when the mbatchd modifies a previously submitted job
+via bmod(1). The fields logged are the same as those for <B>JOB_NEW.</B>
+<!-- .SH JOB_SIGNAL  -->
+</BLOCKQUOTE>
+<A name=18>
+
+     <H3>JOB_SIGNAL</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+This is created when a job is signaled via bkill(1) or deleted via bdel(1).
+The fields are in the order they appended :
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: This is created when a job is signaled via bkill(1) or deleted via bdel(1).
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+UNIX user ID of the user invoking the command
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+runCount (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of runs
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+signalSymbol (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Signal name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+idx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job array index
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userName (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Name of the job submitter
+<P>
+<P>
+<!-- .SH JOB_EXECUTE  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=19>
+
+     <H3>JOB_EXECUTE</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+This is created when a job is actually running on an execution host.
+The fields in order of occurrence are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: This is created when a job is actually running on an execution host.
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+execUid (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Mapped UNIX user ID on execution host
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobPGid (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job process group ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+execCwd (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Current working directory job used on execution host
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+execHome (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Home directory job used on execution host
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+execUsername (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Mapped user name on execution host
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobPid (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job&#146;s process ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+idx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job array index
+<P>
+<P>
+<!-- .SH JOB_REQUEUE  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=20>
+
+     <H3>JOB_REQUEUE</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+This is created when a job ended and requeued by mbatchd. The fields
+in order of occurrence are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: This is created when a job ended and requeued by mbatchd. The fields
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+idx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job array index
+<P>
+<P>
+<!-- .SH JOB_CLEAN  -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=21>
+
+     <H3>JOB_CLEAN</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+This is created when a job is removed from the mbatchd memory. The
+fields in order of occurrence are:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: This is created when a job is removed from the mbatchd memory. The
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+Version number (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The version number
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+Event time (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The time of the event
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+jobId (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job ID
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+idx (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Job array index
+<P>
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<P>
+<!-- .SH SEE ALSO -->
+<A name=22>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Related Topics: -->
+</BLOCKQUOTE>
+<A name=23>
+
+    <H4>&nbsp; &nbsp; Related Topics:</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+lsid(1), getrlimit(2), lsb_geteventrec(3), lsb.acct(5), lsb.queues(5), lsb.hosts(5),
+lsb.users(5), lsb.params(5), lsf.conf(5), lsf.cluster(5), badmin(8) and mbatchd(8)
+<!-- .SS Files: -->
+</BLOCKQUOTE>
+<A name=24>
+
+    <H4>&nbsp; &nbsp; Files:</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_SHAREDIR/&lt;<I>clustername</I>&gt;/logdir/lsb.events[.?]
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>lsb.events (5)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from lsb.events.5 using man macros.</FONT>
+</BODY></HTML>

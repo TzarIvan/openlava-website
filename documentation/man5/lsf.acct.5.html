@@ -1,0 +1,634 @@
+<HTML><HEAD>
+<TITLE>lsf.acct.5</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH lsf.acct 5 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>lsf.acct (5)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>lsf.acct</B> - openlava task log file
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Description</A><BR>
+<A HREF=#2>Fields</A><BR>
+<A HREF=#3>See Also</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#4>Related Topics:</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#5>Files:</A><BR>
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The openlava Remote Execution Server, RES (see <B>res</B>(8)), generates a record
+for each task completion or failure. If the RES task logging is turned on
+(see lsadmin(8)), it appends the record to the task log file
+lsf.acct.&lt;<I>hostname</I>&gt;.
+<!-- .PP -->
+<P>
+The task log file is an ASCII file with one task record per line. The fields
+of each record are separated by blanks. The location of the file is
+determined by the <B>LSF_RES_ACCTDIR</B> variable defined in the lsf.conf
+file (see lsf.conf(5)). If this variable is not defined, or the RES cannot
+access the log directory, the log file is created in <B>/tmp</B> instead.
+<!-- .SH Fields -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>Fields</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The fields in a task record are ordered in the following sequence:
+<!-- .TP  -->
+<TABLE cellpadding=3><!-- tsb: The fields in a task record are ordered in the following sequence:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+pid (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Process ID for the remote task
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+userName (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+User name of the submitter
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+exitStatus (%d)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Task exit status
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+dispTime (%ld)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Dispatch time - time at which the task was dispatched for execution
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+termTime (%ld)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Completion time - time when task is completed/failed
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+fromHost (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Submission host name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+execHost (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Execution host name
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+cwd (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Current working directory
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+cmdln (%s)
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Command line of the task
+<P>
+<P>
+<!-- .TP  -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+lsfRusage
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+The rest of the fields contain resource usage information for the task
+(see <B>getrusage</B>(2)). If any field is not available due to the difference
+among the operating systems, -1 will be logged. Times are measured
+in seconds, and sizes are measured in KBytes.
+<P>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_utime (%f)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_utime (%f)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+User time used
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_stime (%f)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_stime (%f)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+System time used
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_maxrss (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_maxrss (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Maximum shared text size
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_ixrss (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_ixrss (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Integral of the shared text size over time (in kilobyte seconds)
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_ismrss (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_ismrss (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Integral of the shared memory size over time (valid only on
+Ultrix)
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_idrss (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_idrss (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Integral of the unshared data size over time
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_isrss (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_isrss (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Integral of the unshared stack size over time
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_minflt (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_minflt (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of page reclaims
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_magflt (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_magflt (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of page faults
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_nswap (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_nswap (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of times the process was swapped out
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_inblock (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_inblock (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of block input operations
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_oublock (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_oublock (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of block output operations
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_ioch (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_ioch (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of characters read and written (valid only on HP-UX)
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_msgsnd (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_msgsnd (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of System V IPC messages sent
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_msgrcv (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_msgrcv (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of messages received
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_nsignals (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_nsignals (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of signals received
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_nvcsw (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_nvcsw (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of voluntary context switches
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_nivcsw (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_nivcsw (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Number of involuntary context switches
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+ru_exutime (%d)
+<!-- .BR -->
+ <!-- .RS -->
+<!-- .IP -->
+<TABLE width=100% cellpadding=3><!-- tsb: ru_exutime (%d)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+Exact user time used (valid only on ConvexOS)
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .SH SEE ALSO -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=3>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Related Topics: -->
+</BLOCKQUOTE>
+<A name=4>
+
+    <H4>&nbsp; &nbsp; Related Topics:</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+lsadmin(8), res(8), lsf.conf(5), getrusage(2)
+<!-- .SS Files: -->
+</BLOCKQUOTE>
+<A name=5>
+
+    <H4>&nbsp; &nbsp; Files:</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+$LSF_RES_ACCTDIR/lsf.acct.&lt;<I>hostname</I>&gt;
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>lsf.acct (5)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from lsf.acct.5 using man macros.</FONT>
+</BODY></HTML>

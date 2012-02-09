@@ -1,0 +1,448 @@
+<HTML><HEAD>
+<TITLE>lsb.users.5</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH lsb.users 5 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>lsb.users (5)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>lsb.users</B>
+<!-- .SS \fB\fROverview -->
+<A name=>
+<H4><I>Overview</I></H4></A>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The lsb.users file is used to configure user groups,
+job slot limits for users and
+user groups.
+<!-- .PP -->
+<P>
+This file is optional.
+<!-- .PP -->
+<P>
+The lsb.users file is stored in the directory
+LSB_CONFDIR/<I>cluster_name</I>/configdir, where LSB_CONFDIR is
+defined in lsf.conf.
+<!-- .SS Contents -->
+</BLOCKQUOTE>
+<A name=1>
+
+    <H4>&nbsp; &nbsp; Contents</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o UserGroup Section
+<!-- .HP 2 -->
+<BR>
+o User Section
+<!-- .HP 2 -->
+<BR>
+o UserMap Section
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SH UserGroup Section -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+&nbsp; &nbsp; &nbsp;<A HREF=#1>Contents</A><BR>
+<A HREF=#2>UserGroup Section</A><BR>
+<A HREF=#3>Structure</A><BR>
+<A HREF=#4>Example of a UserGroup Section</A><BR>
+<A HREF=#5>Group_name</A><BR>
+<A HREF=#6>Group_member</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#7>Syntax</A><BR>
+<A HREF=#8>User Section</A><BR>
+<A HREF=#9>Structure</A><BR>
+<A HREF=#10>Example of a User Section</A><BR>
+<A HREF=#11>User_name</A><BR>
+<A HREF=#12>Max_jobs</A><BR>
+<A HREF=#13>Jl/p</A><BR>
+<A HREF=#14>See Also</A><BR>
+</BLOCKQUOTE>
+<A name=15>
+
+     <H3>UserGroup Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Optional. Defines user groups.
+<!-- .PP -->
+<P>
+The name of the user group can be used in other user group and queue
+definitions, as well as on the command line. Specifying the name of a
+user group has exactly the same effect as listing the names of all users
+in the group.
+<!-- .PP -->
+<P>
+The total number of user groups cannot be more than MAX_GROUPS
+in lsbatch.h.
+<!-- .SH Structure -->
+</BLOCKQUOTE>
+<A name=9>
+
+     <H3>Structure</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The first line consists of two mandatory keywords, GROUP_NAME and
+GROUP_MEMBER. The USER_SHARES keyword is optional. Subsequent
+lines name a group and list its membership and optionally its share
+assignments.
+<!-- .PP -->
+<P>
+Each line must contain one entry for each keyword. Use empty
+parentheses () or a dash - to specify the default value for an entry.
+<!-- .SH Example of a UserGroup Section -->
+</BLOCKQUOTE>
+<A name=4>
+
+     <H3>Example of a UserGroup Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+Begin UserGroup
+<!-- .br -->
+<!-- Need break --><BR>
+GROUP_NAME   GROUP_MEMBER
+<!-- .br -->
+<!-- Need break --><BR>
+groupA       (user1 user2 user3 user4)
+<!-- .br -->
+<!-- Need break --><BR>
+groupB       (groupA user5)
+<!-- .br -->
+<!-- Need break --><BR>
+groupC       (!)
+<!-- .br -->
+<!-- Need break --><BR>
+End UserGroup
+<P>
+<!-- .PP -->
+<P>
+<P>
+<!-- .SH GROUP_NAME -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>GROUP_NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+An alphanumeric string representing the user group name. You cannot
+use the reserved name all or a / in a group name, and group names
+must not conflict with user names.
+<!-- .SH GROUP_MEMBER -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>GROUP_MEMBER</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+A list of user names or user group names that belong to the group,
+enclosed in parentheses and separated by spaces. Group names must
+not conflict with user names.
+<!-- .PP -->
+<P>
+User and user group names can appear on multiple lines, because users
+can belong to multiple groups.
+<!-- .PP -->
+<P>
+User groups may be defined recursively but must not create a loop.
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=7>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>(</B><I>user_name</I> | <I>user_group</I> ...<B>)</B> | <B>(all)</B> | <B>(!)
+</B>.PP
+Specify the following, all enclosed in parentheses:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: <B>(</B><I>user_name</I> | <I>user_group</I> ...<B>)</B> | <B>(all)</B> | <B>(!)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o <I>user_name</I> | <I>user_group
+</I>.RE
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+User and user group names, separated by spaces. User names must
+be valid login names.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+User group names can be openlava user groups defined previously in
+this section, or LINUX groups.
+<P>
+<P>
+<!-- .RS -->
+<!-- .HP 2 -->
+<TABLE width=100% cellpadding=3>
+<TR valign=top><TD colspan=2>
+o <B>all
+</B>.RE
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+The reserved name all specifies all users in the cluster.
+<P>
+<P>
+<!-- .RS -->
+<!-- .HP 2 -->
+<TABLE width=100% cellpadding=3>
+<TR valign=top><TD colspan=2>
+o <B>!
+</B>.RE
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+The exclamation mark ! specifies that the group membership
+should be retrieved via egroup.
+<P>
+<!-- .SH User Section -->
+</TD></TR>
+<TR></TR></TABLE></TD></TR>
+<TR></TR></TABLE></TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>User Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Optional. If this section is not defined, all users and user groups can
+run an unlimited number of jobs in the cluster.
+<!-- .PP -->
+<P>
+This section defines the maximum number of jobs a user or user group
+can run concurrently in the cluster. This is to avoid situations in which
+a user occupies all or most of the system resources while other users&#146;
+jobs are waiting.
+<!-- .SH Structure -->
+</BLOCKQUOTE>
+<A name=9>
+
+     <H3>Structure</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+All three fields are mandatory: USER_NAME, MAX_JOBS, JL/P.
+<!-- .PP -->
+<P>
+You must specify a dash (-) to indicate the default value (unlimited) if
+a user or user group is specified. Fields cannot be left blank.
+<!-- .SH Example of a User Section -->
+</BLOCKQUOTE>
+<A name=10>
+
+     <H3>Example of a User Section</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+Begin User
+<!-- .br -->
+<!-- Need break --><BR>
+USER_NAME   MAX_JOBS   JL/P
+<!-- .br -->
+<!-- Need break --><BR>
+user1       10          -
+<!-- .br -->
+<!-- Need break --><BR>
+user2        4          1
+<!-- .br -->
+<!-- Need break --><BR>
+user3        -          2
+<!-- .br -->
+<!-- Need break --><BR>
+groupA@     10          1
+<!-- .br -->
+<!-- Need break --><BR>
+default      6          1
+<!-- .br -->
+<!-- Need break --><BR>
+End User
+<P>
+<P>
+<!-- .SH USER_NAME -->
+</BLOCKQUOTE>
+<A name=11>
+
+     <H3>USER_NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+User or user group for which job slot limits are defined.
+<!-- .PP -->
+<P>
+Use the reserved user name default to specify a job slot limit that
+applies to each user and user group not explicitly named. Since the
+limit specified with the keyword default applies to user groups also,
+ensure you select a limit that is high enough, or explicitly define limits
+for user groups.
+<!-- .PP -->
+<P>
+User group names can be the openlava user groups defined previously,
+and/or LINUX user groups.
+<!-- .PP -->
+<P>
+Job slot limits apply to a group as a whole. Append @ to a group name
+to make the job slot limits apply individually to each user in the group.
+If a group contains a subgroup, the job slot limit also applies to each
+member in the subgroup recursively.
+<!-- .SH MAX_JOBS -->
+</BLOCKQUOTE>
+<A name=12>
+
+     <H3>MAX_JOBS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Per-user or per-group job slot limit for the cluster. Total number of job
+slots that each user or user group can use in the cluster.
+<!-- .SH JL/P -->
+</BLOCKQUOTE>
+<A name=13>
+
+     <H3>JL/P</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Per processor job slot limit per user or user group.
+<!-- .PP -->
+<P>
+Total number of job slots that each user or user group can use per
+processor. This job slot limit is configured per processor so that
+multiprocessor hosts will automatically run more jobs.
+<!-- .PP -->
+<P>
+This number can be a fraction such as 0.5, so that it can also serve as
+a per-host limit. This number is rounded up to the nearest integer equal
+to or greater than the total job slot limits for a host. For example, if
+JL/P is 0.5, on a 4-CPU multiprocessor host, the user can only use up
+to 2 job slots at any time. On a uniprocessor machine, the user can use
+1 job slot.
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=14>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+lsf.cluster(5), lsf.conf(5), lsb.params(5),
+lsb.hosts(5), lsb.queues(5), bhosts(1), bmgroup(1),
+<BR>
+ busers(1), bugroup(1), bqueues(1), bsub(1),
+bchkpnt(1), lsid(1), nice(1), getgrnam(3), mbatchd(8),
+badmin(8)
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>lsb.users (5)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from lsb.users.5 using man macros.</FONT>
+</BODY></HTML>

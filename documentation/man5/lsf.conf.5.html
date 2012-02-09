@@ -1,0 +1,7092 @@
+<HTML><HEAD>
+<TITLE>lsf.conf.5</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .ds ]W % -->
+<!-- .ds ]L -->
+<!-- .nh -->
+<!-- ignored unsupported tag .nh -->
+<!-- .TH lsf.conf 5 "openlava Version 2.0 - Jan 2012" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>lsf.conf (5)</NOBR><HR></H1>
+</CENTER>
+<!-- .br -->
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>lsf.conf</B>
+<!-- .SS Overview -->
+</BLOCKQUOTE>
+<A name=1>
+
+    <H4>&nbsp; &nbsp; Overview</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Installation of and operation of openlava is controlled by the lsf.conf file.
+This chapter explains the contents of the lsf.conf file.
+<!-- .SS Contents -->
+</BLOCKQUOTE>
+<A name=2>
+
+    <H4>&nbsp; &nbsp; Contents</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o About lsf.conf
+<!-- .HP 2 -->
+<BR>
+o Parameters
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SH About lsf.conf -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+&nbsp; &nbsp; &nbsp;<A HREF=#1>Overview</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#2>Contents</A><BR>
+<A HREF=#3>About lsf.conf</A><BR>
+<A HREF=#4>Location</A><BR>
+<A HREF=#5>Format</A><BR>
+<A HREF=#6>Parameters</A><BR>
+<A HREF=#7>Lsb_api_conntimeout</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#8>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#9>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#10>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#11>See Also</A><BR>
+<A HREF=#12>Lsb_api_recvtimeout</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#13>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#14>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#15>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#16>See Also</A><BR>
+<A HREF=#17>Lsb_cmd_log_mask</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#18>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#19>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#20>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#21>See Also</A><BR>
+<A HREF=#22>Lsb_cmd_logdir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#23>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#24>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#25>See Also</A><BR>
+<A HREF=#26>Lsb_confdir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#27>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#28>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#29>See Also</A><BR>
+<A HREF=#30>Lsb_debug</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#31>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#32>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#33>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#34>See Also</A><BR>
+<A HREF=#35>Lsb_debug_cmd</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#36>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#37>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#38>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#39>See Also</A><BR>
+<A HREF=#40>Lsb_debug_mbd</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#41>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#42>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#43>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#44>See Also</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#45>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#46>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#47>See Also</A><BR>
+<A HREF=#48>Lsb_debug_sbd</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#49>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#50>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#51>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#52>See Also</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#53>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#54>Limitations</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#55>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#56>Product</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#57>See Also</A><BR>
+<A HREF=#58>Lsb_echkpnt_method_dir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#59>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#60>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#61>Product</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#62>See Also</A><BR>
+<A HREF=#63>Lsb_echkpnt_keep_output</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#64>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#65>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#66>Product</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#67>See Also</A><BR>
+<A HREF=#68>Lsb_interact_msg_enh</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#69>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#70>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#71>See Also</A><BR>
+<A HREF=#72>Lsb_interact_msg_intval</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#73>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#74>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#75>See Also</A><BR>
+<A HREF=#76>Lsb_job_cpulimit</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#77>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#78>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#79>Notes</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#80>Limitations</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#81>See Also</A><BR>
+<A HREF=#82>Lsb_job_memlimit</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#83>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#84>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#85>Notes</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#86>Limitations</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#87>See Also</A><BR>
+<A HREF=#88>Lsb_mailprog</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#89>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#90>Examples</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#91>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#92>See Also</A><BR>
+<A HREF=#93>Lsb_mailserver</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#94>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#95>Examples</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#96>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#97>See Also</A><BR>
+<A HREF=#98>Lsb_mailsize_limit</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#99>Syntax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#100>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#101>See Also</A><BR>
+<A HREF=#102>Lsb_mailto</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#103>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#104>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#105>See Also</A><BR>
+<A HREF=#106>Lsb_mig2pend</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#107>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#108>See Also</A><BR>
+<A HREF=#109>Lsb_mbd_port </A><BR>
+<A HREF=#110>Lsb_memlimit_enforce</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#111>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#112>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#113>See Also</A><BR>
+<A HREF=#114>Lsb_mod_all_jobs</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#115>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#116>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#117>See Also</A><BR>
+<A HREF=#118>Lsb_requeue_to_bottom</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#119>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#120>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#121>See Also</A><BR>
+<A HREF=#122>Lsb_sbd_port</A><BR>
+<A HREF=#123>Lsb_set_tmpdir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#124>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#125>Default</A><BR>
+<A HREF=#126>Lsb_sharedir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#127>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#128>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#129>See Also</A><BR>
+<A HREF=#130>Lsb_sigstop</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#131>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#132>Example</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#133>Default</A><BR>
+<A HREF=#134>Lsb_short_hostlist</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#135>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#136>Default</A><BR>
+<A HREF=#137>Lsb_time_cmd</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#138>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#139>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#140>See Also</A><BR>
+<A HREF=#141>Lsb_time_mbd</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#142>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#143>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#144>See Also</A><BR>
+<A HREF=#145>Lsb_time_sbd</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#146>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#147>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#148>See Also</A><BR>
+<A HREF=#149>Lsb_utmp</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#150>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#151>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#152>See Also</A><BR>
+<A HREF=#153>Lsf_am_options</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#154>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#155>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#156>Default</A><BR>
+<A HREF=#157>Lsf_api_conntimeout</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#158>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#159>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#160>See Also</A><BR>
+<A HREF=#161>Lsf_api_recvtimeout</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#162>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#163>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#164>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#165>See Also</A><BR>
+<A HREF=#166>Lsf_auth</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#167>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#168>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#169>Default</A><BR>
+<A HREF=#170>Lsf_auth_daemons</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#171>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#172>Default</A><BR>
+<A HREF=#173>Lsf_bindir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#174>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#175>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#176>Default</A><BR>
+<A HREF=#177>Lsf_cmd_logdir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#178>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#179>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#180>See Also</A><BR>
+<A HREF=#181>Lsf_conf_retry_int</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#182>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#183>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#184>See Also</A><BR>
+<A HREF=#185>Lsf_conf_retry_max</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#186>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#187>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#188>See Also</A><BR>
+<A HREF=#189>Lsf_confdir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#190>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#191>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#192>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#193>See Also</A><BR>
+<A HREF=#194>Lsf_debug_lim</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#195>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#196>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#197>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#198>See Also</A><BR>
+<A HREF=#199>Lsf_debug_res</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#200>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#201>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#202>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#203>See Also</A><BR>
+<A HREF=#204>Lsf_default_install</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#205>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#206>Valid Values</A><BR>
+<A HREF=#207>Lsf_envdir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#208>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#209>Default</A><BR>
+<A HREF=#210>Lsf_includedir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#211>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#212>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#213>See Also</A><BR>
+<A HREF=#214>Lsf_indep</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#215>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#216>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#217>See Also</A><BR>
+<A HREF=#218>Lsf_interactive_stderr</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#219>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#220>Warning</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#221>If you enable this parameter globally in lsf.conf, check any custom scripts that manipulate stderr and stdout.</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#222>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#223>Notes</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#224>Limitations</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#225>See Also</A><BR>
+<A HREF=#226>Lsf_libdir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#227>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#228>Default</A><BR>
+<A HREF=#229>Lsf_lim_debug</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#230>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#231>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#232>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#233>See Also</A><BR>
+<A HREF=#234>Lsf_lim_port, Lsf_res_port, Lsb_mbd_port, Lsb_sbd_port</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#235>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#236>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#237>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#238>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#239>See Also</A><BR>
+<A HREF=#240>Lsf_logdir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#241>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#242>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#243>See Also</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#244>Files</A><BR>
+<A HREF=#245>Lsf_machdep</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#246>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#247>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#248>See Also</A><BR>
+<A HREF=#249>Lsf_mandir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#250>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#251>Default</A><BR>
+<A HREF=#252>Lsf_master_list</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#253>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#254>Default</A><BR>
+<A HREF=#255>Lsf_misc</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#256>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#257>Default</A><BR>
+<A HREF=#258>Lsf_nios_debug</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#259>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#260>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#261>See Also</A><BR>
+<A HREF=#262>Lsf_nios_jobstatus_interval</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#263>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#264>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#265>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#266>Notes</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#267>Product</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#268>See Also</A><BR>
+<A HREF=#269>Lsf_nios_res_heartbeat</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#270>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#271>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#272>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#273>Notes</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#274>Product</A><BR>
+<A HREF=#275>Lsf_pim_infodir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#276>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#277>Default</A><BR>
+<A HREF=#278>Lsf_pim_sleeptime</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#279>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#280>Default</A><BR>
+<A HREF=#281>Lsf_res_acct</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#282>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#283>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#284>See Also</A><BR>
+<A HREF=#285>Lsf_res_acctdir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#286>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#287>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#288>See Also</A><BR>
+<A HREF=#289>Lsf_res_debug</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#290>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#291>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#292>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#293>See Also</A><BR>
+<A HREF=#294>Lsf_res_plugindir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#295>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#296>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#297>See Also</A><BR>
+<A HREF=#298>Lsf_res_port</A><BR>
+<A HREF=#299>Lsf_res_rlimit_unlim</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#300>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#301>Example</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#302>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#303>See Also</A><BR>
+<A HREF=#304>Lsf_res_timeout</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#305>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#306>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#307>Default</A><BR>
+<A HREF=#308>Lsf_server_hosts</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#309>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#310>Default</A><BR>
+<A HREF=#311>Lsf_serverdir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#312>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#313>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#314>See Also</A><BR>
+<A HREF=#315>Lsf_strip_domain</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#316>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#317>Description</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#318>Default</A><BR>
+<A HREF=#319>Lsf_time_cmd</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#320>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#321>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#322>See Also</A><BR>
+<A HREF=#323>Lsf_time_lim</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#324>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#325>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#326>See Also</A><BR>
+<A HREF=#327>Lsf_time_res</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#328>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#329>Default</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#330>See Also</A><BR>
+<A HREF=#331>Lsf_tmpdir</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#332>Syntax</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#333>Valid Values</A><BR>
+&nbsp; &nbsp; &nbsp;<A HREF=#334>Default</A><BR>
+</BLOCKQUOTE>
+<A name=335>
+
+     <H3>About lsf.conf</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The lsf.conf file is created during installation by the openlava setup
+program, and records all the settings chosen when openlava was installed.
+The lsf.conf file dictates the location of the specific configuration
+files and operation of individual servers and applications.
+<!-- .PP -->
+<P>
+The lsf.conf file is used by openlava and applications built on top of it.
+For example, information in lsf.conf is used by openlava daemons and
+commands to locate other configuration files, executables, and
+network services. lsf.conf is updated, if necessary, when you
+upgrade to a new version.
+<!-- .PP -->
+<P>
+This file can also be expanded to include openlava application-specific
+parameters.
+<!-- .SH Location -->
+</BLOCKQUOTE>
+<A name=4>
+
+     <H3>Location</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The default location of lsf.conf is in  /etc.  This  default location 
+can  be  overridden  when  necessary by either the environment
+variable LSF_ENVDIR or the command  line  option <B>-d</B> available to
+some of the applications. 
+<!-- .SH Format -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>Format</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Each entry in lsf.conf has one of the following forms:
+<P>
+<!-- .PP -->
+<P>
+NAME=VALUE
+<P>
+<!-- .PP -->
+<P>
+NAME=
+<P>
+<!-- .PP -->
+<P>
+NAME="STRING1 STRING2 ..."
+<P>
+<P>
+<!-- .PP -->
+<P>
+The equal sign = must follow each NAME even  if  no value follows  and
+there should be no space beside the equal sign.
+<!-- .PP -->
+<P>
+A value that contains multiple strings separated by spaces must be 
+enclosed in quotation marks. 
+<!-- .PP -->
+<P>
+Lines starting with a pound sign (#) are comments and are ignored. Do
+not use #if as this is reserved syntax for time-based configuration.
+<!-- .SH Parameters -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>Parameters</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SH LSB_API_CONNTIMEOUT  -->
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>LSB_API_CONNTIMEOUT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_API_CONNTIMEOUT=</B><I>time_seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The timeout in seconds when connecting to the Batch system.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Any positive integer or zero
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+10
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_API_RECVTIMEOUT
+<!-- .SH LSB_API_RECVTIMEOUT  -->
+</BLOCKQUOTE>
+<A name=12>
+
+     <H3>LSB_API_RECVTIMEOUT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_API_RECVTIMEOUT=</B><I>time_seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Timeout in seconds when waiting for a reply from the Batch system.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Any positive integer or zero
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+0
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_API_CONNTIMEOUT
+<!-- .SH LSB_CMD_LOG_MASK  -->
+</BLOCKQUOTE>
+<A name=17>
+
+     <H3>LSB_CMD_LOG_MASK</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_CMD_LOG_MASK=</B><I>log_level
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specifies the logging level of error messages from openlava Batch
+commands.
+<!-- .PP -->
+<P>
+For example:
+<P>
+<!-- .PP -->
+<P>
+LSB_CMD_LOG_MASK=LOG_DEBUG
+<P>
+<P>
+<!-- .PP -->
+<P>
+Batch commands log error messages in different levels so that you can
+choose to log all messages, or only log messages that are deemed
+critical. The level specified by LSB_CMD_LOG_MASK determines
+which messages are recorded and which are discarded. All messages
+logged at the specified level or higher are recorded, while lower level
+messages are discarded.
+<!-- .PP -->
+<P>
+For debugging purposes, the level LOG_DEBUG contains the fewest
+number of debugging messages and is used only for very basic
+debugging. The level LOG_DEBUG3 records all debugging messages,
+and is not often used. Most debugging is done at the level
+LOG_DEBUG2.
+<!-- .PP -->
+<P>
+The commands log to the syslog facility unless LSB_CMD_LOGDIR is
+set.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The log levels from highest to lowest are:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: The log levels from highest to lowest are:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o LOG_EMERG
+<!-- .HP 2 -->
+<BR>
+o LOG_ALERT
+<!-- .HP 2 -->
+<BR>
+o LOG_CRIT
+<!-- .HP 2 -->
+<BR>
+o LOG_ERR
+<!-- .HP 2 -->
+<BR>
+o LOG_WARNING
+<!-- .HP 2 -->
+<BR>
+o LOG_NOTICE
+<!-- .HP 2 -->
+<BR>
+o LOG_INFO
+<!-- .HP 2 -->
+<BR>
+o LOG_DEBUG
+<!-- .HP 2 -->
+<BR>
+o LOG_DEBUG1
+<!-- .HP 2 -->
+<BR>
+o LOG_DEBUG2
+<!-- .HP 2 -->
+<BR>
+o LOG_DEBUG3
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LOG_WARNING
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_CMD_LOGDIR, LSB_DEBUG, LSB_TIME_CMD, LSF_LOG_MASK,
+LSB_DEBUG_CMD, LSF_TIME_CMD
+<!-- .SH LSB_CMD_LOGDIR -->
+</BLOCKQUOTE>
+<A name=22>
+
+     <H3>LSB_CMD_LOGDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_CMD_LOGDIR=</B><I>path
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specifies the path to the Batch command log files.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+/tmp
+<P>
+<P>
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_CMD_LOG_MASK, LSF_LOGDIR
+<!-- .SH LSB_CONFDIR -->
+</BLOCKQUOTE>
+<A name=26>
+
+     <H3>LSB_CONFDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_CONFDIR=</B><I>dir
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specifies the path to the directory containing the openlava configuration
+files.
+<!-- .PP -->
+<P>
+openlava Batch configuration directories are installed
+under LSB_CONFDIR.
+<!-- .PP -->
+<P>
+Configuration files for each openlava cluster are stored in a subdirectory of
+LSB_CONFDIR. This subdirectory contains several files that define openlava
+Batch user and host lists, operation parameters, and queues.
+<!-- .PP -->
+<P>
+All files and directories under LSB_CONFDIR must be readable from all
+hosts in the cluster. LSB_CONFDIR/<I>cluster_name</I>/configdir must
+be owned by the openlava administrator.
+<!-- .PP -->
+<P>
+Do not redefine this parameter after openlava has been installed. To move
+these directories to another location, use lsfsetup and choose the
+Product Install option to install configuration files in another
+location.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+LSF_CONFDIR/lsbatch
+<P>
+<P>
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_CONFDIR
+<!-- .SH LSB_DEBUG -->
+</BLOCKQUOTE>
+<A name=30>
+
+     <H3>LSB_DEBUG</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_DEBUG=1</B> | <B>2
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Sets the Batch system to debug.
+<!-- .PP -->
+<P>
+If defined, openlava Batch will run in single user mode. In this mode, no
+security checking is performed; do not run the openlava Batch daemons as
+root.
+<!-- .PP -->
+<P>
+When LSB_DEBUG is defined, openlava will not look in the system services
+database for port numbers. Instead, it uses the port numbers defined
+by the parameters LSB_MBD_PORT/LSB_SBD_PORT in lsf.conf. If
+these parameters are not defined, it uses port number 40000 for MBD
+and port number 40001 for SBD.
+<!-- .PP -->
+<P>
+You should always specify 1 for this parameter unless you are testing
+openlava Batch.
+<!-- .PP -->
+<P>
+Can also be defined from the command line.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o LSB_DEBUG=1
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+openlava Batch runs in the background with no associated control
+terminal.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o LSB_DEBUG=2
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+openlava Batch runs in the foreground and prints error messages to
+tty.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .SS Default -->
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_LIM_DEBUG, LSF_RES_DEBUG
+<!-- .SH LSB_DEBUG_CMD  -->
+</BLOCKQUOTE>
+<A name=35>
+
+     <H3>LSB_DEBUG_CMD</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_DEBUG_CMD=</B><I>log_class
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Sets the debugging log class for commands and APIs.
+<!-- .PP -->
+<P>
+Specifies the log class filtering that will be applied to Batch commands
+or the API. Only messages belonging to the specified log class are
+recorded.
+<!-- .PP -->
+<P>
+LSB_DEBUG_CMD (which sets the log class) is used in combination
+with LSB_CMD_LOG_MASK (which sets the log level). For example:
+<P>
+<!-- .PP -->
+<P>
+LSB_CMD_LOG_MASK=LOG_DEBUG
+<!-- .br -->
+<!-- Need break --><BR>
+LSB_DEBUG_CMD="LC_TRACE LC_EXEC"
+<P>
+<P>
+<!-- .PP -->
+<P>
+Debugging is turned on when you define both parameters.
+<!-- .PP -->
+<P>
+The daemons log to the syslog facility unless LSB_CMD_LOGDIR is
+defined.
+<!-- .PP -->
+<P>
+To specify multiple log classes, use a space-separated list enclosed by
+quotation marks. For example:
+<P>
+<!-- .PP -->
+<P>
+LSB_DEBUG_CMD="LC_TRACE LC_EXEC"
+<P>
+<P>
+<!-- .PP -->
+<P>
+Can also be defined from the command line.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Valid log classes are:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: Valid log classes are:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o LC_AUTH - Log authentication messages
+<!-- .HP 2 -->
+<BR>
+o LC_CHKPNT - Log checkpointing messages
+<!-- .HP 2 -->
+<BR>
+o LC_COMM - Log communication messages
+<!-- .HP 2 -->
+<BR>
+o LC_ELIM - Log ELIM messages
+<!-- .HP 2 -->
+<BR>
+o LC_EXEC - Log significant steps for job execution
+<!-- .HP 2 -->
+<BR>
+o LC_FILE - Log file transfer messages
+<!-- .HP 2 -->
+<BR>
+o LC_HANG - Mark where a program might hang
+<!-- .HP 2 -->
+<BR>
+o LC_JARRAY - Log job array messages
+<!-- .HP 2 -->
+<BR>
+o LC_JLIMIT - Log job slot limit messages
+<!-- .HP 2 -->
+<BR>
+o LC_LOADINDX - Log load index messages
+<!-- .HP 2 -->
+<BR>
+o LC_PEND - Log messages related to job pending reasons
+<!-- .HP 2 -->
+<BR>
+o LC_PERFM - Log performance messages
+<!-- .HP 2 -->
+<BR>
+o LC_PIM - Log PIM messages
+<!-- .HP 2 -->
+<BR>
+o LC_SIGNAL - Log messages pertaining to signals
+<!-- .HP 2 -->
+<BR>
+o LC_SYS - Log system call messages
+<!-- .HP 2 -->
+<BR>
+o LC_TRACE - Log significant program walk steps
+<!-- .HP 2 -->
+<BR>
+o LC_XDR - Log everything transferred by XDR
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_CMD_LOG_MASK, LSB_CMD_LOGDIR
+<!-- .SH LSB_DEBUG_MBD  -->
+</BLOCKQUOTE>
+<A name=40>
+
+     <H3>LSB_DEBUG_MBD</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_DEBUG_MBD=</B><I>log_class
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Sets the debugging log class for MBD.
+<!-- .PP -->
+<P>
+Specifies the log class filtering that will be applied to MBD. Only
+messages belonging to the specified log class are recorded.
+<!-- .PP -->
+<P>
+LSB_DEBUG_MBD (which sets the log class) is used in combination
+with LSF_LOG_MASK (which sets the log level). For example:
+<P>
+<!-- .PP -->
+<P>
+LSF_LOG_MASK=LOG_DEBUG
+<!-- .br -->
+<!-- Need break --><BR>
+LSB_DEBUG_MBD="LC_TRACE LC_EXEC"       
+<P>
+<P>
+<!-- .PP -->
+<P>
+To specify multiple log classes, use a space-separated list enclosed in
+quotation marks. For example:
+<P>
+<!-- .PP -->
+<P>
+LSB_DEBUG_MBD="LC_TRACE LC_EXEC"
+<P>
+<P>
+<!-- .PP -->
+<P>
+You need to restart the daemons after setting LSB_DEBUG_MBD for
+your changes to take effect.
+<!-- .PP -->
+<P>
+If you use the command badmin mbddebug to temporarily change this
+parameter without changing lsf.conf, you will not need to restart the
+daemons.
+<!-- .PP -->
+<P>
+The daemons log to the syslog facility unless LSF_LOGDIR is defined.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Valid log classes are the same as for LSB_DEBUG_CMD except for the
+log classes LC_ELIM and LC_JARRAY which cannot be used with
+LSB_DEBUG_MBD. See LSB_DEBUG_CMD.
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_LOG_MASK, LSF_LOGDIR, <B>badmin mbddebug
+<!-- .PP -->
+<P>
+The daemons log to the syslog facility unless LSF_LOGDIR is defined.
+<!-- .PP -->
+<P>
+This parameter can also be defined from the command line.
+<!-- .SS Valid Values -->
+<!-- resetStyles [FB] -->
+</B></BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+For a list of valid log classes, see LSB_DEBUG_CMD.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_DEBUG_CMD, LSF_LOG_MASK, LSF_LOGDIR
+<!-- .SH LSB_DEBUG_SBD -->
+</BLOCKQUOTE>
+<A name=48>
+
+     <H3>LSB_DEBUG_SBD</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_DEBUG_SBD=</B><I>log_class
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Sets the debugging log class for SBD.
+<!-- .PP -->
+<P>
+Specifies the log class filtering that will be applied to SBD. Only
+messages belonging to the specified log class are recorded.
+<!-- .PP -->
+<P>
+LSB_DEBUG_SBD (which sets the log class) is used in combination
+with LSF_LOG_MASK (which sets the log level). For example:
+<!-- .PP -->
+<P>
+LSF_LOG_MASK=LOG_DEBUG
+<!-- .br -->
+<!-- Need break --><BR>
+LSB_DEBUG_SBD="LC_TRACE LC_EXEC"
+<!-- .PP -->
+<P>
+To specify multiple log classes, use a space-separated list enclosed in
+quotation marks. For example:
+<P>
+<!-- .PP -->
+<P>
+LSB_DEBUG_SBD="LC_TRACE LC_EXEC"
+<P>
+<P>
+<!-- .PP -->
+<P>
+You need to restart the daemons after setting LSB_DEBUG_SBD for
+your changes to take effect.
+<!-- .PP -->
+<P>
+If you use the command badmin sbddebug to temporarily change this
+parameter without changing lsf.conf, you will not need to restart the
+daemons.
+<!-- .PP -->
+<P>
+The daemons log to the syslog facility unless LSF_LOGDIR is defined.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Valid log classes are the same as for LSB_DEBUG_CMD except for the
+log classes LC_ELIM and LC_JARRAY which cannot be used with
+LSB_DEBUG_SBD. See LSB_DEBUG_CMD.
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_DEBUG_MBD, LSF_LOG_MASK, LSF_LOGDIR, <B>badmin
+</B>.SH LSB_ECHKPNT_METHOD
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_ECHKPNT_METHOD=</B><I>method_name
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Name of custom echkpnt and erestart methods.
+<!-- .PP -->
+<P>
+Can also be defined as an environment variable, or specified through
+the bsub -k option.
+<!-- .PP -->
+<P>
+The name you specify here will be used for both your custom echkpnt
+and erestart programs. You must assign your custom <I>echkpnt</I> and
+<I>erestart</I> programs the name echkpnt.<I>method_name</I> and
+erestart.<I>method_name</I>. The programs echkpnt.<I>method_name</I> and
+erestart.<I>method_name</I>. must be in LSF_SERVERDIR or in the
+directory specified by LSB_ECHKPNT_METHOD_DIR.
+<!-- .PP -->
+<P>
+Do not define LSB_ECHKPNT_METHOD=default as default is a
+reserved keyword to indicate to use openlava&#146;s default echkpnt and
+erestart methods. You can however, specify bsub -k "my_dir
+method=default" my_job to indicate that you want to use openlava&#146;s
+default checkpoint and restart methods.
+<!-- .PP -->
+<P>
+When this parameter is undefined in lsf.conf or as an environment
+variable and no custom method is specified at job submission through
+bsub -k, openlava uses echkpnt.default and erestart.default to
+checkpoint and restart jobs.
+<!-- .PP -->
+<P>
+When this parameter is defined, openlava uses the custom checkpoint and
+restart methods specified.
+<!-- .SS Limitations -->
+</BLOCKQUOTE>
+<A name=224>
+
+    <H4>&nbsp; &nbsp; Limitations</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The method name and directory(LSB_ECHKPNT_METHOD_DIR)
+combination must be unique in the cluster.
+<!-- .PP -->
+<P>
+For example, you may have two echkpnt applications with the same
+name such as echkpnt.mymethod but what differentiates them is the
+different directories defined with LSB_ECHKPNT_METHOD_DIR. It is
+the cluster administrator&#146;s responsibility to ensure that method name
+and method directory combinations are unique in the cluster.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined; openlava uses echkpnt.default and erestart.default to
+checkpoint and restart jobs
+<!-- .SS Product -->
+</BLOCKQUOTE>
+<A name=274>
+
+    <H4>&nbsp; &nbsp; Product</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+openlava Base, openlava Batch
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_ECHKPNT_METHOD_DIR, LSB_ECHKPNT_KEEP_OUTPUT
+<!-- .SH LSB_ECHKPNT_METHOD_DIR -->
+</BLOCKQUOTE>
+<A name=58>
+
+     <H3>LSB_ECHKPNT_METHOD_DIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_ECHKPNT_METHOD_DIR=</B><I>path
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Absolute path name of the directory in which custom echkpnt and
+erestart programs are located.
+<!-- .PP -->
+<P>
+Can also be defined as an environment variable.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined; openlava searches in LSF_SERVERDIR for custom echkpnt and
+erestart programs
+<!-- .SS Product -->
+</BLOCKQUOTE>
+<A name=274>
+
+    <H4>&nbsp; &nbsp; Product</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+openlava Base, openlava Batch
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_ECHKPNT_METHOD, LSB_ECHKPNT_KEEP_OUTPUT
+<!-- .SH LSB_ECHKPNT_KEEP_OUTPUT -->
+</BLOCKQUOTE>
+<A name=63>
+
+     <H3>LSB_ECHKPNT_KEEP_OUTPUT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_ECHKPNT_KEEP_OUTPUT=y</B>|<B>Y
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Saves the standard output and standard error of custom echkpnt and
+erestart methods to:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: Saves the standard output and standard error of custom echkpnt and
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o <I>checkpoint_dir</I>/$LSB_JOBID/echkpnt.out
+<!-- .HP 2 -->
+<BR>
+o <I>checkpoint_dir</I>/$LSB_JOBID/echkpnt.err
+<!-- .HP 2 -->
+<BR>
+o <I>checkpoint_dir</I>/$LSB_JOBID/erestart.out
+<!-- .HP 2 -->
+<BR>
+o <I>checkpoint_dir</I>/$LSB_JOBID/erestart.err
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .PP -->
+<P>
+Can also be defined as an environment variable.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined; standard error and standard output messages from custom
+echkpnt and erestart programs is directed to /dev/null and
+discarded by openlava.
+<!-- .SS Product -->
+</BLOCKQUOTE>
+<A name=274>
+
+    <H4>&nbsp; &nbsp; Product</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+openlava Base, openlava Batch
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_ECHKPNT_METHOD, LSB_ECHKPNT_METHOD_DIR
+<!-- .SH LSB_INTERACT_MSG_ENH -->
+</BLOCKQUOTE>
+<A name=68>
+
+     <H3>LSB_INTERACT_MSG_ENH</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_INTERACT_MSG_ENH = y</B> | <B>Y
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+If set, enables enhanced messaging for interactive batch jobs. To
+disable interactive batch job messages, set LSB_INTERACT_MSG_ENH
+to any value other than y or Y; for example,
+LSB_INTERACT_MSG_ENH=N.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_INTERACT_MSG_INTVAL
+<!-- .SH LSB_INTERACT_MSG_INTVAL -->
+</BLOCKQUOTE>
+<A name=72>
+
+     <H3>LSB_INTERACT_MSG_INTVAL</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_INTERACT_MSG_INTVAL =</B> <I>seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specifies the update interval in seconds for interactive batch job
+messages. LSB_INTERACT_MSG_INTVAL is ignored if
+LSB_INTERACT_MSG_ENH is not set.
+<!-- .PP -->
+<P>
+Because the job information that openlava uses to get the pending or
+suspension reason is updated according to the value of
+MBD_SLEEP_TIME, there is no advantage to setting
+LSB_INTERACT_MSG_INTVAL less than MBD_SLEEP_TIME
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined. If LSB_INTERACT_MSG_INTVAL is set to an incorrect value,
+the default update interval is 60 seconds.
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_INTERACT_MSG_ENH in lsf.conf, MBD_SLEEP_TIME in
+lsb.params
+<!-- .SH LSB_JOB_CPULIMIT -->
+</BLOCKQUOTE>
+<A name=76>
+
+     <H3>LSB_JOB_CPULIMIT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_JOB_CPULIMIT = y</B> | <B>n
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Determines whether the CPU limit is a per-process limit enforced by
+the OS or whether it is a per-job limit enforced by openlava:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: Determines whether the CPU limit is a per-process limit enforced by
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o The per-process limit is enforced by the OS when the CPU time of
+one process of the job exceeds the CPU limit.
+<!-- .HP 2 -->
+<BR>
+o The per-job limit is enforced by openlava when the total CPU time of all
+processes of the job exceed the CPU limit.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .PP -->
+<P>
+This parameter applies to CPU limits set when a job is submitted with
+<B>bsub -c</B> , and to CPU limits set for queues by CPULIMIT in
+lsb.queues.
+<!-- .PP -->
+<P>
+The setting of LSB_JOB_CPULIMIT has the following effect on how the
+limit is enforced:
+<!-- .PP -->
+<P>
+When LSB_JOB_CPULIMIT is Y, the openlava-enforced per-job limit is
+enabled, and the OS-enforced per-process limit is disabled.
+<!-- .PP -->
+<P>
+When LSB_JOB_CPULIMIT is N, the openlava-enforced per-job limit is
+disabled, and the OS-enforced per-process limit is enabled.
+<!-- .PP -->
+<P>
+When LSB_JOB_CPULIMIT is undefined, the openlava-enforced per-job limit
+is enabled, and the OS-enforced per-process limit is enabled.
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: When LSB_JOB_CPULIMIT is undefined, the openlava-enforced per-job limit
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o openlava-enforced per-job limit--When the sum of the CPU time of all
+processes of a job exceed the CPU limit, openlava sends a SIGXCPU
+signal (where supported by the operating system) from the
+operating system to all processes belonging to the job, then
+SIGINT, SIGTERM and SIGKILL. The interval between signals is 10
+seconds by default.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+On UNIX, the time interval between SIGXCPU, SIGINT, SIGKILL,
+SIGTERM can be configured with the parameter
+JOB_TERMINATE_INTERVAL in lsb.params.
+<P>
+<P>
+<!-- .RS -->
+<!-- .HP 2 -->
+<TABLE width=100% cellpadding=3>
+<TR valign=top><TD colspan=2>
+o OS-enforced per process limit--When one process in the job
+exceeds the CPU limit, the limit is enforced by the operating
+system. For more details, refer to your operating system
+documentation for setrlimit().
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .SS Default -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS Notes -->
+</BLOCKQUOTE>
+<A name=273>
+
+    <H4>&nbsp; &nbsp; Notes</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+To make LSB_JOB_CPULIMIT take effect, use the command badmin
+hrestart all to restart all SBDs in the cluster.
+<!-- .PP -->
+<P>
+Changing the default Terminate job control action--You can define a
+different terminate action in lsb.queues with the parameter
+JOB_CONTROLS if you do not want the job to be killed. For more
+details on job controls, see the <I>openlava Administrator&#146;s Guide</I>.
+<!-- .SS Limitations -->
+</BLOCKQUOTE>
+<A name=224>
+
+    <H4>&nbsp; &nbsp; Limitations</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+If a job is running and the parameter is changed, openlava is not able to reset
+the type of limit enforcement for running jobs.
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: If a job is running and the parameter is changed, openlava is not able to reset
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o If the parameter is changed from per-process limit enforced by the
+OS to per-job limit enforced by openlava (LSB_JOB_CPULIMIT=n
+changed to LSB_JOB_CPULIMIT=y), both per-process limit and
+per-job limit will affect the running job. This means that signals may
+be sent to the job either when an individual process exceeds the
+CPU limit or the sum of the CPU time of all processes of the job
+exceed the limit. A job that is running may be killed by the OS or
+by openlava.
+<!-- .HP 2 -->
+<BR>
+o If the parameter is changed from per-job limit enforced by openlava to
+per-process limit enforced by the OS (LSB_JOB_CPULIMIT=y
+changed to LSB_JOB_CPULIMIT=n), the job will be allowed to run
+without limits because the per-process limit was previously
+disabled.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+lsb.queues, bsub, JOB_TERMINATE_INTERVAL, LSB_MOD_ALL_JOBS
+<!-- .SH LSB_JOB_MEMLIMIT -->
+</BLOCKQUOTE>
+<A name=82>
+
+     <H3>LSB_JOB_MEMLIMIT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_JOB_MEMLIMIT=y</B> | <B>n
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Determines whether the memory limit is a per-process limit enforced
+by the OS or whether it is a per-job limit enforced by openlava.
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: Determines whether the memory limit is a per-process limit enforced
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o The per-process limit is enforced by the OS when the memory
+allocated to one process of the job exceeds the memory limit.
+<!-- .HP 2 -->
+<BR>
+o The per-job limit is enforced by openlava when the sum of the memory
+allocated to all processes of the job exceeds the memory limit.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .PP -->
+<P>
+This parameter applies to memory limits set when a job is submitted
+with <B>bsub -M </B><I>mem_limit</I>, and to memory limits set for queues with
+MEMLIMIT in lsb.queues.
+<!-- .PP -->
+<P>
+The setting of LSB_JOB_MEMLIMIT has the following effect on how the
+limit is enforced:
+<!-- .PP -->
+<P>
+When LSB_JOB_MEMLIMIT is Y, the openlava-enforced per-job limit is
+enabled, and the OS-enforced per-process limit is disabled.
+<!-- .PP -->
+<P>
+When LSB_JOB_MEMLIMIT is N or undefined, the openlava-enforced per-
+job limit is disabled, and the OS-enforced per-process limit is enabled.
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: When LSB_JOB_MEMLIMIT is N or undefined, the openlava-enforced per-
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o openlava-enforced per-job limit--When the total memory allocated to all
+processes in the job exceeds the memory limit, openlava sends the
+following signals to kill the job: SIGINT, SIGTERM, then SIGKILL.
+The interval between signals is 10 seconds by default.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+On UNIX, the time interval between SIGINT, SIGKILL, SIGTERM
+can be configured with the parameter JOB_TERMINATE_INTERVAL
+in lsb.params.
+<P>
+<P>
+<!-- .RS -->
+<!-- .HP 2 -->
+<TABLE width=100% cellpadding=3>
+<TR valign=top><TD colspan=2>
+o OS-enforced per process limit--When the memory allocated to one
+process of the job exceeds the memory limit, the operating system
+enforces the limit. openlava passes the memory limit to the operating
+system. Some operating systems apply the memory limit to each
+process, and some do not enforce the memory limit at all.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+OS memory limit enforcement is only available on systems that
+support RUSAGE_RSS for setrlimit().
+<P>
+<!-- .SS Default -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined; per-process memory limit enforced by the OS; per-job
+memory limit enforced by openlava disabled
+<!-- .SS Notes -->
+</BLOCKQUOTE>
+<A name=273>
+
+    <H4>&nbsp; &nbsp; Notes</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+To make LSB_JOB_MEMLIMIT take effect, use the command badmin
+hrestart all to restart all SBDs in the cluster.
+<!-- .PP -->
+<P>
+If LSB_JOB_MEMLIMIT is set, it overrides the setting of the parameter
+LSB_MEMLIMIT_ENFORCE. The parameter LSB_MEMLIMIT_ENFORCE
+is ignored.
+<!-- .PP -->
+<P>
+The difference between LSB_JOB_MEMLIMIT set to y and
+LSB_MEMLIMIT_ENFORCE set to y is that with LSB_JOB_MEMLIMIT,
+only the per-job memory limit enforced by openlava is enabled. The per-
+process memory limit enforced by the OS is disabled. With
+LSB_MEMLIMIT_ENFORCE set to y, both the per-job memory limit
+enforced by openlava and the per-process memory limit enforced by the OS
+are enabled.
+<!-- .PP -->
+<P>
+Changing the default Terminate job control action--You can define a
+different Terminate action in lsb.queues with the parameter
+JOB_CONTROLS if you do not want the job to be killed. For more
+details on job controls, see the <I>openlava Administrator&#146;s Guide</I>.
+<!-- .SS Limitations -->
+</BLOCKQUOTE>
+<A name=224>
+
+    <H4>&nbsp; &nbsp; Limitations</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+If a job is running and the parameter is changed, openlava is not able to reset
+the type of limit enforcement for running jobs.
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: If a job is running and the parameter is changed, openlava is not able to reset
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o If the parameter is changed from per-process limit enforced by the
+OS to per-job limit enforced by openlava (LSB_JOB_MEMLIMIT=n or
+undefined changed to LSB_JOB_MEMLIMIT=y), both per-process
+limit and per-job limit will affect the running job. This means that
+signals may be sent to the job either when the memory allocated to
+an individual process exceeds the memory limit or the sum of
+memory allocated to all processes of the job exceed the limit. A job
+that is running may be killed by openlava.
+<!-- .HP 2 -->
+<BR>
+o If the parameter is changed from per-job limit enforced by openlava to
+per-process limit enforced by the OS (LSB_JOB_MEMLIMIT=y
+changed to LSB_JOB_MEMLIMIT=n or undefined), the job will be
+allowed to run without limits because the per-process limit was
+previously disabled.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_MEMLIMIT_ENFORCE, lsb.queues, bsub,
+JOB_TERMINATE_INTERVAL, LSB_MOD_ALL_JOBS
+<!-- .SH LSB_MAILPROG -->
+</BLOCKQUOTE>
+<A name=88>
+
+     <H3>LSB_MAILPROG</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_MAILPROG=</B><I>file_name
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Path and file name of the mail program used by the Batch system to
+send email.
+<!-- .PP -->
+<P>
+This is the electronic mail program that openlava will use to send system
+messages to the user.
+<!-- .PP -->
+<P>
+When openlava needs to send email to users it invokes the program defined
+by LSB_MAILPROG in lsf.conf. You can write your own custom mail
+program and set LSB_MAILPROG to the path where this program is
+stored.
+<!-- .PP -->
+<P>
+The openlava administrator can set the parameter as part of cluster reconfiguration.
+<!-- .PP -->
+<P>
+Provide the name of any mail program. For your convenience, openlava
+provides the following mail programs:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: Provide the name of any mail program. For your convenience, openlava
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o sendmail: Supports the sendmail protocol on UNIX
+<!-- .HP 2 -->
+<BR>
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+If lsmail is specified, the parameter LSB_MAILSERVER must also
+be specified.
+<P>
+<P>
+<!-- .PP -->
+</TD></TR>
+<!-- PP ends table -->
+<TR></TR></TABLE>If this parameter is modified, the openlava administrator must restart SBD on
+all hosts to retrieve the new value.
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: If this parameter is modified, the openlava administrator must restart SBD on
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o On UNIX:
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+openlava Batch normally uses /usr/lib/sendmail as the mail transport
+agent to send mail to users. openlava Batch calls LSB_MAILPROG with
+two arguments; one argument gives the full name of the sender,
+and the other argument gives the return address for Batch mail.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+LSB_MAILPROG must read the body of the mail message from the
+standard input. The end of the message is marked by end-of-file.
+Any program or shell script that accepts the arguments and input,
+and delivers the mail correctly, can be used.
+<P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+LSB_MAILPROG must be executable by any user.
+<P>
+<!-- .SS Examples -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=95>
+
+    <H4>&nbsp; &nbsp; Examples</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_MAILPROG=/serverA/tools/lsf/bin/unixhost.exe
+<P>
+<P>
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+/usr/lib/sendmail (UNIX)
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_MAILSERVER, LSB_MAILTO
+<!-- .SH LSB_MAILSERVER -->
+</BLOCKQUOTE>
+<A name=93>
+
+     <H3>LSB_MAILSERVER</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_MAILSERVER=</B><I>mail_protocol:mail_server
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+If this parameter is modified, the openlava administrator must restart SBD on
+all hosts to retrieve the new value.
+<!-- .SS Examples  -->
+</BLOCKQUOTE>
+<A name=95>
+
+    <H4>&nbsp; &nbsp; Examples</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+LSB_MAILSERVER = EXCHANGE:<A HREF="mailto:Host2@company.com">Host2@company.com</A>
+<P>
+<!-- .PP -->
+<P>
+LSB_MAILSERVER = SMTP:MailHost
+<P>
+<P>
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_MAILPROG
+<!-- .SH LSB_MAILSIZE_LIMIT -->
+</BLOCKQUOTE>
+<A name=98>
+
+     <H3>LSB_MAILSIZE_LIMIT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax	  -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_MAILSIZE_LIMIT=</B><I>email_size_in_KB
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Limits the size of the email containing openlava batch job output
+information.
+<!-- .PP -->
+<P>
+The openlava Batch system sends job information such as CPU, process and
+memory usage, job output, and errors in email to the submitting user
+account. Some batch jobs can create large amounts of output. To
+prevent large job output files from interfering with your mail system,
+use LSB_MAILSIZE_LIMIT to set the maximum size in KB of the email
+containing the job information. Specify a positive integer.
+<!-- .PP -->
+<P>
+If the size of the job output email exceeds LSB_MAILSIZE_LIMIT, the
+output is saved to a file under JOB_SPOOL_DIR or to the default job
+output directory if JOB_SPOOL_DIR is undefined. The email informs
+users of where the job output is located.
+<!-- .PP -->
+<P>
+If the <B>-o</B> option of <B>bsub</B> is used, the size of the job output is not
+checked against LSB_MAILSIZE_LIMIT.
+<!-- .PP -->
+<P>
+If you use a custom mail program specified by the LSB_MAILPROG
+parameter that can use the LSB_MAILSIZE environment variable, it is
+not necessary to configure LSB_MAILSIZE_LIMIT.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+By default, LSB_MAILSIZE_LIMIT is not enabled. No limit is set on size
+of batch job output email.
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_MAILPROG, LSB_MAILTO
+<!-- .SH LSB_MAILTO -->
+</BLOCKQUOTE>
+<A name=102>
+
+     <H3>LSB_MAILTO</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_MAILTO=</B><I>mail_account
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+openlava Batch sends electronic mail to users when their jobs complete or
+have errors, and to the openlava administrator in the case of critical errors in
+the openlava Batch system. The default is to send mail to the user who
+submitted the job, on the host on which the daemon is running; this
+assumes that your electronic mail system forwards messages to a
+central mailbox.
+<!-- .PP -->
+<P>
+The LSB_MAILTO parameter changes the mailing address used by openlava
+Batch. LSB_MAILTO is a format string that is used to build the mailing
+address.
+<!-- .PP -->
+<P>
+Common formats are:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: Common formats are:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o !U--Mail is sent to the submitting user&#146;s account name on the local
+host. The substring !U, if found, is replaced with the user&#146;s account
+name.
+<!-- .HP 2 -->
+<BR>
+o !<A HREF="mailto:U@company_name.com--Mail">U@company_name.com--Mail</A> is sent to
+<I>user</I>@<I>company_name</I>.com on the mail server specified by
+LSB_MAILSERVER.
+<!-- .HP 2 -->
+<BR>
+o !U@!H--Mail is sent to <I>user</I>@<I>submission_hostname</I>. The
+substring !H is replaced with the name of the submission host.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<P>
+<!-- .PP -->
+<P>
+All other characters (including any other &#145;!&#146;) are copied exactly.
+<!-- .PP -->
+<P>
+If this parameter is modified, the openlava administrator must restart the SBD
+daemons on all hosts to retrieve the new value.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+!U
+<P>
+<P>
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_MAILPROG, LSB_MAILSIZE_LIMIT
+<!-- .SH LSB_MIG2PEND -->
+</BLOCKQUOTE>
+<A name=106>
+
+     <H3>LSB_MIG2PEND</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_MIG2PEND=0 </B>| <B>1
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Applies only to migrating jobs.
+<!-- .PP -->
+<P>
+If 1, requeues migrating jobs intead of restarting or rerunning them on
+the next available host. Requeues the jobs in the PEND state, in order
+of the original submission time and job priority, unless
+LSB_REQUEUE_TO_BOTTOM is also defined.
+<!-- .PP -->
+<P>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also  -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_REQUEUE_TO_BOTTOM
+<!-- .SH LSB_MBD_PORT   -->
+</BLOCKQUOTE>
+<A name=>
+
+     <H3>LSB_MBD_PORT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+See LSF_LIM_PORT, LSF_RES_PORT, LSB_MBD_PORT,
+LSB_SBD_PORT.
+<!-- .SH LSB_MEMLIMIT_ENFORCE -->
+</BLOCKQUOTE>
+<A name=110>
+
+     <H3>LSB_MEMLIMIT_ENFORCE</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_MEMLIMIT_ENFORCE=y</B> | <B>n
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specify y to enable openlava memory limit enforcement.
+<!-- .PP -->
+<P>
+If enabled, openlava sends a signal to kill all processes that exceed queue-
+level memory limits set by MEMLIMIT in lsb.queues or job-level
+memory limits specified by <B>bsub -M </B><I>mem_limit</I>.
+<!-- .PP -->
+<P>
+Otherwise, openlava passes memory limit enforcement to the OS. UNIX
+operating systems that support RUSAGE_RSS for setrlimit() can
+apply the memory limit to each process.
+<!-- .RE -->
+</BLOCKQUOTE>
+<!-- .SS Default -->
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Not defined. openlava passes memory limit enforcement to the OS.
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+lsb.queues
+<!-- .SH LSB_MOD_ALL_JOBS -->
+</BLOCKQUOTE>
+<A name=114>
+
+     <H3>LSB_MOD_ALL_JOBS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_MOD_ALL_JOBS=y</B> | <B>Y
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+If set, enables <B>bmod</B> to modify resource limits and location of job output
+files for running jobs.
+<!-- .PP -->
+<P>
+After a job has been dispatched, the following modifications can be
+made:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: After a job has been dispatched, the following modifications can be
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o CPU limit (<B>-c </B>[<I>hour</I><B>:</B>]<I>minute</I>[<B>/</B><I>host_name</I> | <B>/</B><I>host_model</I>] | <B>-cn</B>)
+<!-- .HP 2 -->
+<BR>
+o Memory limit (<B>-M</B> <I>mem_limit</I> | <B>-Mn</B>)
+<!-- .HP 2 -->
+<BR>
+o Run limit (<B>-W</B> <I>run_limit</I>[<B>/</B><I>host_name</I> | <B>/</B><I>host_model</I>] | <B>-Wn</B>)
+<!-- .HP 2 -->
+<BR>
+o Standard output file name (<B>-o</B> <I>output_file</I> | <B>-on</B>)
+<!-- .HP 2 -->
+<BR>
+o Standard error file name (<B>-e</B> <I>error_file</I> | <B>-en</B>)
+<!-- .HP 2 -->
+<BR>
+o Rerunnable jobs (<B>-r</B> | <B>-rn</B>)
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .PP -->
+<P>
+To modify the CPU limit or the memory limit of running jobs, the
+parameters LSB_JOB_CPULIMIT=Y and LSB_JOB_MEMLIMIT=Y must
+be defined in lsf.conf.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_JOB_CPULIMIT, LSB_JOB_MEMLIMIT
+<!-- .PP -->
+<P>
+<!-- .SH LSB_REQUEUE_TO_BOTTOM -->
+</BLOCKQUOTE>
+<A name=118>
+
+     <H3>LSB_REQUEUE_TO_BOTTOM</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_REQUEUE_TO_BOTTOM=0</B> | <B>1
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Optional. If 1, requeues automatically requeued jobs to the bottom of
+the queue instead of to the top. Also requeues migrating jobs to the
+bottom of the queue if LSB_MIG2PEND is defined.
+<!-- .PP -->
+<P>
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+REQUEUE_EXIT_VALUES, LSB_MIG2PEND
+<!-- .SH LSB_SBD_PORT -->
+</BLOCKQUOTE>
+<A name=122>
+
+     <H3>LSB_SBD_PORT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+See LSF_LIM_PORT, LSF_RES_PORT, LSB_MBD_PORT,
+LSB_SBD_PORT.
+<!-- .SH LSB_SET_TMPDIR -->
+</BLOCKQUOTE>
+<A name=123>
+
+     <H3>LSB_SET_TMPDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax  -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_SET_TMPDIR=</B>[<B>y</B>|<B>n</B>]
+<!-- .PP -->
+<P>
+If y, openlava sets the TMPDIR environment variable, overwriting the current
+value with /<I>tmp</I>/<I>job_ID</I>.
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+n
+<!-- .SH LSB_SHAREDIR -->
+</BLOCKQUOTE>
+<A name=126>
+
+     <H3>LSB_SHAREDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_SHAREDIR=</B><I>dir
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Directory in which openlava Batch maintains job history
+and accounting logs for each cluster. These files are necessary for
+correct operation of the system. Like the organization under
+LSB_CONFDIR, there is one subdirectory for each cluster.
+<!-- .PP -->
+<P>
+The LSB_SHAREDIR directory must be owned by the openlava administrator.
+It must be accessible from all hosts that can potentially become the
+master host, and must allow read and write access from the openlava master
+host.
+<!-- .PP -->
+<P>
+The LSB_SHAREDIR directory typically resides on a reliable file server.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+LSF_INDEP/work
+<P>
+<P>
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_LOCALDIR
+<!-- .SH LSB_SIGSTOP -->
+</BLOCKQUOTE>
+<A name=130>
+
+     <H3>LSB_SIGSTOP</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_SIGSTOP=</B><I>signal_name</I> | <I>signal_value
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specifies the signal sent by the SUSPEND action in openlava. You can specify
+a signal name or a number.
+<!-- .PP -->
+<P>
+If LSB_SIGSTOP is set to anything other than SIGSTOP, the SIGTSTP
+signal that is normally sent by the SUSPEND action is not sent.
+<!-- .PP -->
+<P>
+If this parameter is undefined, by default the SUSPEND action in openlava
+sends the following signals to a job:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: If this parameter is undefined, by default the SUSPEND action in openlava
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o Parallel or interactive jobs--1. SIGTSTP is sent first to allow user
+programs to catch the signal and clean up. 2. SIGSTOP is sent 10
+seconds after SIGTSTP. SIGSTOP cannot be caught by user
+programs.
+<!-- .HP 2 -->
+<BR>
+o Other jobs--SIGSTOP is sent. SIGSTOP cannot be caught by user
+programs. 
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .PP -->
+<P>
+The same set of signals is not supported on all UNIX systems. To
+display a list of the symbolic names of the signals (without the SIG
+prefix) supported on your system, use the <B>kill -l</B> command.
+<!-- .SS Example -->
+</BLOCKQUOTE>
+<A name=301>
+
+    <H4>&nbsp; &nbsp; Example</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+LSB_SIGSTOP=SIGKILL
+<P>
+<P>
+<!-- .PP -->
+<P>
+In this example, the SUSPEND action sends the three default signals
+sent by the TERMINATE action (SIGINT, SIGTERM, and SIGKILL) 10
+seconds apart.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined. Default SUSPEND action in openlava is sent.
+<!-- .SH LSB_SHORT_HOSTLIST -->
+</BLOCKQUOTE>
+<A name=134>
+
+     <H3>LSB_SHORT_HOSTLIST</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_SHORT_HOSTLIST=1
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Displays an abbreviated list of hosts in <B>bjobs</B> and <B>bhist</B> for a parallel
+job where multiple processes of a job are running on a host. Multiple
+processes are displayed in the following format:
+<P>
+<!-- .PP -->
+<P>
+<I>processes</I>*hostA
+<P>
+<P>
+<!-- .PP -->
+<P>
+For example, if a parallel job is running 5 processes on hostA, the
+information is displayed in the following manner:
+<P>
+<!-- .PP -->
+<P>
+5*hostA
+<P>
+<P>
+<!-- .PP -->
+<P>
+Setting this parameter may improve MBD restart performance and
+accelerate event replay.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SH LSB_TIME_CMD  -->
+</BLOCKQUOTE>
+<A name=137>
+
+     <H3>LSB_TIME_CMD</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_TIME_CMD=</B><I>timimg_level
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The timing level for checking how long batch commands run.
+<!-- .PP -->
+<P>
+Time usage is logged in milliseconds; specify a positive integer.
+<!-- .PP -->
+<P>
+Example: LSB_TIME_CMD=1
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_TIME_MBD, LSB_TIME_SBD, LSF_TIME_LIM, LSF_TIME_RES
+<!-- .SH LSB_TIME_MBD -->
+</BLOCKQUOTE>
+<A name=141>
+
+     <H3>LSB_TIME_MBD</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_TIME_MBD=</B><I>timing_level
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The timing level for checking how long MBD routines run.
+<!-- .PP -->
+<P>
+Time usage is logged in milliseconds; specify a positive integer.
+<!-- .PP -->
+<P>
+Example: LSB_TIME_MBD=1
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_TIME_CMD, LSB_TIME_SBD, LSF_TIME_LIM, LSF_TIME_RES
+<!-- .SH LSB_TIME_SBD -->
+</BLOCKQUOTE>
+<A name=145>
+
+     <H3>LSB_TIME_SBD</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_TIME_SBD=</B><I>timing_level
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The timing level for checking how long SBD routines run.
+<!-- .PP -->
+<P>
+Time usage is logged in milliseconds; specify a positive integer.
+<!-- .PP -->
+<P>
+Example: LSB_TIME_SBD=1
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_TIME_CMD, LSB_TIME_MBD, LSF_TIME_LIM, LSF_TIME_RES
+<!-- .SH LSB_UTMP -->
+</BLOCKQUOTE>
+<A name=149>
+
+     <H3>LSB_UTMP</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSB_UTMP=y</B> | <B>Y
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+If set, enables registration of user and account information for
+interactive batch jobs submitted with <B>bsub -Ip</B> or <B>bsub -Is</B>. To
+disable utmp file registration, set LSB_UTMP to any value other than y
+or Y; for example, LSB_UTMP=N.
+<!-- .PP -->
+<P>
+openlava registers interactive batch jobs the job by adding a entries to the
+utmp file on the execution host when the job starts. After the job
+finishes, openlava removes the entries for the job from the utmp file.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .PP -->
+<P>
+LSF_SERVERDIR, where the default for LSF_SERVERDIR is
+/usr/share/lsf/etc.
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_SERVERDIR
+<!-- .SH LSF_AM_OPTIONS -->
+</BLOCKQUOTE>
+<A name=153>
+
+     <H3>LSF_AM_OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_AM_OPTIONS=AMFIRST</B> | <B>AMNEVER
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Determines the order of file path resolution when setting the user&#146;s
+home directory.
+<!-- .PP -->
+<P>
+This variable is rarely used but sometimes openlava does not properly
+change the directory to the user&#146;s home directory when the user&#146;s home
+directory is automounted. Setting LSF_AM_OPTIONS forces the Batch
+system to change directory to $HOME before attempting to automount
+the user&#146;s home.
+<!-- .PP -->
+<P>
+When this parameter is undefined or set to AMFIRST, openlava:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: When this parameter is undefined or set to AMFIRST, openlava:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o Sets the user&#146;s $HOME directory from the automount path. If it
+cannot do so, openlava sets the user&#146;s $HOME directory from the passwd
+file.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .PP -->
+<P>
+When this parameter is set to AMNEVER, openlava:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: When this parameter is set to AMNEVER, openlava:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o Never uses automount to set the path to the user&#146;s home. openlava sets
+the user&#146;s $HOME directory directly from the passwd file.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The two values are AMFIRST and AMNEVER
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined; same as AMFIRST
+<!-- .SH LSF_API_CONNTIMEOUT -->
+</BLOCKQUOTE>
+<A name=157>
+
+     <H3>LSF_API_CONNTIMEOUT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_API_CONNTIMEOUT=</B><I>seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Timeout when connecting to LIM.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+5
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_API_RECVTIMEOUT
+<!-- .SH LSF_API_RECVTIMEOUT -->
+</BLOCKQUOTE>
+<A name=161>
+
+     <H3>LSF_API_RECVTIMEOUT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_API_RECVTIMEOUT=</B><I>seconds</I>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=317>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Timeout when receiving a reply from LIM.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+20
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_API_CONNTIMEOUT
+<!-- .SH LSF_AUTH -->
+</BLOCKQUOTE>
+<A name=166>
+
+     <H3>LSF_AUTH</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_AUTH=eauth</B> | <B>setuid</B>
+.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Optional. Determines the type of authentication used by openlava.
+<!-- .PP -->
+<P>
+By default, external user authentication is used, and LSF_AUTH is
+defined to be eauth.
+<!-- .PP -->
+<P>
+If this parameter is changed, all openlava daemons must be shut down and
+restarted by running <B>lsf_daemons start</B> on each of the openlava server
+hosts so that the daemons will use the new authentication method.
+<!-- .PP -->
+<P>
+If LSF_AUTH is not defined, RES will only accept requests from
+privileged ports. When openlava uses privileged ports for user
+authentication, openlava commands must be installed setuid to root to
+operate correctly. If the openlava commands are installed in an NFS mounted
+shared file system, the file system must be mounted with setuid
+execution allowed (that is, without the nosuid option). See the man
+page for <B>mount</B> for more details.
+<!-- .PP -->
+<P>
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o eauth
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+For site-specific external authentication.
+<P>
+<P>
+<!-- .RS -->
+<!-- .HP 2 -->
+<TABLE width=100% cellpadding=3>
+<TR valign=top><TD colspan=2>
+o setuid
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+For privileged ports (<B>setuid</B>) authentication. This is the
+mechanism most UNIX remote utilities use. The openlava commands
+must be installed as <B>setuid</B> programs and owned by root.
+<!-- .SS Default -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+eauth
+<!-- .SH LSF_AUTH_DAEMONS -->
+</BLOCKQUOTE>
+<A name=170>
+
+     <H3>LSF_AUTH_DAEMONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_AUTH_DAEMONS=</B><I>any_value
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Enables daemon authentication, as long as LSF_AUTH in lsf.conf is
+set to <B>eauth</B>. Daemons will call <B>eauth</B> to authenticate each other.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SH LSF_BINDIR -->
+</BLOCKQUOTE>
+<A name=173>
+
+     <H3>LSF_BINDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_BINDIR=</B><I>dir</I>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=317>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Directory in which all openlava user commands are installed.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+LSF_MACHDEP/bin
+<P>
+<P>
+<!-- .SH LSF_CMD_LOGDIR  -->
+</BLOCKQUOTE>
+<A name=177>
+
+     <H3>LSF_CMD_LOGDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_CMD_LOGDIR=</B><I>path
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The path to the log files used for debugging openlava commands.
+<!-- .PP -->
+<P>
+This parameter can also be set from the command line.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+/tmp
+<P>
+<P>
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_DEBUG_CMD, LSB_CMD_LOGDIR
+<!-- .SH LSF_CONF_RETRY_INT -->
+</BLOCKQUOTE>
+<A name=181>
+
+     <H3>LSF_CONF_RETRY_INT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_CONF_RETRY_INT=</B><I>seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The number of seconds to wait between unsuccessful attempts at
+opening a configuration file (only valid for LIM). This allows LIM to
+tolerate temporary access failures.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+30
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_CONF_RETRY_MAX
+<!-- .SH LSF_CONF_RETRY_MAX -->
+</BLOCKQUOTE>
+<A name=185>
+
+     <H3>LSF_CONF_RETRY_MAX</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_CONF_RETRY_MAX=</B><I>integer
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The maximum number of unsuccessful attempts at opening a
+configuration file (only valid for LIM). This allows LIM to tolerate
+temporary access failures.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+0
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_CONF_RETRY_INT
+<!-- .SH LSF_CONFDIR -->
+</BLOCKQUOTE>
+<A name=189>
+
+     <H3>LSF_CONFDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_CONFDIR=</B><I>dir</I>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=317>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Directory in which all openlava configuration files are installed. These files
+are shared throughout the system and should be readable from any
+host. This directory can contain configuration files for more than one
+cluster.
+<!-- .PP -->
+<P>
+The files in the LSF_CONFDIR directory must be owned by the primary
+openlava administrator, and readable by all openlava server hosts.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+LSF_INDEP/conf
+<P>
+<P>
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_CONFDIR
+<!-- .SH LSF_DEBUG_LIM -->
+</BLOCKQUOTE>
+<A name=194>
+
+     <H3>LSF_DEBUG_LIM</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_DEBUG_LIM=</B><I>log_class
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Sets the log class for debugging LIM.
+<!-- .PP -->
+<P>
+Specifies the log class filtering that will be applied to LIM. Only
+messages belonging to the specified log class are recorded.
+<!-- .PP -->
+<P>
+The LSF_DEBUG_LIM (which sets the log class) is used in combination
+with LSF_LOG_MASK (which sets the log level). For example:
+<P>
+<!-- .PP -->
+<P>
+LSF_LOG_MASK=LOG_DEBUG
+<!-- .br -->
+<!-- Need break --><BR>
+LSF_DEBUG_LIM=LC_TRACE
+<P>
+<P>
+<!-- .PP -->
+<P>
+You need to restart the daemons after setting LSF_DEBUG_LIM for your
+changes to take effect.
+<!-- .PP -->
+<P>
+If you use the command lsadmin limdebug to temporarily change
+this parameter without changing lsf.conf, you will not need to restart
+the daemons.
+<!-- .PP -->
+<P>
+The daemons log to the syslog facility unless LSF_LOGDIR is defined.
+<!-- .PP -->
+<P>
+To specify multiple log classes, use a space-separated list enclosed in
+quotation marks. For example:
+<P>
+<!-- .PP -->
+<P>
+LSF_DEBUG_LIM="LC_TRACE LC_EXEC"
+<P>
+<P>
+<!-- .PP -->
+<P>
+This parameter can also be defined from the command line.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Valid log classes are:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: Valid log classes are:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o LC_AUTH - Log authentication messages
+<!-- .HP 2 -->
+<BR>
+o LC_CHKPNT - log checkpointing messages
+<!-- .HP 2 -->
+<BR>
+o LC_COMM - Log communication messages
+<!-- .HP 2 -->
+<BR>
+o LC_EXEC - Log significant steps for job execution
+<!-- .HP 2 -->
+<BR>
+o LC_FILE - Log file transfer messages
+<!-- .HP 2 -->
+<BR>
+o LC_HANG - Mark where a program might hang
+<!-- .HP 2 -->
+<BR>
+o LC_PIM - Log PIM messages
+<!-- .HP 2 -->
+<BR>
+o LC_SIGNAL - Log messages pertaining to signals
+<!-- .HP 2 -->
+<BR>
+o LC_TRACE - Log significant program walk steps
+<!-- .HP 2 -->
+<BR>
+o LC_XDR - Log everything transferred by XDR
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_DEBUG_RES, LSF_LOG_MASK, LSF_LOGDIR
+<!-- .SH LSF_DEBUG_RES -->
+</BLOCKQUOTE>
+<A name=199>
+
+     <H3>LSF_DEBUG_RES</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_DEBUG_RES=</B><I>log_class
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Sets the log class for debugging RES.
+<!-- .PP -->
+<P>
+Specifies the log class filtering that will be applied to RES. Only
+messages belonging to the specified log class are recorded.
+<!-- .PP -->
+<P>
+LSF_DEBUG_RES (which sets the log class) is used in combination with
+LSF_LOG_MASK (which sets the log level). For example:
+<P>
+<!-- .PP -->
+<P>
+LSF_LOG_MASK=LOG_DEBUG
+<!-- .br -->
+<!-- Need break --><BR>
+LSF_DEBUG_RES=LC_TRACE
+<P>
+<P>
+<!-- .PP -->
+<P>
+To specify multiple log classes, use a space-separated list enclosed in
+quotation marks. For example:
+<P>
+<!-- .PP -->
+<P>
+LSF_DEBUG_RES="LC_TRACE LC_EXEC"
+<P>
+<P>
+<!-- .PP -->
+<P>
+You need to restart the daemons after setting LSF_DEBUG_RES for your
+changes to take effect.
+<!-- .PP -->
+<P>
+If you use the command lsadmin resdebug to temporarily change
+this parameter without changing lsf.conf, you will not need to restart
+the daemons.
+<!-- .PP -->
+<P>
+The daemons log to the syslog facility unless LSF_LOGDIR is defined.
+<!-- .PP -->
+<P>
+This parameter can also be defined from the command line.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+For a list of valid log classes see LSF_DEBUG_LIM
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_DEBUG_LIM, LSF_LOG_MASK, LSF_LOGDIR
+<!-- .SH LSF_DEFAULT_INSTALL  -->
+</BLOCKQUOTE>
+<A name=204>
+
+     <H3>LSF_DEFAULT_INSTALL</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_DEFAULT_INSTALL=y</B>|<B>n
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+This parameter is set to y if the default installation is used; set to n
+otherwise.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+y | n
+<P>
+<P>
+<!-- .SH LSF_ENVDIR -->
+</BLOCKQUOTE>
+<A name=207>
+
+     <H3>LSF_ENVDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_ENVDIR=</B><I>dir
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Directory containing the lsf.conf file.
+<!-- .PP -->
+<P>
+By default, lsf.conf is installed by creating a shared copy in
+LSF_CONFDIR and adding a symbolic link from /etc/lsf.conf to the
+shared copy. If LSF_ENVDIR is set, the symbolic link is installed in
+LSF_ENVDIR/lsf.conf.
+<!-- .PP -->
+<P>
+The lsf.conf file is a global environment configuration file for all openlava
+services and applications. The openlava default installation places the file in
+LSF_CONFDIR.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+/etc
+<P>
+<!-- .SH LSF_INCLUDEDIR -->
+</BLOCKQUOTE>
+<A name=210>
+
+     <H3>LSF_INCLUDEDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_INCLUDEDIR=</B><I>dir
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Directory under which the openlava API header files lsf.h and lsbatch.h
+are installed.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+LSF_INDEP/include
+<P>
+<P>
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_INDEP
+<!-- .SH LSF_INDEP -->
+</BLOCKQUOTE>
+<A name=214>
+
+     <H3>LSF_INDEP</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_INDEP=</B><I>dir
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specifies the default top-level directory for all machine-independent
+openlava files.
+<!-- .PP -->
+<P>
+This includes man pages, configuration files, working directories, and
+examples. For example, defining LSF_INDEP as /usr/share/lsf/mnt
+places man pages in /usr/share/lsf/mnt/man, configuration files in
+/usr/share/lsf/mnt/conf, and so on.
+<!-- .PP -->
+<P>
+The files in LSF_INDEP can be shared by all machines in the cluster.
+<!-- .PP -->
+<P>
+As shown in the following list, LSF_INDEP is incorporated into other
+openlava environment variables.
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: As shown in the following list, LSF_INDEP is incorporated into other
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o LSB_SHAREDIR=$LSF_INDEP/work
+<!-- .HP 2 -->
+<BR>
+o LSF_CONFDIR=$LSF_INDEP/conf
+<!-- .HP 2 -->
+<BR>
+o LSF_INCLUDEDIR=$LSF_INDEP/include
+<!-- .HP 2 -->
+<BR>
+o LSF_MANDIR=$LSF_INDEP/man
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+/usr/share/lsf/mnt
+<P>
+<P>
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_MACHDEP, LSB_SHAREDIR, LSF_CONFDIR, LSF_INCLUDEDIR,
+LSF_MANDIR
+<!-- .SH LSF_INTERACTIVE_STDERR -->
+</BLOCKQUOTE>
+<A name=218>
+
+     <H3>LSF_INTERACTIVE_STDERR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_INTERACTIVE_STDERR=y</B> | <B>n
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Separates stderr from stdout for interactive tasks and interactive
+batch jobs.
+<!-- .PP -->
+<P>
+This parameter can also be enabled or disabled as an environment
+variable.
+<!-- .SS Warning -->
+</BLOCKQUOTE>
+<A name=220>
+
+    <H4>&nbsp; &nbsp; Warning</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS If you enable this parameter globally in lsf.conf, check any custom scripts that manipulate stderr and stdout. -->
+</BLOCKQUOTE>
+<A name=221>
+
+    <H4>&nbsp; &nbsp; If you enable this parameter globally in lsf.conf, check any custom scripts that manipulate stderr and stdout.</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+When this parameter is undefined or set to n, the following are written
+to stdout on the submission host for interactive tasks and interactive
+batch jobs:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: When this parameter is undefined or set to n, the following are written
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o Job standard output messages
+<!-- .HP 2 -->
+<BR>
+o Job standard error messages
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .PP -->
+<P>
+The following are written to stderr on the submission host for
+interactive tasks and interactive batch jobs:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: The following are written to stderr on the submission host for
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o openlava messages
+<!-- .HP 2 -->
+<BR>
+o NIOS standard messages
+<!-- .HP 2 -->
+<BR>
+o NIOS debug messages (if LSF_NIOS_DEBUG=1 in lsf.conf)
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .PP -->
+<P>
+When this parameter is set to y, the following are written to stdout on
+the submission host for interactive tasks and interactive batch jobs:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: When this parameter is set to y, the following are written to stdout on
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o Job standard output messages
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .PP -->
+<P>
+The following are written to stderr on the submission host:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: The following are written to stderr on the submission host:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o Job standard error messages
+<!-- .HP 2 -->
+<BR>
+o openlava messages
+<!-- .HP 2 -->
+<BR>
+o NIOS standard messages
+<!-- .HP 2 -->
+<BR>
+o NIOS debug messages (if LSF_NIOS_DEBUG=1 in lsf.conf)
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS Notes -->
+</BLOCKQUOTE>
+<A name=273>
+
+    <H4>&nbsp; &nbsp; Notes</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+When this parameter is set, the change affects interactive tasks and
+interactive batch jobs run with the following commands:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: When this parameter is set, the change affects interactive tasks and
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o <B>bsub -I
+</B>.HP 2
+o <B>bsub -Ip
+</B>.HP 2
+o <B>bsub -Is
+</B>.HP 2
+<!-- .HP 2 -->
+<BR>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS Limitations -->
+</BLOCKQUOTE>
+<A name=224>
+
+    <H4>&nbsp; &nbsp; Limitations</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o Pseudo-terminal--Do not use this parameter if your application
+depends on stderr as a terminal. This is because openlava must use a
+non-pseudo-terminal connection to separate stderr from stdout.
+<!-- .HP 2 -->
+<BR>
+o Synchronization--Do not use this parameter if you depend on
+messages in stderr and stdout to be synchronized and jobs in
+your environment are continuously submitted. A continuous stream
+of messages causes stderr and stdout to not be synchronized.
+This can be emphasized with parallel jobs. This situation is similar
+to that of rsh.
+<!-- .HP 2 -->
+<BR>
+o NIOS standard and debug messages--NIOS standard messages,
+and debug messages (when LSF_NIOS_DEBUG=1 in lsf.conf or
+as an environment variable) are written to stderr. NIOS standard
+messages are in the format &lt;&lt;<I>message</I>&gt;&gt;, which makes it easier to
+remove them if you wish. To redirect NIOS debug messages to a
+file, define LSF_CMD_LOGDIR in lsf.conf or as an environment
+variable.
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_NIOS_DEBUG, LSF_CMD_LOGDIR
+<!-- .SH LSF_LIBDIR -->
+</BLOCKQUOTE>
+<A name=226>
+
+     <H3>LSF_LIBDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_LIBDIR=</B><I>dir
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specifies the directory in which the openlava libraries are installed. Library
+files are shared by all hosts of the same type.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+LSF_MACHDEP/lib
+<P>
+<P>
+<!-- .SH LSF_LIM_DEBUG -->
+</BLOCKQUOTE>
+<A name=229>
+
+     <H3>LSF_LIM_DEBUG</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_LIM_DEBUG=1</B> | <B>2
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Sets openlava to debug mode.
+<!-- .PP -->
+<P>
+If LSF_LIM_DEBUG is defined, LIM operates in single user mode. No
+security checking is performed, so LIM should not run as root.
+<!-- .PP -->
+<P>
+LIM will not look in the services database for the LIM service port
+number. Instead, it uses port number 36000 unless LSF_LIM_PORT has
+been defined.
+<!-- .PP -->
+<P>
+Specify 1 for this parameter unless you are testing openlava.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o LSF_LIM_DEBUG=1
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+LIM runs in the background with no associated control
+terminal.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o LSF_LIM_DEBUG=2
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+LIM runs in the foreground and prints error messages to tty.
+<P>
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .SS Default -->
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_RES_DEBUG
+<!-- .SH LSF_LIM_PORT, LSF_RES_PORT, LSB_MBD_PORT, LSB_SBD_PORT  -->
+</BLOCKQUOTE>
+<A name=234>
+
+     <H3>LSF_LIM_PORT, LSF_RES_PORT, LSB_MBD_PORT, LSB_SBD_PORT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Example: <B>LSF_LIM_PORT=</B><I>port_number
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+TCP service ports to use for communication with the openlava daemons.
+<!-- .PP -->
+<P>
+If port parameters are undefined, openlava obtains the port numbers by
+looking up the openlava service names in the /etc/services file or the NIS
+(UNIX). If it is not possible to modify the services database, you can
+define these port parameters to set the port numbers.
+<!-- .PP -->
+<P>
+With careful use of these settings along with the LSF_ENVDIR and
+PATH environment variables, it is possible to run two versions of the
+openlava software on a host, selecting between the versions by setting the
+PATH environment variable to include the correct version of the
+commands and the LSF_ENVDIR environment variable to point to the
+directory containing the appropriate lsf.conf file.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Default port number values for Linux are:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: Default port number values for Linux are:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o LSF_LIM_PORT=6879
+<!-- .HP 2 -->
+<BR>
+o LSF_RES_PORT=6878
+<!-- .HP 2 -->
+<BR>
+o LSB_MBD_PORT=6881
+<!-- .HP 2 -->
+<BR>
+o LSB_SBD_PORT=6882
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<B>LSF_LOG_MASK=</B><I>message_log_level
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Logging level of messages for openlava daemons.
+<!-- .PP -->
+<P>
+This is similar to syslog. All messages logged at the specified
+level or higher are recorded; lower level messages are discarded. The
+LSF_LOG_MASK value can be any log priority symbol that is defined in
+syslog.h (see syslog(8)).
+<!-- .PP -->
+<P>
+The log levels in order from highest to lowest are:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: The log levels in order from highest to lowest are:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o LOG_EMERG
+<!-- .HP 2 -->
+<BR>
+o LOG_ALERT
+<!-- .HP 2 -->
+<BR>
+o LOG_CRIT
+<!-- .HP 2 -->
+<BR>
+o LOG_ERR
+<!-- .HP 2 -->
+<BR>
+o LOG_WARNING
+<!-- .HP 2 -->
+<BR>
+o LOG_NOTICE
+<!-- .HP 2 -->
+<BR>
+o LOG_INFO
+<!-- .HP 2 -->
+<BR>
+o LOG_DEBUG
+<!-- .HP 2 -->
+<BR>
+o LOG_DEBUG1
+<!-- .HP 2 -->
+<BR>
+o LOG_DEBUG2
+<!-- .HP 2 -->
+<BR>
+o LOG_DEBUG3
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .PP -->
+<P>
+The most important openlava log messages are at the LOG_ERR or
+LOG_WARNING level. Messages at the LOG_INFO and LOG_DEBUG
+level are only useful for debugging.
+<!-- .PP -->
+<P>
+Although message log level implements similar functionalities to Linux
+syslog, there is no dependency on syslog. It works even if
+messages are being logged to files instead of syslog.
+<!-- .PP -->
+<P>
+openlava logs error messages in different levels so that you can choose to
+log all messages, or only log messages that are deemed critical. The
+level specified by LSF_LOG_MASK determines which messages are
+recorded and which are discarded. All messages logged at the specified
+level or higher are recorded, while lower level messages are discarded.
+<!-- .PP -->
+<P>
+For debugging purposes, the level LOG_DEBUG contains the fewest
+number of debugging messages and is used only for very basic
+debugging. The level LOG_DEBUG3 records all debugging messages,
+and is not often used. Most debugging is done at the level
+LOG_DEBUG2.
+<!-- .PP -->
+<P>
+The daemons log to the syslog facility unless LSF_LOGDIR is defined.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LOG_WARNING
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_DEBUG_LIM, LSF_DEBUG_RES, LSB_DEBUG_MBD,
+LSB_DEBUG_SBD, LSB_DEBUG_CMD,
+LSB_DEBUG_CMD, LSF_CMD_LOGDIR
+<!-- .SH LSF_LOGDIR -->
+</BLOCKQUOTE>
+<A name=240>
+
+     <H3>LSF_LOGDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_LOGDIR=</B><I>dir
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+This is an optional directory parameter 
+<!-- .PP -->
+<P>
+Error messages from all servers are logged into files in this directory. If
+a server is unable to write in this directory, the error logs are created
+in /tmp on UNIX.
+<!-- .PP -->
+<P>
+If LSF_LOGDIR is not defined, then syslog is used to log
+everything to the system log using the LOG_DAEMON facility. The
+syslog facility is available by default on most UNIX systems. The
+/etc/syslog.conf file controls the way messages are logged and the
+files they are logged to. See the man pages for the syslogd daemon
+and the syslog function for more information.
+<!-- .PP -->
+<P>
+To effectively use debugging, set LSF_LOGDIR to a directory such as
+/tmp. This can be done in your own environment from the shell or in
+lsf.conf.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+On UNIX, if undefined, log messages go to syslog.
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_LOG_MASK
+<!-- .SS Files -->
+</BLOCKQUOTE>
+<A name=244>
+
+    <H4>&nbsp; &nbsp; Files</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o lim.log.<I>host_name
+</I>.HP 2
+o res.log.<I>host_name
+</I>.HP 2
+o sbatchd.log.<I>host_name
+</I>.HP 2
+<!-- .HP 2 -->
+<BR>
+o mbatchd.log.<I>host_name
+</I>.HP 2
+o pim.log.<I>host_name
+</I>.RE
+<!-- .SH LSF_MACHDEP -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=245>
+
+     <H3>LSF_MACHDEP</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_MACHDEP=</B><I>dir
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specifies the directory in which machine-dependent files are installed.
+These files cannot be shared across different types of machines.
+<!-- .PP -->
+<P>
+In clusters with a single host type, LSF_MACHDEP is usually the same
+as LSF_INDEP. The machine dependent files are the user commands,
+daemons, and libraries. You should not need to modify this parameter.
+<!-- .PP -->
+<P>
+As shown in the following list, LSF_MACHDEP is incorporated into
+other openlava variables.
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: As shown in the following list, LSF_MACHDEP is incorporated into
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o LSF_BINDIR=$LSF_MACHDEP/bin
+<!-- .HP 2 -->
+<BR>
+o LSF_LIBDIR=$LSF_MACHDEP/lib
+<!-- .HP 2 -->
+<BR>
+o LSF_SERVERDIR=$LSF_MACHDEP/etc
+<!-- .HP 2 -->
+<BR>
+o XLSF_UIDDIR=$LSF_MACHDEP/lib/uid
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+/usr/share/lsf
+<P>
+<P>
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_INDEP
+<!-- .SH LSF_MANDIR -->
+</BLOCKQUOTE>
+<A name=249>
+
+     <H3>LSF_MANDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_MANDIR=</B><I>dir
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Directory under which all man pages are installed.
+<!-- .PP -->
+<P>
+The man pages are placed in the man1, man3, man5, and man8
+subdirectories of the LSF_MANDIR directory. This is created by the openlava
+installation process, and you should not need to modify this parameter.
+<!-- .PP -->
+<P>
+Man pages are installed in a format suitable for BSD-style <B>man</B>
+commands.
+<!-- .PP -->
+<P>
+For most versions of UNIX, you should add the directory LSF_MANDIR
+to your MANPATH environment variable. If your system has a man
+command that does not understand MANPATH, you should either
+install the man pages in the /usr/man directory or get one of the freely
+available man programs.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+LSF_INDEP/man
+<P>
+<P>
+<!-- .SH LSF_MASTER_LIST -->
+</BLOCKQUOTE>
+<A name=252>
+
+     <H3>LSF_MASTER_LIST</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_MASTER_LIST="</B><I>host_name ...</I><B>"
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Optional. Defines a list of hosts that are candidates to become the
+master host for the cluster.
+<!-- .PP -->
+<P>
+Listed hosts must be defined in lsf.cluster.<I>cluster_name</I>.
+<!-- .PP -->
+<P>
+Host names are separated by spaces.
+<!-- .PP -->
+<P>
+Whenever you reconfigure, only master LIM candidates read
+lsf.shared and lsf.cluster.<I>cluster_name</I> to get updated
+information. The elected master LIM sends configuration information to
+slave LIMs.
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SH LSF_MISC -->
+</BLOCKQUOTE>
+<A name=255>
+
+     <H3>LSF_MISC</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_MISC=</B><I>dir
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Directory in which miscellaneous machine independent files, such as
+openlava example source programs and scripts, are installed.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+LSF_CONFDIR/misc
+<P>
+<P>
+<!-- .SH LSF_NIOS_DEBUG  -->
+</BLOCKQUOTE>
+<A name=258>
+
+     <H3>LSF_NIOS_DEBUG</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_NIOS_DEBUG=1
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Turns on NIOS debugging for interactive jobs.
+<!-- .PP -->
+<P>
+If LSF_NIOS_DEBUG=1, NIOS debug messages are written to standard
+error.
+<!-- .PP -->
+<P>
+This parameter can also be defined as an environment variable.
+<!-- .PP -->
+<P>
+When LSF_NIOS_DEBUG and LSF_CMD_LOGDIR are defined, NIOS
+debug messages are logged in nios.log.<I>host_name</I>. in the location
+specified by LSF_CMD_LOGDIR.
+<!-- .PP -->
+<P>
+If LSF_NIOS_DEBUG is defined, and the directory defined by
+LSF_CMD_LOGDIR is inaccessible, NIOS debug messages are logged
+to /tmp/nios.log.<I>host_name</I> instead of stderr. 
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_CMD_LOGDIR
+<!-- .SH LSF_NIOS_JOBSTATUS_INTERVAL -->
+</BLOCKQUOTE>
+<A name=262>
+
+     <H3>LSF_NIOS_JOBSTATUS_INTERVAL</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_NIOS_JOBSTATUS_INTERVAL=</B><I>minutes
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Applies only to interactive batch jobs.
+<!-- .PP -->
+<P>
+Time interval at which NIOS polls MBD to check if a job is still running.
+Used to retrieve a job&#146;s exit status in the case of an abnormal exit of
+NIOS, due to a network failure for example.
+<!-- .PP -->
+<P>
+Use this parameter if you run interactive jobs and you have scripts that
+depend on an exit code being returned.
+<!-- .PP -->
+<P>
+When this parameter is undefined and a network connection is lost,
+MBD cannot communicate with NIOS and the return code of a job is
+not retrieved.
+<!-- .PP -->
+<P>
+When this parameter is defined, before exiting, NIOS polls MBD on the
+interval defined by LSF_NIOS_JOBSTATUS_INTERVAL to check if a job
+is still running. NIOS continues to poll MBD until it receives an exit
+code or MBD responds that the job does not exist (if the job has already
+been cleaned from memory for example).
+<!-- .PP -->
+<P>
+If an exit code cannot be retrieved, NIOS generates an error message
+and the code -11.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Any integer greater than zero
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS Notes -->
+</BLOCKQUOTE>
+<A name=273>
+
+    <H4>&nbsp; &nbsp; Notes</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Set this parameter to large intervals such as 15 minutes or more so that
+performance is not negatively affected if interactive jobs are pending
+for too long. NIOS always calls MBD on the defined interval to confirm
+that a job is still pending and this may add load to MBD.
+<!-- .SS Product -->
+</BLOCKQUOTE>
+<A name=274>
+
+    <H4>&nbsp; &nbsp; Product</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+openlava Batch
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Environment variable LSF_NIOS_PEND_TIMEOUT
+<!-- .SH LSF_NIOS_RES_HEARTBEAT -->
+</BLOCKQUOTE>
+<A name=269>
+
+     <H3>LSF_NIOS_RES_HEARTBEAT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_NIOS_RES_HEARTBEAT=</B><I>minutes
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Applies only to interactive non-parallel batch jobs.
+<!-- .PP -->
+<P>
+Defines how long NIOS waits before sending a message to RES to
+determine if the connection is still open.
+<!-- .PP -->
+<P>
+Use this parameter to ensure NIOS exits when a network failure occurs
+instead of waiting indefinitely for notification that a job has been
+completed. When a network connection is lost, RES cannot
+communicate with NIOS and as a result, NIOS does not exit.
+<!-- .PP -->
+<P>
+When this parameter is defined, if there has been no communication
+between RES and NIOS for the defined period of time, NIOS sends a
+message to RES to see if the connection is still open. If the connection
+is no longer available, NIOS exits.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Any integer greater than zero
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS Notes -->
+</BLOCKQUOTE>
+<A name=273>
+
+    <H4>&nbsp; &nbsp; Notes</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The time you set this parameter to depends how long you want to
+allow NIOS to wait before exiting. Typically, it can be a number of
+hours or days. Too low a number may add load to the system.
+<!-- .SS Product -->
+</BLOCKQUOTE>
+<A name=274>
+
+    <H4>&nbsp; &nbsp; Product</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+openlava Base, openlava Batch
+<!-- .SH   -->
+</BLOCKQUOTE>
+<A name=>
+
+     <H3></H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<!-- .SH LSF_PIM_INFODIR -->
+</BLOCKQUOTE>
+<A name=275>
+
+     <H3>LSF_PIM_INFODIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_PIM_INFODIR=</B><I>path
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The path to where PIM writes the pim.info.<I>host_name</I> file.
+<!-- .PP -->
+<P>
+Specifies the path to where the process information is stored. The
+process information resides in the file pim.info.<I>host_name</I>. The PIM
+also reads this file when it starts up so that it can accumulate the
+resource usage of dead processes for existing process groups.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined. If undefined, the system uses /tmp.
+<!-- .PP -->
+<P>
+<P>
+<!-- .SH LSF_PIM_SLEEPTIME -->
+</BLOCKQUOTE>
+<A name=278>
+
+     <H3>LSF_PIM_SLEEPTIME</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_PIM_SLEEPTIME=</B><I>seconds
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The reporting period for PIM.
+<!-- .PP -->
+<P>
+PIM updates the process information every 15 minutes unless an
+application queries this information. If an application requests the
+information, PIM will update the process information every
+LSF_PIM_SLEEPTIME seconds. If the information is not queried by any
+application for more than 5 minutes, the PIM will revert back to the 15
+minute update period.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+15
+<!-- .SH LSF_RES_ACCT -->
+</BLOCKQUOTE>
+<A name=281>
+
+     <H3>LSF_RES_ACCT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_RES_ACCT=</B><I>milliseconds </I>| <B>0
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+If this parameter is defined, RES will log information for completed and
+failed tasks by default (see <B>lsf.acct</B>(5)). 
+<!-- .PP -->
+<P>
+The value for LSF_RES_ACCT is specified in terms of consumed CPU
+time (milliseconds). Only tasks that have consumed more than the
+specified CPU time will be logged.
+<!-- .PP -->
+<P>
+If this parameter is defined as LSF_RES_ACCT=0, then all tasks will be
+logged.
+<!-- .PP -->
+<P>
+For those tasks that consume the specified amount of CPU time, RES
+generates a record and appends the record to the task log file
+lsf.acct.<I>host_name</I>. This file is located in the LSF_RES_ACCTDIR
+directory.
+<!-- .PP -->
+<P>
+If this parameter is not defined, the openlava administrator must use the
+<B>lsadmin</B> command (see <B>lsadmin</B>(8)) to turn task logging on after RES
+has started up.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_RES_ACCTDIR
+<!-- .SH LSF_RES_ACCTDIR -->
+</BLOCKQUOTE>
+<A name=285>
+
+     <H3>LSF_RES_ACCTDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_RES_ACCTDIR=</B><I>dir
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The directory in which the RES task log file lsf.acct.<I>host_name</I> is
+stored.
+<!-- .PP -->
+<P>
+If LSF_RES_ACCTDIR is not defined, the log file is stored in the /tmp
+directory.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+(UNIX)/tmp
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_RES_ACCT
+<!-- .SH LSF_RES_DEBUG -->
+</BLOCKQUOTE>
+<A name=289>
+
+     <H3>LSF_RES_DEBUG</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_RES_DEBUG=1</B><I> | </I><B>2
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Sets RES to debug mode.
+<!-- .PP -->
+<P>
+If LSF_RES_DEBUG is defined, the Remote Execution Server (RES) will
+operate in single user mode. No security checking is performed, so RES
+should not run as root. RES will not look in the services database for
+the RES service port number. Instead, it uses port number 36002 unless
+LSF_RES_PORT has been defined.
+<!-- .PP -->
+<P>
+Specify 1 for this parameter unless you are testing RES.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+o LSF_RES_DEBUG=1
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<P>
+<!-- .IP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6%>
+
+</TD><TD>
+RES runs in the background with no associated control terminal.
+<P>
+<P>
+<!-- .RS -->
+<!-- .HP 2 -->
+<TABLE width=100% cellpadding=3>
+<TR valign=top><TD colspan=2>
+o LSF_RES_DEBUG=2
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><P>
+<!-- .IP -->
+</TD></TR>
+<TR valign=top><TD width=2%>
+
+</TD><TD>
+RES runs in the foreground and prints error messages to tty.
+<P>
+<P>
+<!-- .SS Default -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSF_LIM_DEBUG
+<!-- .SH LSF_RES_PLUGINDIR -->
+</BLOCKQUOTE>
+<A name=294>
+
+     <H3>LSF_RES_PLUGINDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_RES_PLUGINDIR=</B><I>path
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The path to lsbresvcl.so. Used only with SUN HPC.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+$LSF_LIBDIR
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<!-- .SH LSF_RES_PORT -->
+</BLOCKQUOTE>
+<A name=298>
+
+     <H3>LSF_RES_PORT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+See LSF_LIM_PORT, LSF_RES_PORT, LSB_MBD_PORT,
+LSB_SBD_PORT.
+<!-- .SH LSF_RES_RLIMIT_UNLIM -->
+</BLOCKQUOTE>
+<A name=299>
+
+     <H3>LSF_RES_RLIMIT_UNLIM</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_RES_RLIMIT_UNLIM=cpu</B> | <B>fsize</B> | <B>data</B> | <B>stack</B> | <B>core</B> | <B>vmem
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+(openlava Base only) By default, RES sets the hard limits for a remote task
+to be the same as the hard limits of the local process. This parameter
+specifies those hard limits which are to be set to unlimited, instead of
+inheriting those of the local process.
+<!-- .PP -->
+<P>
+Valid values are cpu, fsize, data, stack, core, and vmem, for cpu, file
+size, data size, stack, core size, and virtual memory limits, respectively.
+<!-- .SS Example  -->
+</BLOCKQUOTE>
+<A name=301>
+
+    <H4>&nbsp; &nbsp; Example</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The following example sets the cpu, core size, and stack hard limits to
+be unlimited for all remote tasks:
+<P>
+<!-- .PP -->
+<P>
+LSF_RES_RLIMIT_UNLIM="cpu core stack"
+<P>
+<P>
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<!-- .SH LSF_RES_TIMEOUT -->
+</BLOCKQUOTE>
+<A name=304>
+
+     <H3>LSF_RES_TIMEOUT</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_RES_TIMEOUT=</B><I>seconds</I>
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=317>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Timeout when communicating with RES.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+15
+<!-- .SH LSF_SERVER_HOSTS -->
+</BLOCKQUOTE>
+<A name=308>
+
+     <H3>LSF_SERVER_HOSTS</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_SERVER_HOSTS="</B><I>host_name</I> ...<B>"
+</B>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Defines one or more openlava server hosts that the application should
+contact to find a Load Information Manager (LIM). This is used on client
+hosts on which no LIM is running on the local host. The openlava server
+hosts are hosts that run openlava daemons and provide loading-sharing
+services. Client hosts are hosts that only run openlava commands or
+applications but do not provide services to any hosts.
+<!-- .PP -->
+<P>
+If LSF_SERVER_HOSTS is not defined, the application tries to contact
+the LIM on the local host.
+<!-- .PP -->
+<P>
+The host names in LSF_SERVER_HOSTS must be enclosed in quotes
+and separated by white space. For example:
+<P>
+<!-- .PP -->
+<P>
+LSF_SERVER_HOSTS="hostA hostD hostB"
+<P>
+<P>
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SH LSF_SERVERDIR -->
+</BLOCKQUOTE>
+<A name=311>
+
+     <H3>LSF_SERVERDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_SERVERDIR=</B><I>dir
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Directory in which all server binaries and shell scripts are installed.
+<!-- .PP -->
+<P>
+These include lim, res, nios, sbatchd, mbatchd.
+If you use elim, eauth, eexec,
+esub, etc, they are also installed in this directory.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<P>
+<!-- .PP -->
+<P>
+LSF_MACHDEP/etc
+<P>
+<P>
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_ECHKPNT_METHOD_DIR
+<!-- .SH LSF_STRIP_DOMAIN -->
+</BLOCKQUOTE>
+<A name=315>
+
+     <H3>LSF_STRIP_DOMAIN</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_STRIP_DOMAIN=</B><I>domain_suffix</I> [<B>:</B><I>domain_suffix ...</I>]
+<!-- .SS Description -->
+</BLOCKQUOTE>
+<A name=317>
+
+    <H4>&nbsp; &nbsp; Description</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+(Optional) If all of the hosts in your cluster can be reached using short
+host names, you can configure openlava to use the short host names by
+specifying the portion of the domain name to remove. If your hosts are
+in more than one domain or have more than one domain name, you
+can specify more than one domain suffix to remove, separated by a
+colon (:).
+<!-- .PP -->
+<P>
+For example, given this definition of LSF_STRIP_DOMAIN,
+<P>
+<!-- .PP -->
+<P>
+LSF_STRIP_DOMAIN=.foo.com:.bar.com
+<P>
+<P>
+<!-- .PP -->
+<P>
+openlava accepts hostA, hostA.foo.com, and hostA.bar.com as names
+for host hostA, and uses the name hostA in all output. The leading
+period &#145;.&#146; is required.
+<!-- .PP -->
+<P>
+Example:
+<P>
+<!-- .PP -->
+<P>
+LSF_STRIP_DOMAIN=.platform.com:.generic.com
+<P>
+<P>
+<!-- .PP -->
+<P>
+In the above example, openlava accepts hostA, hostA.platform.com, and
+hostA.generic.com as names for <B>hostA</B>, and uses the name hostA
+in all output.
+<!-- .PP -->
+<P>
+Setting this parameter only affects host names displayed through openlava,
+it does not affect DNS host lookup.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SH LSF_TIME_CMD -->
+</BLOCKQUOTE>
+<A name=319>
+
+     <H3>LSF_TIME_CMD</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_TIME_CMD=</B><I>timimg_level
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The timing level for checking how long openlava commands run. Time
+usage is logged in milliseconds; specify a positive integer.
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_TIME_MBD, LSB_TIME_SBD, LSB_TIME_CMD, LSF_TIME_LIM,
+LSF_TIME_RES
+<!-- .SH LSF_TIME_LIM -->
+</BLOCKQUOTE>
+<A name=323>
+
+     <H3>LSF_TIME_LIM</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_TIME_LIM=</B><I>timing_level
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The timing level for checking how long LIM routines run.
+<!-- .PP -->
+<P>
+Time usage is logged in milliseconds; specify a positive integer.
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_TIME_CMD, LSB_TIME_MBD, LSB_TIME_SBD, LSF_TIME_RES
+<!-- .SH LSF_TIME_RES -->
+</BLOCKQUOTE>
+<A name=327>
+
+     <H3>LSF_TIME_RES</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_TIME_RES=</B><I>timing_level
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+The timing level for checking how long RES routines run.
+<!-- .PP -->
+<P>
+Time usage is logged in milliseconds; specify a positive integer.
+<!-- .SS Default  -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Undefined
+<!-- .SS See Also -->
+</BLOCKQUOTE>
+<A name=330>
+
+    <H4>&nbsp; &nbsp; See Also</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+LSB_TIME_CMD, LSB_TIME_MBD, LSB_TIME_SBD, LSF_TIME_LIM
+<!-- .SH LSF_TMPDIR -->
+</BLOCKQUOTE>
+<A name=331>
+
+     <H3>LSF_TMPDIR</H3>
+
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .SS Syntax -->
+</BLOCKQUOTE>
+<A name=332>
+
+    <H4>&nbsp; &nbsp; Syntax</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+<B>LSF_TMPDIR=</B><I>dir
+</I>.SS Description
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specifies the path and directory for temporary job output.
+<!-- .PP -->
+<P>
+When LSF_TMPDIR is defined in lsf.conf, openlava creates a temporary
+directory under the directory specified by LSF_TMPDIR on the
+execution host when a job is started and sets the temporary directory
+environment variable for the job.
+<!-- .PP -->
+<P>
+When LSF_TMPDIR is defined as an environment variable, it overrides
+the LSF_TMPDIR specified in lsf.conf. openlava removes the temporary
+directory and the files that it contains when the job completes.
+<!-- .PP -->
+<P>
+The name of the temporary directory has the following format:
+<P>
+<!-- .PP -->
+<P>
+$LSF_TMPDIR/job_ID.tmpdir
+<P>
+<P>
+<!-- .PP -->
+<P>
+On UNIX, the directory has the permission 0700.
+<!-- .PP -->
+<P>
+After adding LSF_TMPDIR to lsf.conf, use <B>badmin hrestart all</B>
+to reconfigure your cluster.
+<!-- .PP -->
+<P>
+This parameter can also be specified from the command line.
+<!-- .SS Valid Values -->
+</BLOCKQUOTE>
+<A name=333>
+
+    <H4>&nbsp; &nbsp; Valid Values</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+Specify any valid path up to a maximum length
+of 256 characters. The 256 character maximum path length includes the
+temporary directories and files that openlava Batch creates as jobs run. The
+path that you specify for LSF_TMPDIR should be as short as possible
+to avoid exceeding this limit.
+<!-- .PP -->
+<P>
+On UNIX, specify an absolute path. For example:
+<P>
+<!-- .PP -->
+<P>
+LSF_TMPDIR=/usr/share/lsf_tmp
+<P>
+<P>
+<!-- .SS Default -->
+</BLOCKQUOTE>
+<A name=334>
+
+    <H4>&nbsp; &nbsp; Default</H4>
+</A>
+<BLOCKQUOTE>
+<!-- .BR -->
+ <!-- .PP -->
+<P>
+<!-- .PP -->
+<P>
+By default, LSF_TMPDIR is not enabled. If LSF_TMPDIR is not specified
+either in the environment or in lsf.conf, this parameter is defined as
+follows:
+<!-- .RS -->
+<BLOCKQUOTE>
+<!-- .HP 2 -->
+<TABLE cellpadding=3><!-- tsb: By default, LSF_TMPDIR is not enabled. If LSF_TMPDIR is not specified
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+o On UNIX: $TMPDIR or /tmp
+<!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>lsf.conf (5)</TD> <TD align=right width=33%><I>"openlava Version 2.0 - Jan 2012"</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from lsf.conf.5 using man macros.</FONT>
+</BODY></HTML>
