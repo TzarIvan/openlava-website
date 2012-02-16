@@ -166,7 +166,7 @@ do
   scp openlava-2.0-1.rpm $host:/root
   ssh $host rpm -ivh /root/openlava-2.0-1.rpm
   scp /opt/openlava/conf/lsf.cluster.openlava $host:/opt/openlava/conf/
-  ssh service openlava start
+  ssh $host service openlava start
 done
          </pre>
          The script assumes that you have set up a password less
