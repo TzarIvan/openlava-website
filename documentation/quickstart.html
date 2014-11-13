@@ -30,7 +30,7 @@
        <ul>
          <li><a href="../home.html" id="homenav">Home</a></li>
          <li><a href="../download/download.html" id="downloadnav">Downloads</a></li>
-         <li><a href="../documentation/documentation.html" id="documentationnav">Documentation</a></li>
+         <li><a href="documentation.html" id="documentationnav">Documentation</a></li>
          <li><a href="../support/support.html" id="supportnav">Support</a></li>
          <!-- li><a href="../blog" id="blognav">Forum</a></li -->
        </ul>
@@ -44,48 +44,44 @@
          to be the master host. For advanced dynamic
          configuration please read the <b>openlava</b> documentation.
 
-         <p>The most simple way to install openlava is to use rpms.
-           To download the most recent version, following these links:
-           <table border=1>
-             <tr>
-               <td><a href="http://download.opensuse.org/repositories/home:/alescc/RedHat_RHEL-6/x86_64/">&nbsp RedHat EL 6</a>
-               <td>&nbsp Red Hat 6</td>
-             </tr>
-             <tr>
-               <td><a href="http://download.opensuse.org/repositories/home:/alescc/RedHat_RHEL-5/x86_64/"> &nbsp RedHat EL 5</a>
-                 <td>&nbsp Red Hat 5</td>
-             </tr>
-             <tr>
-               <td>
-                 <a href="http://download.opensuse.org/repositories/home:/alescc/CentOS_CentOS-5/x86_64/"> &nbsp CentOS 5</a>
-                 <td>&nbsp CentOS 5</td>
-               </tr>
-             <tr>
-               <td>
-                 <a href="http://download.opensuse.org/repositories/home:/alescc/CentOS_CentOS-6/x86_64/"> &nbsp CentOS 6</a>
-                 <td>&nbsp CentOS 6</td>
-               </tr>
-             <tr>
-               <td><a href="http://download.opensuse.org/repositories/home:/alescc/openSUSE_12.1/x86_64/"> &nbsp OpenSUSE 12.1</a>
-                 <td>&nbsp OpenSUSE</td>
-             </tr>
-           </table border=1>
+         <p>The most simple way to install openlava is to build it from the
+		   source code, running configure, make and make install.
+           To download the most recent version see the download tab.
          </p>
          <p>
-           For other platforms like <b>Ubuntu</b> or
-         <b>Cygwin</b> you have to use the tarball configure and build the
-         software the usual way.
          <p>Openlava does not require to be installed in a shared file system. However it may be configured to use a shared file system for the
            configuration files and event logs to support master failover.</p>
          </p>
-       <p>To install openlava, simply perform:
+       <p>There are two ways to install openlava. (1) Compile from the source; (2) Install RPM.
+	   <ul>
+	   <li>To compile from the source, perform the following tasks:
          <pre>
-[root@master ~]# <b>rpm -ivh openlava-2.0-150.1.x86_64.rpm</b>
+[root@master ~]# <b>configure</b>
+[root@master ~]# <b>make</b>
+[root@master ~]# <b>make install</b>
          </pre>
        </p>
-       <p>Finally, a bit of configuration
+       <p>Manually copy configuration files to /opt/openlava-2.2/etc
          <pre>
-[root@master ~]# <b>cd /opt/openlava-2.0/etc</b>
+[root@master ~]# <b>cd config; cp lsb.hosts lsb.params lsb.queues lsb.users \</b>
+> <b> lsf.cluster.openlava lsf.conf lsf.shared lsf.tasks openlava.* \</b>
+> <b> /opt/openlava-2.2/etc</b>
+	 </pre>
+	</p>
+	<p>If you have not already created user <b>openlava</b>, please do so:
+	<pre>
+[root@master ~]# <b>useradd -r openlava</b>
+    </pre></p>
+	<p>Change file owner, set up configure system service and shell source files.
+	<pre>
+[root@master ~]# <b>chown -R openlava:openlava /opt/openlava-2.2</b>
+[root@master ~]# <b>cp /opt/openlava-2.2/etc/openlava /etc/init.d</b>
+[root@master ~]# <b>cp /opt/openlava-2.2/etc/openlava.* /etc/profile.d</b>
+[root@master ~]# <b>chkconfig openlava on</b>
+	</pre></p>
+       <p>Finally, modify <b>openlava</b> configuration
+         <pre>
+[root@master ~]# <b>cd /opt/openlava-2.1/etc</b>
 [root@master ~]# <b>vi lsf.cluster.openlava</b>
          </pre>
          And add the hostname of cluster hosts:
@@ -118,7 +114,7 @@ End ResourceMap
          </pre>
          </p>
 
-       <p>openlava is installed.</p>
+       <p><b>openlava</b> is installed.</p>
 
        <pre>
 [root@master openlava]# <b>. /etc/profile.d/openlava.sh</b>
@@ -126,20 +122,25 @@ End ResourceMap
 
        <p>Start the openlava daemons.</p>
        <pre>
-[root@master openlava]# <b>ssh service openlava start</b>
+[root@master openlava]# <b>service openlava start</b>
 Starting daemons...
 lim started
 res started
 sbatchd started
        </pre>
-
-       <p>Congratulations! openlava is now running, managing
+</li>
+<li> To install from RPM, run:
+<pre>
+[root@master ~]# <b>rpm -ihv openlava-2.2-1.x86_64.rpm</b>
+[root@master ~]# <b>. /etc/profile.d/openlava.sh</b>
+</pre>
+</ul>
+       <p>Congratulations! <b>openlava</b> is now running, managing
          a cluster of one node.
        </p>
-
        <pre>
 [root@master openlava]# <b>lsid</b>
-openlava project 2.0, Jan 27 2012
+openlava project 2.2, Nov 12 2014
 
 My cluster name is openlava
 My master name is linux-ge97
@@ -152,20 +153,23 @@ linux-ge97         ok              -      4      0      0      0      0      0
 
        <p>Now you can extend your cluster:
          <li>Edit lsf.cluster.openlava to add all hosts you want to
-         be part of the cluster</li>
-         <li>Install the rpms on other hosts</li>
-         <li>Replicate the configuration on each host</li>
+         be part of the cluster and restart the <b>openlava</b> service</li>
+         <li>Install binaries and configuration files on other hosts</li>
+         <li>Start <b>openlava</b> service on all hosts</li>
        </p>
-
-       <p>As an example how to add new hosts to an <b>openlava</b>
-         cluster quickly you can use a simple script like this one
+	<p>
+		 As an example how to add new hosts to an <b>openlava</b>
+         cluster quickly, you can use a simple script like this one
          which performs the remote installation tasks:
          <pre>
+# restart service after adding hosts to the cluster
+service openlava restart
+tar cf openlava-bin.tar /opt/openlava-2.2 /etc/init.d/openlava /etc/profile.d/openlava.*
 for host in `cat hosts`
+# The file hosts lists all hosts in the openlava cluster except the master
 do
-  scp openlava-2.0-1.rpm $host:/root
-  ssh $host rpm -ivh /root/openlava-2.0-1.rpm
-  scp /opt/openlava/conf/lsf.cluster.openlava $host:/opt/openlava/conf/
+  scp openlava-bin.tar $host:/root
+  ssh $host "cd /;tar xf /root/openlava-bin.tar"
   ssh $host service openlava start
 done
          </pre>
@@ -190,6 +194,6 @@ The other host are going to be compute hosts.
          </div>
          </div> <!-- end #footer -->
 
-       </div> <!-- end #page -->
-       </body>
-     </html>
+   </div> <!-- end #page -->
+ </body>
+</html>
