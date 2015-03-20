@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>openlava - Open Source Job Scheduler</title>
-    <meta name="author" content="openlava development team" />
-    <meta name="subject" content="openlava - Open Source Workload Scheduler" />
-    <meta name="Description" content="This is the official website for openlava, the open source job scheduler based on Platform LSF. Download RPM, source code, read documentation and get support." />
-    <meta name="Keywords" content="download free workload manager, open source hpc job scheduler, openlava support, openlava mailing list, openlava developer" />
+    <title>OpenLava - Open Source Job Scheduler</title>
+    <meta name="author" content="OpenLava development team" />
+    <meta name="subject" content="OpenLava - Open Source Workload Scheduler" />
+    <meta name="Description" content="This is the official website for OpenLava, the open source job scheduler based on Platform LSF. Download RPM, source code, read documentation and get support." />
+    <meta name="Keywords" content="download free workload manager, open source hpc job scheduler, OpenLava support, OpenLava mailing list, OpenLava developer" />
     <meta name="Language" content="English" />
     <meta http-equiv="Expires" content="never" />
-    <meta name="Copyright" content="openlava Foundation 2011" />
+    <meta name="Copyright" content="OpenLava Foundation 2011" />
     <meta name="distribution" content="Global" />
     <meta name="Robots" content="INDEX,FOLLOW" />
     <meta name="country" content="United States" />
@@ -40,21 +40,32 @@
        <div id="leftcol"> <h2>Quickstart</h2>
 
          This quick start introduces you to the fastes and easies way
-         to set up a one host openlava cluster, the host you set up is going
+         to set up a one host OpenLava cluster, the host you set up is going
          to be the master host. For advanced dynamic
-         configuration please read the <b>openlava</b> documentation.
+         configuration please read the <b>OpenLava</b> documentation.
 
-         <p>The most simple way to install openlava is to build it from the
-		   source code, running configure, make and make install.
+         <p>The most simple way to install OpenLava is to build it from the
+	   source code, running configure, make and make install.
            To download the most recent version see the download tab.
          </p>
+
          <p>
-         <p>Openlava does not require to be installed in a shared file system. However it may be configured to use a shared file system for the
+         <p>OpenLava does not require to be installed in a shared file system.
+           However it may be configured to use a shared file system for the
            configuration files and event logs to support master failover.</p>
          </p>
-       <p>There are two ways to install openlava. (1) Compile from the source; (2) Install RPM.
-	   <ul>
-	   <li>To compile from the source, perform the following tasks:
+         <p>There are two ways to install OpenLava.
+           <ol>
+             <li>Compile from the source
+             <li>Install RPM.
+             </ol>
+             </p>
+             <p>
+               In the following examples we assume that you are installing
+               the version 2.2 using the default /opt/openlava-2.2 location.
+             </p>
+	     <ul>
+	       <li>To compile from the source, perform the following tasks:
          <pre>
 [root@master ~]# <b>configure</b>
 [root@master ~]# <b>make</b>
@@ -81,7 +92,7 @@
 	</pre></p>
        <p>Finally, modify <b>openlava</b> configuration
          <pre>
-[root@master ~]# <b>cd /opt/openlava-2.1/etc</b>
+[root@master ~]# <b>cd /opt/openlava-2.2/etc</b>
 [root@master ~]# <b>vi lsf.cluster.openlava</b>
          </pre>
          And add the hostname of cluster hosts:
@@ -153,12 +164,12 @@ linux-ge97         ok              -      4      0      0      0      0      0
 
        <p>Now you can extend your cluster:
          <li>Edit lsf.cluster.openlava to add all hosts you want to
-         be part of the cluster and restart the <b>openlava</b> service</li>
+         be part of the cluster and restart the <b>OpenLava</b> service</li>
          <li>Install binaries and configuration files on other hosts</li>
-         <li>Start <b>openlava</b> service on all hosts</li>
+         <li>Start <b>OpenLava</b> service on all hosts</li>
        </p>
 	<p>
-		 As an example how to add new hosts to an <b>openlava</b>
+		 As an example how to add new hosts to an <b>OpenLava</b>
          cluster quickly, you can use a simple script like this one
          which performs the remote installation tasks:
          <pre>
@@ -186,7 +197,7 @@ The other host are going to be compute hosts.
 
          <div id="footer">
            <div>
-             <span>& 2011-2012 openlava project</span>
+             <span>& 2011-2012 OpenLava project</span>
              <p>
                <a href="http://validator.w3.org/check?uri=referer"><img
                                                                       src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" style="border: 0;"/></a>
